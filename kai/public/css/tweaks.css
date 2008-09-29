@@ -1,0 +1,148 @@
+/* @override http://localhost:5000/css/tweaks.css */
+
+h2           { font-size: 16px; margin: 1.3em 0 0.0 0; padding: 5px;
+               background-color: transparent; color: #000; }
+h2 em        { font-style: normal; color: #F5E08D; font-weight: normal; }
+div.traceback, div.plain { background-color: #eee!important; border: 1px solid #ccc; margin: 0 0 1em 0; padding: 10px;}
+div.traceback h3 { font-size: 1em; margin: 0 0 0.8em 0; }
+div.traceback ul { list-style: none; margin: 0; padding: 0 0 0 1em; }
+div.traceback ul li { list-style: none;}
+div.traceback h4 { font-size: 13px; font-weight: normal; margin: 0.7em 0 0.1em 0; }
+div.traceback ul li em { font-style: italic; }
+cite {font-style: italic;}
+div.traceback pre { margin: 0; padding: 5px 0 3px 15px;
+ background-color: #ccc; border-top: 1px solid #aaa;
+ border-left: 1px solid #aaa; border-right: 1px solid #fafafa;
+ border-bottom: 1px solid #fafafa; }
+.details {font-size: 14px;}
+.errormsg {font-weight: bold;}
+table.buildbot, table.buildbot tr td, table.buildbot tr th {border:none;}
+table.buildbot {
+    margin-left: 80px;
+}
+table.buildbot tr td.next {
+    border-left: 1px solid #ddd;
+}
+table.buildbot thead {
+    border-bottom: 1px solid #ddd;
+}
+
+table.buildbot thead th {
+    line-height: 1.1;
+    padding:0 0 4px 0;
+    margin: 0;
+}
+table.buildbot tbody tr {
+    line-height: 1.1;
+    margin: 0;
+}
+table.buildbot tbody th {
+    padding-right: 14px;
+}
+table.buildbot tr td {
+    padding: 4px 54px 4px 24px;
+}
+table.buildbot td.result {
+	padding-left: 22px;
+	line-height: 1.4;
+}
+
+span.failure {
+    color: #900;
+    font-weight:700;
+    background: transparent url(images/note.png) no-repeat 0% 50%;
+    padding-left:25px;
+}
+tr.failure {
+    color:  #900;
+}
+tr.success {
+    color:  #090;
+}
+span.success {
+    color: #090;
+    font-weight:700;
+}
+table.buildbot span.success {
+    color: #090;
+    font-weight:700;
+    background: transparent url(images/success.gif) no-repeat 0% 50%;
+    padding-left:25px;
+}
+div.older table.buildbot tbody tr.run {
+	border-top: 1px solid #ddd;
+}
+
+div.loadmore {
+    margin: 0 0 0 30px;
+    padding: 0;
+}
+div.viewtoggle a {
+    background: transparent url(images/arrow-right.gif) no-repeat 0px 50%;
+    padding-left:15px;
+}
+div.viewtoggle a.down {
+    background: transparent url(images/arrow-down.gif) no-repeat 0px 50%;
+    padding-left:15px;    
+}
+div.details {
+    float: right;
+    padding: 0;
+    margin: 0 0 0 15px;
+}
+div.details a {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    text-decoration: none;
+}
+table.buildbot tr td:hover div.details a {
+	background: transparent url(images/information.gif) no-repeat 0 0;
+	display: block;
+	text-decoration: none;
+}
+
+/* Overlay popup styling */
+div.close {
+    float: right;
+    font-size: 93%;
+    padding: 6px 8px 6px 20px;
+    margin: 8px;
+    border: 1px solid #ddd;
+    background: transparent url(images/cross.gif) no-repeat 0px 50%;
+}
+div#build-details h2 {
+    margin: 5px 0 0 20px;
+    font-size: 131%;
+    color: #6f4706;
+}
+div#build-details table td pre { 
+	margin: 5px 0 5px 15px; 
+	padding: 0px 0 3px 10px;
+	border: 1px solid #ccc;
+	background-color: #efefef;
+	width: 820px;
+	overflow: auto;
+}
+
+div#build-details table {
+    margin: 20px 45px 0 25px;
+    width: 850px;
+}
+div#build-details table td {
+    border: none;
+    line-height: 1.0;
+    font-size: 85%;
+}
+
+div#build-details table .times {
+    color: #999;
+    font-size: 85%;
+    text-align: center;
+}
+div#build-details table th{
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
