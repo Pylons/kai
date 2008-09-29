@@ -28,9 +28,9 @@
 <%def name="title()">PylonsHQ</%def>
 <%def name="styles()">
 % if c.use_minified_assets:
-    ${h.stylesheet_link_tag('/css/phq-06202008.1-min.css')}
+    ${h.stylesheet_link('/css/phq-06202008.1-min.css')}
 % else:
-    ${h.stylesheet_link_tag(*h.load_stylesheet_assets())}
+    ${h.stylesheet_link(*h.load_stylesheet_assets())}
 %endif
 </%def>
 <%def name="javascript()">
@@ -47,9 +47,9 @@
     active_sub[sub or 'Overview'] = ' class="selected"'
 %>\
   <ul class="clearfix">
-    <li id="nav-1"${active_tab.get('Home', '') | n}>${h.link_to('Home', url=h.url_for('home'))}
+    <li id="nav-1"${active_tab.get('Home', '') | n}>${h.link_to('Home', url=url('home'))}
       <ul>
-        <li${active_sub.get('Overview', '') | n}>${h.link_to('Overview', url=h.url_for('home'))}</li>
+        <li${active_sub.get('Overview', '') | n}>${h.link_to('Overview', url=url('home'))}</li>
         <li${active_sub.get('Features', '') | n}><a href="#">Features</a></li>
         <li${active_sub.get('History', '') | n}><a href="#">History</a></li>
         <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
@@ -76,7 +76,7 @@
     <li id="nav-4"${active_tab.get('Tools', '') | n}><a href="#">Tools</a>
       <ul>
         <li${active_sub.get('Pastebin', '') | n}><a href="#"> Pastebin</a></li>
-        <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=h.url_for('tracebacks'))}</li>
+        <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=url('tracebacks'))}</li>
         <li${active_sub.get('Snippets', '') | n}><a href="#">Snippets</a></li>
       </ul>
     </li>
@@ -87,7 +87,7 @@
         <li${active_sub.get('View Tickets', '') | n}><a href="#">View Tickets</a></li>
         <li${active_sub.get('Source', '') | n}><a href="#">Source</a></li>
         <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
-        <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=h.url_for('buildbot', action='index'))}</li>
+        <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=url('buildbot', action='index'))}</li>
       </ul>
     </li>
   </ul>
