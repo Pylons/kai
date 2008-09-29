@@ -1,0 +1,3 @@
+include kai/config/deployment.ini_tmpl
+recursive-include kai/public *
+recursive-include kai/templates *

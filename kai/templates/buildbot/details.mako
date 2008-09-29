@@ -1,0 +1,45 @@
+<%!
+from datetime import datetime
+%>
+<div class="close"><a href="#">Close Window</a></div>
+<div id="build-details" style="cursor: default">
+    <h2>Build Steps</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+        % for step in c.details['steps']:
+        <%
+            pretty_text = ' '.join(step['text'])
+            start = datetime.fromtimestamp(step['start'])
+            end = datetime.fromtimestamp(step['end'])
+        %>
+        % if step['text'] and step['text'][-1] == 'failed':
+            <tr class="build-step failure">
+                <td>${pretty_text}</td>
+                <td class="times">${start.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+                <td class="times">${end.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+            </tr>
+            <tr><td colspan="3">
+                <pre><code>
+                ${'\n' + c.details['full_error'][step['name']]}
+                </code></pre>
+                </td>
+            </tr>
+            % else:
+            <tr class="build-step success">
+                <td class="success">${pretty_text}</td>
+                <td class="times">${start.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+                <td class="times">${end.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+            </tr>
+            % endif
+            % endfor
+        </tbody>
+    </table>
+</div>
+<div class="close"><a href="#">Close Window</a></div>
