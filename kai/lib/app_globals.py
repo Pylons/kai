@@ -1,4 +1,6 @@
 """The application's Globals object"""
+from datetime import datetime
+import md5
 
 class Globals(object):
     """Globals acts as a container for objects available throughout the
@@ -11,4 +13,8 @@ class Globals(object):
         'app_globals' variable
 
         """
-        pass
+        self.etag_id = md5.md5(str(datetime.now().timetuple()[3])).hexdigest()
+        self.versions = ['0.8','0.8.1', '0.8.2', '0.9', '0.9.1', '0.9.2', 
+                         '0.9.3', '0.9.4', '0.9.4.1', '0.9.5', '0.9.6', '0.9.6.1',
+                         '0.9.6.2', '0.9.7rc1']
+        self.current_version = '0.9.7rc1'
