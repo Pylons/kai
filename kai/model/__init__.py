@@ -19,6 +19,7 @@ class Human(Document):
 class Paste(Document):
     type = TextField(default='Paste')
     human_id = TextField()
+    username = TextField()
     created = DateTimeField(default=datetime.now)
     title = TextField()
     language = TextField()
@@ -28,6 +29,7 @@ class Paste(Document):
 class Snippet(Document):
     type = TextField(default='Snippet')
     human_id = TextField()
+    username = TextField()
     created = DateTimeField(default=datetime.now)
     title = TextField()
     description = TextField()
@@ -37,8 +39,8 @@ class Snippet(Document):
 class Comment(Document):
     type = TextField(default='Comment')
     human_id = TextField()
-    doc_type = TextField()
     doc_id = TextField()
+    username = TextField()
     content = TextField(default='')
     markup = TextField(default='')
     time = DateTimeField()

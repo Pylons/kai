@@ -4,14 +4,14 @@ from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
 from kai.lib.base import BaseController, render
-#from kai import model
+from kai.model import Human
 
 log = logging.getLogger(__name__)
 
 class AccountsController(BaseController):
+    def __before__(self):
+        c.active_tab = True
+        c.active_sub = True
 
-    def index(self):
-        # Return a rendered template
-        #   return render('/template.mako')
-        # or, Return a response
-        return 'Hello World'
+    def login(self):
+        return render('/accounts/login.mako')

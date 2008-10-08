@@ -2,7 +2,7 @@
     <div id="intro">
       <h2>Pylons is a lightweight web framework <br />
         emphasizing flexibility and rapid development.</h2>
-      <div id="download"> <a href="#">Download Latest </a> Version: 0.9.6.1</div>
+      <div id="download"> <a href="#">Download Latest </a> Version: ${app_globals.current_version}</div>
     </div>
 </div> 
   <div class="yui-b">

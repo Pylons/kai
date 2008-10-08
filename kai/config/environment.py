@@ -1,6 +1,7 @@
 """Pylons environment configuration"""
 import os
 
+from couchdb import Server, Database
 from mako.lookup import TemplateLookup
 from pylons.error import handle_mako_error
 from pylons import config
@@ -35,6 +36,7 @@ def load_environment(global_conf, app_conf):
         input_encoding='utf-8', output_encoding='utf-8',
         imports=['from webhelpers.html import escape'],
         default_filters=['escape'])
-        
-    # CONFIGURATION OPTIONS HERE (note: all config options will override
-    # any Pylons config options)
+    
+    # Setup the database connection
+    config['kai.server'] = Server(config['couchdb_server'])
+    config['kai.db'] = Database(config['couchdb_uri'])

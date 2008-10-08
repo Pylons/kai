@@ -21,6 +21,12 @@ def make_map():
     # CUSTOM ROUTES HERE
     map.connect('home', '/', controller='home', action='index')
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
+    
+    # Accounts
+    map.connect('account_login', '/account/login', controller='accounts', action='login')
+    map.connect('account_register', '/account/register', controller='accounts', action='register')
+    
+    # Resources
     map.resource('traceback', 'tracebacks', member={'reown':'GET'})
 
     map.connect('/{controller}/{action}')

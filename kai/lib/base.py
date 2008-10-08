@@ -12,4 +12,5 @@ class BaseController(WSGIController):
         """Invoke the Controller"""
         pylons.c.use_minified_assets = asbool(
             pylons.config.get('use_minified_assets', 'false'))
+        self.db = pylons.config['kai.db']
         return WSGIController.__call__(self, environ, start_response)

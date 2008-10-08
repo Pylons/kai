@@ -12,6 +12,12 @@
             ${nav(c.active_tab, c.active_sub)}
         </div>
         <div id="bd">
+            % if request.environ['pylons.routes_dict']['controller'] != 'accounts':
+            <div id="loginbar">
+                ${h.link_to('Login', url=url('account_login'))} or 
+                ${h.link_to('Register', url=url('account_register'))}
+            </div>
+            % endif
             ${next.body()}
             ## Load Javascripts and such at the end
             ${self.more_body()}
