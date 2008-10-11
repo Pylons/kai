@@ -1,4 +1,5 @@
 """CouchDB Models"""
+import pylons
 from datetime import datetime
 
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
@@ -44,4 +45,25 @@ class Comment(Document):
     content = TextField(default='')
     markup = TextField(default='')
     time = DateTimeField()
+
+
+class Documentation(object):
+    @classmethod
+    def fetch_doc(cls, project, version, path):
+        rows = pylons.c.db.view('documentation/by_path')[[project, version, path]]
+        if len(rows) > 0:
+            return list(rows)[0].value
+        else:
+            return False
     
+    @classmethod
+    def delete_revision(cls, project, rev):
+        rows = pylons.c.db.view('documentation/ids_for_version')[[project, rev]]
+        for row in rows:
+            del db[row.id]
+    
+    @classmethod
+    def exists(cls, doc):
+        key = [doc['filename'], doc['version'], doc['project']]
+        rows = pylons.c.db.view('documentation/doc_key', group=True)[key]
+        return len(rows) > 0

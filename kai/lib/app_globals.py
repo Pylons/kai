@@ -18,3 +18,4 @@ class Globals(object):
                          '0.9.3', '0.9.4', '0.9.4.1', '0.9.5', '0.9.6', '0.9.6.1',
                          '0.9.6.2', '0.9.7rc1', '0.9.7rc2']
         self.current_version = '0.9.7rc2'
+        self.doc_version = '0.9.7'

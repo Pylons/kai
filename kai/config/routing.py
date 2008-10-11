@@ -7,7 +7,7 @@ refer to the routes manual at http://routes.groovie.org/docs/
 from pylons import config
 from routes import Mapper
 
-def make_map():
+def make_map(globs=None):
     """Create, configure and return the routes Mapper"""
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
@@ -21,6 +21,13 @@ def make_map():
     # CUSTOM ROUTES HERE
     map.connect('home', '/', controller='home', action='index')
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
+    map.connect('doc_upload', '/docs/upload', controller='docs', action='upload')
+    map.redirect('/docs/{version}', '/docs/{version}/')
+    map.connect('doc_home', '/docs/{version}/', controller='docs', 
+                action='view', url='index', version=globs.doc_version)
+    map.connect('doc_view', '/docs/{version}/{url:.*}', controller='docs',
+                action='view', version=globs.doc_version)
+    map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
     
     # Accounts
     map.connect('account_login', '/account/login', controller='accounts', action='login')

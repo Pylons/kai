@@ -2,9 +2,11 @@
 
 Provides the BaseController class for subclassing.
 """
+from couchdb import Database
 from paste.deploy.converters import asbool
 from pylons.controllers import WSGIController
 from pylons.templating import render_mako as render
+import simplejson as json
 import pylons
 
 class BaseController(WSGIController):
@@ -12,5 +14,13 @@ class BaseController(WSGIController):
         """Invoke the Controller"""
         pylons.c.use_minified_assets = asbool(
             pylons.config.get('use_minified_assets', 'false'))
-        self.db = pylons.config['kai.db']
+        pylons.c.db = self.db = Database(pylons.config['couchdb_uri'])
         return WSGIController.__call__(self, environ, start_response)
+
+# Monkey patch httplib to buffer
+import httplib
+class HTTPResponse(httplib.HTTPResponse):
+    def __init__(self, sock, **kw):
+        httplib.HTTPResponse.__init__(self, sock, **kw)
+        self.fp = sock.makefile('rb') 
+httplib.HTTPConnection.response_class = HTTPResponse

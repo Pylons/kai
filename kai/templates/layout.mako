@@ -9,7 +9,7 @@
     <div id="doc4"${self.yui_class()}>
         <div id="hd">
             <h1 id="logo" class="replace">PylonsHQ<span>.</span></h1>
-            ${nav(c.active_tab, c.active_sub)}
+            ${nav(getattr(c, 'active_tab', None), getattr(c, 'active_sub', None))}
         </div>
         <div id="bd">
             % if request.environ['pylons.routes_dict']['controller'] != 'accounts':
@@ -61,19 +61,19 @@
         <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
       </ul>
     </li>
-    <li id="nav-2"${active_tab.get('Documentation', '') | n}><a href="#">Documentation</a>
+    <li id="nav-2"${active_tab.get('Documentation', '') | n}>${h.link_to('Documentation', url=url('doc_home'))}
       <ul>
-        <li${active_sub.get('Reference', '') | n}><a href="#">Reference</a></li>
+        <li${active_sub.get('Reference', '') | n}>${h.link_to('Reference', url=url('doc_home'))}</li>
         <li${active_sub.get('FAQ', '') | n}><a href="#">FAQ</a></li>
-        <li${active_sub.get('Modules', '') | n}><a href="#">Modules</a></li>
-        <li${active_sub.get('Glossary', '') | n}><a href="#">Glossary</a></li>
+        <li${active_sub.get('Modules', '') | n}>${h.link_to('Modules', url=url('doc_view', url='modules/'))}</li>
+        <li${active_sub.get('Glossary', '') | n}>${h.link_to('Glossary', url=url('doc_view', url='glossary/'))}</li>
         <li${active_sub.get('Index', '') | n}><a href="#">Index</a></li>
       </ul>
     </li>
     <li id="nav-3"${active_tab.get('Community', '') | n}><a href="#">Community</a>
       <ul>
         <li${active_sub.get('Blog', '') | n}><a href="#">Blog</a></li>
-        <li${active_sub.get('Wiki', '') | n}><a href="#">Wiki</a></li>
+        <li${active_sub.get('Wiki', '') | n}>${h.link_to('Wiki', url=url('wiki'))}</li>
         <li${active_sub.get('Jobs', '') | n}><a href="#">Jobs</a></li>
         <li${active_sub.get('Sites Using Pylons', '') | n}><a href="#">Sites Using Pylons</a></li>
         <li${active_sub.get('Aggregator', '') | n}><a href="#">Aggregator</a></li>

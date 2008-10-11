@@ -1,0 +1,374 @@
+div.related {
+    background-color: #99ccff;
+    color: #333;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 5px solid white;
+}
+
+div.related h3 {
+    display: none;
+}
+
+div.related ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+}
+
+div.related li {
+    display: inline;
+    font-weight: bold;
+}
+
+div.related li.right {
+    float: right;
+    margin-right: 5px;
+}
+
+/* :::: GENINDEX STYLES :::: */
+
+table.indextable td {
+    text-align: left;
+    vertical-align: top;
+    border: none;
+}
+
+table.indextable dl, table.indextable dd {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+table.indextable tr.pcap {
+    height: 10px;
+}
+
+table.indextable tr.cap {
+    margin-top: 10px;
+    background-color: #f2f2f2;
+}
+
+img.toggler {
+    margin-right: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+
+/* :::: GLOBAL STYLES :::: */
+
+p.subhead {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+a.headerlink,
+a.headerlink,
+a.headerlink,
+a.headerlink,
+a.headerlink,
+a.headerlink {
+    color: #c60f0f;
+    font-size: 0.8em;
+    padding: 0 4px 0 4px;
+    margin: 0;
+    text-decoration: none;
+    visibility: hidden;
+}
+
+*:hover > a.headerlink,
+*:hover > a.headerlink,
+*:hover > a.headerlink,
+*:hover > a.headerlink,
+*:hover > a.headerlink,
+*:hover > a.headerlink {
+    visibility: visible;
+}
+
+a.headerlink:hover,
+a.headerlink:hover,
+a.headerlink:hover,
+a.headerlink:hover,
+a.headerlink:hover,
+a.headerlink:hover {
+    background-color: #c60f0f;
+    color: white;
+}
+
+div.body p, div.body dd, div.body li {
+    text-align: justify;
+}
+
+div.body td {
+    text-align: left;
+}
+
+ul.fakelist {
+    list-style: none;
+    margin: 10px 0 10px 20px;
+    padding: 0;
+}
+
+/* "Footnotes" heading */
+p.rubric {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+/* "Topics" */
+
+div.topic {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0 7px 0 7px;
+    margin: 10px 0 10px 0;
+}
+
+p.topic-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Admonitions */
+
+div.admonition dt {
+    font-weight: bold;
+}
+
+div.admonition dd {
+    margin-bottom: 10px;
+}
+
+div.admonition dl {
+    margin-bottom: 0;
+}
+
+div.admonition p {
+    display: inline;
+}
+
+div.seealso {
+    background-color: #ffc;
+    border: 1px solid #ff6;
+}
+
+div.warning {
+    background-color: #ffe4e4;
+    border: 1px solid #f66;
+    min-height: 35px;
+}
+
+div.note {
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+p.admonition-title {
+    margin: 0px 10px 5px 0px;
+    font-weight: bold;
+    display: inline;
+}
+
+p.admonition-title:after {
+    content: ":";
+}
+
+/* @group reStructuredText */
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+	padding:.3em 1em .8em; margin: 1em 0; border:1px solid #999; 
+}
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-size: 114%;
+  font-family: sans-serif;
+  margin: 0;
+  }
+
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.note { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-information.png) .8em .8em no-repeat;}
+
+div.warning { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-warning.png) .8em .8em no-repeat;}
+
+div.admonition-tip { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/preferences-system.png) .8em .8em no-repeat;}
+
+div.danger { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-error.png) .8em .8em no-repeat;}
+
+div.admonition {
+    background-color: #f5f5f5;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+div.body p.centered {
+    text-align: center;
+    margin-top: 25px;
+}
+
+table.docutils {
+    border: 0;
+}
+
+table.docutils td, table.docutils th {
+    padding: 0 8px 2px 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #aaa;
+}
+
+table.field-list td, table.field-list th {
+    border: 0 !important;
+}
+
+table.footnote td, table.footnote th {
+    border: 0 !important;
+}
+
+dl {
+    margin-bottom: 15px;
+    clear: both;
+}
+
+li dl {
+    margin-left: 0;
+}
+
+dd p {
+    margin-top: 0px;
+}
+
+dd ul, dd table {
+    margin-bottom: 10px;
+}
+
+dd {
+    margin-top: 3px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+dl.glossary dt {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.refcount {
+    color: #060;
+}
+
+th {
+    text-align: left;
+    padding-right: 5px;
+}
+
+pre {
+    background-color:#eaf6fa;
+    border-color:#3795b6 -moz-use-text-color;
+    border-style:solid none;
+    border-width:1px medium;
+    color:#333333;
+    overflow:auto;
+    padding:5px;
+}
+
+div.relnav {
+    margin: 0 -15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    line-height: 1.8;
+}
+div.relnav a {
+    color: #aaa;
+}
+
+.first {
+    margin-top: 0 !important;
+}
+
+tt {
+    font-family: monospace;
+    background-color: #ecf0f3;
+    padding: 0 1px 0 1px;
+}
+
+tt.descname {
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+tt.descclassname {
+    background-color: transparent;
+}
+
+tt.xref, a tt {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.footnote:target  { background-color: #ffa }
+
+h1 tt, h2 tt, h3 tt, h4 tt, h5 tt, h6 tt {
+    background-color: transparent;
+}
+
+.optional {
+    font-size: 1.3em;
+}
+
+.versionmodified {
+    font-style: italic;
+}
+
+form.comment {
+    margin: 0;
+    padding: 10px 30px 10px 30px;
+    background-color: #eee;
+}
+
+form.comment h3 {
+    background-color: #326591;
+    color: white;
+    margin: -10px -30px 10px -30px;
+    padding: 5px;
+    font-size: 1.4em;
+}
+
+form.comment input,
+form.comment textarea {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+form.comment input[type="text"] {
+    width: 240px;
+}
+
+form.comment textarea {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+
+dt:target,
+.highlight {
+    background-color: #fbe54e;
+}

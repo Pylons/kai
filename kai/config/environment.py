@@ -24,8 +24,8 @@ def load_environment(global_conf, app_conf):
     # Initialize config with the basic options
     config.init_app(global_conf, app_conf, package='kai', paths=paths)
 
-    config['routes.map'] = make_map()
     config['pylons.app_globals'] = app_globals.Globals()
+    config['routes.map'] = make_map(globs=config['pylons.app_globals'])
     config['pylons.h'] = kai.lib.helpers
 
     # Create the Mako TemplateLookup, with the default auto-escaping

@@ -1,5 +1,50 @@
 /* @override http://localhost:5000/css/tweaks.css */
 
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    color:#6f4706;
+    font-family:Georgia, "Times New Roman", Times, serif;
+    font-weight:300;
+    margin: 10px -20px 0px -20px;
+    padding: 3px 0 3px 10px;
+    
+}
+
+.content h1 {
+    font-size: 200%;
+}
+.content h2 {
+    font-size: 174%;
+}
+.content h3 {
+    font-size: 161.6%;
+}
+.content h4 {
+    font-size: 153.9%;
+}
+
+.content ul {
+    margin-top: 0;
+    font-size: 108%;
+}
+.content ul li ul {
+    font-size: 100%;
+}
+.content ul li {
+    line-height: 1.5;
+    padding: 0;
+    margin-bottom: 0;
+}
+.content p {
+    font-size: 108%;
+}
+
+.content a {
+    text-decoration: none;
+}
+.content a:hover {
+    text-decoration: underline;
+}
+
 h2           { font-size: 16px; margin: 1.3em 0 0.0 0; padding: 5px;
                background-color: transparent; color: #000; }
 h2 em        { font-style: normal; color: #F5E08D; font-weight: normal; }

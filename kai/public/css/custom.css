@@ -43,13 +43,13 @@ h1#logo {color: #000;font-size:0; cursor: pointer;}
 /* content */
 #bd { color:#2b2b2b; line-height:1.5;}
 #bd a { color:#6f4706;}
-#bd a:hover { text-decoration:none; color:#f60}
-#bd h3, h4 { color:#6f4706; font-size:184.6%;font-family:Georgia, "Times New Roman", Times, serif; font-weight:300; margin-bottom:10px;}
-#bd ul, #bd ol { margin-left:0; padding-left:0;}
+.home #bd a:hover { text-decoration:none; color:#f60}
+.home #bd h3, .home #bd h4 { color:#6f4706; font-size:184.6%;font-family:Georgia, "Times New Roman", Times, serif; font-weight:300; margin-bottom:10px;}
+.home #bd ul, .home #bd ol { margin-left:0; padding-left:0;}
 
-#bd ul li { font-size:84.65%; margin-bottom:10px; margin-left:20px;}
-#bd ul li a{ font-size:118.25%;}
-#bd ol li { list-style:none; background: transparent url(images/tickmark.gif) no-repeat 0 3px; margin-bottom:10px; padding-left:25px; margin-left:20px;}
+.home #bd ul li { font-size:84.65%; margin-bottom:10px; margin-left:20px;}
+.home #bd ul li a{ font-size:118.25%;}
+.home #bd ol li { list-style:none; background: transparent url(images/tickmark.gif) no-repeat 0 3px; margin-bottom:10px; padding-left:25px; margin-left:20px;}
 
 #intro { padding:20px; position:relative; height:85px; background: #e88f00 url(images/intro-bg.gif) no-repeat 0 0; margin-bottom:20px; width:893px;}
 #intro h2 { margin:0; padding:0; font-family:Georgia, "Times New Roman", Times, serif; font-size:215.4%; font-weight:300; color:#fff; }
