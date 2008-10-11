@@ -27,12 +27,27 @@ div.related li.right {
     margin-right: 5px;
 }
 
+#toc.expandedtoc {
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #aaa;
+}
+#toc h3 {
+    font-size: 100%;
+    float: right;
+    padding: 0;
+    margin: 5px 5px 0 0;
+}
+#toc h3:hover {
+    cursor: pointer;
+}
+
 /* :::: GENINDEX STYLES :::: */
 
 table.indextable td {
     text-align: left;
     vertical-align: top;
     border: none;
+    line-height: 1.2;
 }
 
 table.indextable dl, table.indextable dd {
@@ -149,7 +164,7 @@ div.admonition p {
     display: inline;
 }
 
-div.seealso {
+div.seealso.admonition {
     background-color: #ffc;
     border: 1px solid #ff6;
 }

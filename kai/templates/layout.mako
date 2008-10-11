@@ -67,7 +67,7 @@
         <li${active_sub.get('FAQ', '') | n}><a href="#">FAQ</a></li>
         <li${active_sub.get('Modules', '') | n}>${h.link_to('Modules', url=url('doc_view', url='modules/'))}</li>
         <li${active_sub.get('Glossary', '') | n}>${h.link_to('Glossary', url=url('doc_view', url='glossary/'))}</li>
-        <li${active_sub.get('Index', '') | n}><a href="#">Index</a></li>
+        <li${active_sub.get('Index', '') | n}><a href="#">${h.link_to('Index', url=url('doc_view', url='index/'))}</a></li>
       </ul>
     </li>
     <li id="nav-3"${active_tab.get('Community', '') | n}><a href="#">Community</a>

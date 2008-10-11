@@ -28,6 +28,9 @@ class DocsController(BaseController):
             c.active_sub = 'Modules'
         if url == 'modules/':
             url = 'modindex'
+        if url == 'index/':
+            url = 'genindex'
+            c.active_sub = 'Index'
         if url.endswith('/'):
             url = url[:-1]
         c.doc = Documentation.fetch_doc('Pylons', version, url)
@@ -39,6 +42,8 @@ class DocsController(BaseController):
                 abort(404)
         if url == 'modindex':
             return render('/docs/modindex.mako')
+        if url == 'genindex':
+            return render('/docs/genindex.mako')
         return render('/docs/view.mako')
     
     @jsonify

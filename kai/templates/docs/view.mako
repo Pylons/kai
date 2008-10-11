@@ -19,9 +19,40 @@
 ${parent.styles()}
 ${h.stylesheet_link('/css/sphinx.css')}
 </%def>
+<%def name="javascript()">
+${parent.javascript()}
+<script>
+$(function() {
+
+  var
+    toc = $('#toc').show(),
+    items = $('#toc > ul').hide();
+
+  $('#toc h3')
+    .click(function() {
+      if (items.is(':visible')) {
+        items.animate({
+          height:     'hide',
+          opacity:    'hide'
+        }, 300, function() {
+          toc.removeClass('expandedtoc');
+        });
+      }
+      else {
+        items.animate({
+          height:     'show',
+          opacity:    'show'
+        }, 400);
+        toc.addClass('expandedtoc');
+      }
+    });
+
+});
+</script>
+</%def>
 <%def name="display_toc(doc)">
 <div id="toc">
 <h3>Table of Contents</h3>
-${doc['toc']|n}
+<ul style="display:none">${doc['toc'][4:]|n}
 </div>
 </%def>
