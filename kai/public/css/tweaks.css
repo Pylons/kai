@@ -24,17 +24,15 @@
 
 .content ul {
     margin-top: 0;
-    font-size: 108%;
 }
 .content ul li ul {
-    font-size: 100%;
 }
 .content ul li {
     line-height: 1.5;
     padding: 0;
     margin-bottom: 0;
 }
-.content p {
+div.content {
     font-size: 108%;
 }
 

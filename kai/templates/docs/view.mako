@@ -1,11 +1,11 @@
 <div class="yui-b content">
     <div class="relnav">
         % if c.doc.get('prev'):
-        <a href="${c.doc['prev']['link']}">&laquo; ${c.doc['prev']['title']}</a> | 
+        <a href="${c.doc['prev']['link']}">&laquo; ${c.doc['prev']['title']|n}</a> | 
         % endif
-        <a href="">${c.doc['title']}</a>
+        <a href="">${c.doc['title']|n}</a>
         % if c.doc.get('next'):
-        | <a href="${c.doc['next']['link']}">${c.doc['next']['title']} &raquo;</a>
+        | <a href="${c.doc['next']['link']}">${c.doc['next']['title']|n} &raquo;</a>
         % endif
     </div>
     % if c.doc.get('prev', False):

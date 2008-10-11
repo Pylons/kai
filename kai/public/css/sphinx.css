@@ -251,8 +251,15 @@ dd p {
     margin-top: 0px;
 }
 
+.content dd p {
+    font-size: 100%;
+}
 dd ul, dd table {
     margin-bottom: 10px;
+}
+
+dl dd {
+    margin-left: 30px;
 }
 
 dd {
@@ -261,9 +268,13 @@ dd {
     margin-left: 30px;
 }
 
+dd dl {
+    margin-left: 0;
+}
+
 dl.glossary dt {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 116%;
 }
 
 .refcount {
@@ -309,11 +320,12 @@ tt {
 tt.descname {
     background-color: transparent;
     font-weight: bold;
-    font-size: 1.2em;
+    color: #040;
 }
 
 tt.descclassname {
     background-color: transparent;
+    color: #040;
 }
 
 tt.xref, a tt {
@@ -371,4 +383,11 @@ form.comment textarea {
 dt:target,
 .highlight {
     background-color: #fbe54e;
+}
+
+#bd tr {
+    line-height: 1;
+}
+td {
+    padding: 4px 0 4px 5px;
 }
