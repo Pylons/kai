@@ -1,2 +1,3 @@
 Pylons>=0.9.6
 Mako
+CouchDB>=0.4
