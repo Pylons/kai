@@ -1,0 +1,17 @@
+TODO List
+---------
+
+* Add user registration functionality
+* Add login capability
+* Add 'Sites using Pylons' section
+  * Allows registered users to add a site
+  * Ideally somehow grabs a screenshot of the site to hold onto
+  * Shows a grid in the section of all the sites
+* Add 'Snippets' section
+  * This should work similar to the Django snippets site
+* Add 'pastebin' section, this should involve migrating the existing code in
+  the pylonshq site: https://www.knowledgetap.com/hg/pylonshq/
+* Create a script that dumps the SQL db from PylonsHQ into CouchDB
+* Add a 'blog' section
+* Add an aggregator
+* Fixup the error page (error.py controller) so that it uses the proper skin

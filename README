@@ -1,0 +1,16 @@
+README
+======
+
+
+Getting Started with the code
+-----------------------------
+
+1) Check it out from bitbucket (assumed you've already done it)
+2) Run develop to load up dependencies:
+   python setup.py develop
+3) Get and install CouchDB
+4) Create a CouchDB database called kai
+5) Restore the db dump in Kai:
+   couchdb-load kai.db
+6) Run the Kai project:
+   paster serve --reload development.ini
