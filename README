@@ -10,7 +10,8 @@ Getting Started with the code
    python setup.py develop
 3) Get and install CouchDB
 4) Create a CouchDB database called kai
+   (This can be done via the web UI at http://127.0.0.1:5984/_utils/)
 5) Restore the db dump in Kai:
-   cat kai.db couchdb-load http://127.0.0.1:5984/kai
+   cat kai.db | couchdb-load http://127.0.0.1:5984/kai
 6) Run the Kai project:
    paster serve --reload development.ini
