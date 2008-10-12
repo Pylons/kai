@@ -5,9 +5,10 @@ from paste.urlparser import StaticURLParser
 from pylons import request
 from pylons.controllers.util import forward
 from pylons.middleware import error_document_template, media_path
+from pylons import tmpl_context as c
 from webhelpers.html.builder import literal
 
-from kai.lib.base import BaseController
+from kai.lib.base import BaseController, render
 
 class ErrorController(BaseController):
     """Generates error documents as and when they are required.
@@ -22,12 +23,10 @@ class ErrorController(BaseController):
     def document(self):
         """Render the error document"""
         resp = request.environ.get('pylons.original_response')
-        content = literal(resp.body) or cgi.escape(request.GET.get('message'))
-        page = error_document_template % \
-            dict(prefix=request.environ.get('SCRIPT_NAME', ''),
-                 code=cgi.escape(request.GET.get('code', str(resp.status_int))),
-                 message=content)
-        return page
+        c.prefix = request.environ.get('SCRIPT_NAME', '')
+        c.code = str(request.params.get('code', resp.status_int))
+        c.message = literal(resp.body) or cgi.escape(request.GET.get('message'))
+        return render('error.mako')
 
     def img(self, id):
         """Serve Pylons' stock images"""
