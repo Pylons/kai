@@ -9,6 +9,9 @@ from routes import Mapper
 
 def make_map(globs=None):
     """Create, configure and return the routes Mapper"""
+    version = config['pylons.app_globals'].current_version
+    static_host = config['cdn.uri']
+
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
     map.minimization = False
@@ -18,9 +21,10 @@ def make_map(globs=None):
     map.connect('/error/{action}', controller='error')
     map.connect('/error/{action}/{id}', controller='error')
 
-    # CUSTOM ROUTES HERE
     map.connect('home', '/', controller='home', action='index')
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
+    
+    # Doc url's
     map.connect('doc_upload', '/docs/upload', controller='docs', action='upload')
     map.connect('doc_upload_image', '/docs/upload_image', controller='docs', action='upload_image')
     map.redirect('/docs/{version}', '/docs/{version}/')
@@ -28,7 +32,10 @@ def make_map(globs=None):
                 action='view', url='index', version=globs.doc_version)
     map.connect('doc_view', '/docs/{version}/{url:.*}', controller='docs',
                 action='view', version=globs.doc_version)
+    
     map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
+    map.connect('download', '/download/{version}', controller='download', action='index', 
+                version=version)
     
     # Accounts
     map.connect('account_login', '/account/login', controller='accounts', action='login')
