@@ -22,6 +22,7 @@ def make_map(globs=None):
     map.connect('home', '/', controller='home', action='index')
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
     map.connect('doc_upload', '/docs/upload', controller='docs', action='upload')
+    map.connect('doc_upload_image', '/docs/upload_image', controller='docs', action='upload_image')
     map.redirect('/docs/{version}', '/docs/{version}/')
     map.connect('doc_home', '/docs/{version}/', controller='docs', 
                 action='view', url='index', version=globs.doc_version)
