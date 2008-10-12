@@ -11,6 +11,6 @@ Getting Started with the code
 3) Get and install CouchDB
 4) Create a CouchDB database called kai
 5) Restore the db dump in Kai:
-   couchdb-load kai.db
+   cat kai.db couchdb-load http://127.0.0.1:5984/kai
 6) Run the Kai project:
    paster serve --reload development.ini
