@@ -51,8 +51,13 @@ class Snippet(Document):
         pass
         
     @classmethod
-    def fetch_snippet(cls, title):
-        pass
+    def fetch_snippet(cls, id, **options):
+        rows    = pylons.c.db.view('snippets/by_id', **options)[id]
+        if len(rows) > 0:
+            return list(rows)[0].value
+        else:
+            return False
+        
 
 
 class Comment(Document):

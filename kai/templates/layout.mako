@@ -83,7 +83,7 @@
       <ul>
         <li${active_sub.get('Pastebin', '') | n}><a href="#"> Pastebin</a></li>
         <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=url('tracebacks'))}</li>
-        <li${active_sub.get('Snippets', '') | n}><a href="#">Snippets</a></li>
+        <li${active_sub.get('Snippets', '') | n}><a href="#">${h.link_to('Snippets', url=url('snippet_home'))}</a></li>
       </ul>
     </li>
     <li id="nav-5"${active_tab.get('Code', '') | n}><a href="#">Code</a>

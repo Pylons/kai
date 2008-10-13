@@ -1,4 +1,4 @@
-import logging
+import logging, datetime
 
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
@@ -37,7 +37,9 @@ class SnippetsController(BaseController):
             snippet.description     = self.form_result.get('description')
             snippet.content         = self.form_result.get('content')
             snippet.type            = 'Snippet'
-            snippet.human_id        = 'Andy-Test'
+            snippet.human_id        = 1
+            snippet.created         = datetime.datetime.now()
+            snippet.username        = 'Andy-Test - Username'
             
             if Snippet.exists(snippet.title):
                 c.exists        = True
@@ -54,3 +56,8 @@ class SnippetsController(BaseController):
                 return redirect_to('snippet_home')
         
         return render('snippets/add.mako')
+        
+    def view(self, id):
+        c.snippet     = Snippet.fetch_snippet(id)
+        print c.snippet
+        return "testing"

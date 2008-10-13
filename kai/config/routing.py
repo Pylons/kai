@@ -44,6 +44,8 @@ def make_map(globs=None):
     # Snippets
     map.connect('snippet_home', '/snippets', controller='snippets', action='index')
     map.connect('snippet_add', '/snippets/add', controller='snippets', action='add')
+    map.connect('snippet_view', '/snippets/view/{id}', controller='snippets', action='view')
+    
     # Resources
     map.resource('traceback', 'tracebacks', member={'reown':'GET'})
 
