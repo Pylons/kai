@@ -17,8 +17,8 @@ class SnippetsController(BaseController):
         c.active_sub = 'Snippets'
 
     def index(self):
-        c.snippets      = Snippet.by_date(descending=True, count=20)
-
+        snippets      = Snippet.by_date(descending=True, count=20)
+        c.snippets      = [Snippet.wrap(row.value) for row in snippets]
         return render('snippets/index.mako')
         
         

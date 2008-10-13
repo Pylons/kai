@@ -5,7 +5,7 @@
 	<h1>Latest Snippets</h1>
 	<ul>
 	% for test in c.snippets:
-	<li><a href="${url(controller='snippets', action='view', id=test.value['title'])}">${test.value['title']}</a> - ${test.value['created'].strftime('%m')}</li>
+	<li><a href="${url(controller='snippets', action='view', id=test.title)}">${test.title}</a> - ${test.created.strftime('%m/%d/%Y %H:%M:%S')}</li>
 	% endfor
     </ul>
 
