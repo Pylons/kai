@@ -3,7 +3,7 @@ import pylons
 from datetime import datetime
 
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
-    ListField
+    ListField, FloatField
 
 
 class Human(Document):
@@ -28,14 +28,17 @@ class Paste(Document):
 
 
 class Snippet(Document):
-    type = TextField(default='Snippet')
-    human_id = TextField()
-    username = TextField()
-    created = DateTimeField(default=datetime.now)
-    title = TextField()
-    description = TextField()
-    content = TextField()
-    slug    = TextField()
+    type            = TextField(default='Snippet')
+    human_id        = TextField()
+    username        = TextField()
+    created         = DateTimeField(default=datetime.now)
+    title           = TextField()
+    description     = TextField()
+    content         = TextField()
+    slug            = TextField()
+    tags            = ListField(TextField())
+    all_ratings     = DictField()
+    computed_rating = FloatField()
     
     @classmethod
     def exists(cls, title):
