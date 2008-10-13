@@ -7,3 +7,4 @@ class AddSnippet(Schema):
     title               = validators.UnicodeString(not_empty=True)
     description         = validators.UnicodeString(not_empty=True)
     content             = validators.UnicodeString(not_empty=True)
+    tags                = validators.UnicodeString()

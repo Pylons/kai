@@ -5,13 +5,11 @@
 	<h1>Latest Snippets</h1>
 	<ul>
 	% for test in c.snippets:
-	<li><a href="${url(controller='snippets', action='view', id=test.title)}">${test.title}</a> - ${test.created.strftime('%m/%d/%Y %H:%M:%S')}</li>
+	<li><a href="${url(controller='snippets', action='view', id=test.slug)}">${test.title}</a> - ${test.created.strftime('%m/%d/%Y %H:%M:%S')}</li>
 	% endfor
     </ul>
 
 	<h1>Latest Authors</h1>
-	
-	<h1>Latest Titles</h1>
 
 </div>
 

@@ -3,7 +3,7 @@ import pylons
 from datetime import datetime
 
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
-    ListField, FloatField
+    ListField, FloatField, Schema, IntegerField
 
 
 class Human(Document):
@@ -28,16 +28,19 @@ class Paste(Document):
 
 
 class Snippet(Document):
-    type            = TextField(default='Snippet')
-    human_id        = TextField()
-    username        = TextField()
-    created         = DateTimeField(default=datetime.now)
-    title           = TextField()
-    description     = TextField()
-    content         = TextField()
-    slug            = TextField()
-    tags            = ListField(TextField())
-    all_ratings     = DictField()
+    type = TextField(default='Snippet')
+    human_id = TextField()
+    username = TextField()
+    created = DateTimeField(default=datetime.now)
+    title = TextField()
+    description = TextField()
+    content = TextField()
+    slug = TextField()
+    tags = ListField(TextField())
+    all_ratings = DictField(Schema.build(
+            username = TextField(),
+            rating = IntegerField()
+    ))
     computed_rating = FloatField()
     
     @classmethod
@@ -55,13 +58,13 @@ class Snippet(Document):
         pass
         
     @classmethod
-    def fetch_snippet(cls, id, **options):
-        rows    = pylons.c.db.view('snippets/by_id', **options)[id]
-        if len(rows) > 0:
-            return list(rows)[0].value
+    def fetch_snippet(cls, slug, **options):
+        snip = pylons.c.db.view('snippets/by_slug', **options)[slug]
+        if snip.total_rows > 0:
+            return snip.rows[0].value
         else:
-            return False
-        
+            return false
+
 
 
 class Comment(Document):

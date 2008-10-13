@@ -20,6 +20,9 @@
 	<p>Code</p>
 	<textarea name="content" id="content" style="width: 50em; height: 10em"></textarea><br />
 	<br />
+	<p>Tags</p>
+	<input type="text" name="tags" id="tags" value="" /><br />
+	<br />
 	<input type="submit" value="Add Snippet" />
 	</form>
 
