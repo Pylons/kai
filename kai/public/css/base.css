@@ -77,3 +77,7 @@ p,fieldset,table,pre {
 /* setting a consistent width, 160px; 
    control of type=file still not possible */
 input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em;}
+
+.error-message {
+    color: #f00;
+}

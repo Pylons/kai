@@ -35,6 +35,24 @@ class Snippet(Document):
     title = TextField()
     description = TextField()
     content = TextField()
+    
+    @classmethod
+    def exists(cls, title):
+        rows    = pylons.c.db.view('snippets/by_title')[title]
+        return len(rows) > 0
+        
+    @classmethod
+    def by_date(cls, **options):
+        rows    = pylons.c.db.view('snippets/by_date', **options)
+        return rows
+        
+    @classmethod
+    def by_author(cls):
+        pass
+        
+    @classmethod
+    def fetch_snippet(cls, title):
+        pass
 
 
 class Comment(Document):
