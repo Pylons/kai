@@ -4,12 +4,9 @@ ${h.stylesheet_link('/css/sphinx.css')}
 </%def> 
 
 <div class="yui-b content">
-<div class="yui-b">
     <h1>${c.snippet.title}</h1>
     <p>${c.snippet.description|n}</p>
-	<p>${c.snippet.content|n}</p>
-
-</div>
+	<p>${c.snippet_content|n}</p>
 </div>
 
 

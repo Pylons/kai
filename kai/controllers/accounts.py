@@ -15,3 +15,6 @@ class AccountsController(BaseController):
 
     def login(self):
         return render('/accounts/login.mako')
+    
+    def register(self):
+        return render('/accounts/register.mako')

@@ -15,6 +15,7 @@ class Human(Document):
     last_login = DateTimeField(default=datetime.now)
     blog = TextField()
     openid = ListField(TextField())
+    session_id = TextField()
 
 
 class Paste(Document):
