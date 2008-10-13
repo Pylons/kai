@@ -35,6 +35,7 @@ class Snippet(Document):
     title = TextField()
     description = TextField()
     content = TextField()
+    slug    = TextField()
     
     @classmethod
     def exists(cls, title):
