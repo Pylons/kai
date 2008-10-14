@@ -3,7 +3,7 @@ import pylons
 from datetime import datetime
 
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
-    ListField, FloatField, Schema, IntegerField
+    ListField, FloatField, Schema, IntegerField, BooleanField
 
 
 class Human(Document):
@@ -39,24 +39,32 @@ class Snippet(Document):
     slug = TextField()
     tags = ListField(TextField())
     all_ratings = DictField(Schema.build(
-            username = TextField(),
+            human_id = TextField(),
             rating = IntegerField()
     ))
     computed_rating = FloatField()
+    reported = BooleanField(default=False)
+    reported_by = TextField() # human_id
     
     @classmethod
     def exists(cls, title):
-        rows    = pylons.c.db.view('snippets/by_title')[title]
+        rows = pylons.c.db.view('snippets/by_title')[title]
         return len(rows) > 0
         
     @classmethod
     def by_date(cls, **options):
-        rows    = pylons.c.db.view('snippets/by_date', **options)
+        rows = pylons.c.db.view('snippets/by_date', **options)
         return rows
         
     @classmethod
-    def by_author(cls):
-        pass
+    def by_author(cls, **options):
+        rows = pylons.c.db.view('snippets/by_author', **options)
+        return rows
+        
+    @classmethod
+    def by_author_id(cls, human_id, **options):
+        rows = pylons.c.db.view('snippets/by_author_id', **options)[human_id]
+        return rows
         
     @classmethod
     def fetch_snippet(cls, slug, **options):
