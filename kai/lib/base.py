@@ -15,7 +15,7 @@ class BaseController(WSGIController):
     def _setup(self):
         """Do basic request setup"""
         if pylons.session.get('logged_in', False):
-            user = Human.load(pylons.session.get('user_id'))
+            user = Human.load(self.db, pylons.session.get('user_id'))
             if not user or user.session_id != pylons.session.id:
                 user = 'Anonymous'
                 pylons.session['logged_in'] = False
@@ -25,11 +25,11 @@ class BaseController(WSGIController):
     
     def __call__(self, environ, start_response):
         """Invoke the Controller"""
+        pylons.c.db = self.db = Database(pylons.config['couchdb_uri'])
         self._setup()
         
         pylons.c.use_minified_assets = asbool(
             pylons.config.get('use_minified_assets', 'false'))
-        pylons.c.db = self.db = Database(pylons.config['couchdb_uri'])
         return WSGIController.__call__(self, environ, start_response)
 
 # Monkey patch httplib to buffer

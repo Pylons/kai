@@ -14,10 +14,27 @@
         <div id="bd">
             % if request.environ['pylons.routes_dict']['controller'] != 'accounts':
             <div id="loginbar">
+                % if session.get('logged_in'):
+                    Welcome ${session['displayname']}
+                    ${h.link_to('Logout', url=url('account_logout'))}
+                % else:
                 ${h.link_to('Login', url=url('account_login'))} or 
                 ${h.link_to('Register', url=url('account_register'))}
+                % endif
             </div>
             % endif
+            % for message_type in ['success', 'failure']:
+            <% 
+                messages = getattr(h, '%s_flash' % message_type).pop_messages() 
+            %>
+            % if messages:
+            <ul id="${message_type}-flash-messages">
+            % for message in messages:
+                <li>${message}</li>
+            % endfor
+            </ul>
+            % endif
+            % endfor
             ${next.body()}
             ## Load Javascripts and such at the end
             ${self.more_body()}

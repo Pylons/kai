@@ -189,3 +189,44 @@ div#build-details table th{
     border: none;
     border-bottom: 1px solid #ddd;
 }
+
+
+/* Form errors */
+
+span.error-message {
+	background: url(/images/icons/dialog-error22.png) no-repeat 0 top;
+	padding: 2px 0 0 25px;
+	color: red;
+	height: 24px;
+	display: block;
+	margin: 8px 0 -14px 2px;
+}
+
+.error {
+	border: 1px solid red;
+}
+
+
+/* Flash messages */
+ul#success-flash-messages {
+    color: green;
+    background-color: #FFFFCC;
+    font-size: larger;
+    font-style: italic;
+    margin-left: 40px;
+    padding: 4px;
+    list-style: none;
+    }
+
+ul#failure-flash-messages {
+    color: red;
+    background-color: #FFFFCC;
+    font-size: larger;
+    font-style: italic;
+    margin-left: 40px;
+    padding: 4px;
+    list-style: none;
+    }
+ul#failure-flash-messages li, ul#success-flash-messages li {
+    list-style: none;
+}

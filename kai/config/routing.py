@@ -40,6 +40,9 @@ def make_map(globs=None):
     # Accounts
     map.connect('account_login', '/account/login', controller='accounts', action='login')
     map.connect('account_register', '/account/register', controller='accounts', action='register')
+    map.connect('account_oid_reg', '/account/register/openid', controller='accounts', action='openid_register')
+    map.connect('account_logout', '/account/logout', controller='accounts', action='logout')
+
     
     # Snippets
     map.connect('snippet_home', '/snippets', controller='snippets', action='index')

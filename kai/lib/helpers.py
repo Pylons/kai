@@ -7,6 +7,11 @@ import datetime
 import xml.utils.iso8601 as iso8601
 
 from webhelpers.html.tags import link_to, stylesheet_link
+from webhelpers.html.secure_form import auth_token_hidden_field
+from webhelpers.pylonslib import Flash as _Flash
+
+success_flash = _Flash('success')
+failure_flash = _Flash('failure')
 
 def load_stylesheet_assets():
     import pylons
