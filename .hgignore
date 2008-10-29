@@ -5,6 +5,7 @@ syntax:glob
 .coverage
 *.pyc
 *.egg-info/
+docs/*
 ez_setup
 data/
 pylons/docs/_build

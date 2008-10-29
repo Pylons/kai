@@ -34,6 +34,10 @@ class DocsController(BaseController):
             request.environ['PATH_INFO'] = '/Pylons/%s/%s' % (version, url[8:])
             return img_srv(request.environ, self.start_response)
         
+        # If the docs are pre-0.9.7, use the old viewer
+        if version < '0.9.7':
+            return self._view_old(version, url)
+        
         # Check a few other space cases and alter the URL as needed
         if url.startswith('glossary/'):
             c.active_sub = 'Glossary'
@@ -60,6 +64,24 @@ class DocsController(BaseController):
         if url == 'genindex':
             return render('/docs/genindex.mako')
         return render('/docs/view.mako')
+    
+    def _view_old(self, version, url):
+        if request.path_info.endswith('docs') or request.path_info.endswith('docs/'):
+            redirect_to('/docs/%s/' % str(version))
+
+        base_path = os.path.normpath(config.get('doc_dir'))
+        if url == 'index':
+            url = 'index.html'
+        c.url = os.path.normpath(os.path.join(base_path, version, url))
+        
+        # Prevent circumvention of the base docs path and bad paths
+        if not c.url.startswith(base_path) or not os.path.exists(c.url):
+            if version > '0.9.5':
+                redirect_to('cdocs', page='Home')
+            raise 'hi'
+            abort(404)
+        c.version = version
+        return render('/docs/load_content.mako')
         
     @jsonify
     def upload_image(self):

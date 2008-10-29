@@ -7,6 +7,8 @@ refer to the routes manual at http://routes.groovie.org/docs/
 from pylons import config
 from routes import Mapper
 
+wiki = 'http://wiki.pylonshq.com'
+
 def make_map(globs=None):
     """Create, configure and return the routes Mapper"""
     version = config['pylons.app_globals'].current_version
@@ -36,6 +38,7 @@ def make_map(globs=None):
     map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
     map.connect('download', '/download/{version}', controller='download', action='index', 
                 version=version)
+    map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
     
     # Accounts
     map.connect('account_login', '/account/login', controller='accounts', action='login')
