@@ -2,14 +2,16 @@
     <h1>Buildbot Status</h1>
     <p>Pylons source code is <strong>automatically built and tested</strong> via
         <a href="http://buildbot.net/trac">Buildbot</a> to ensure consistent
-        release quality and track bugs that may occur during development. The
+        release quality and track bugs that may occur during development (also
+        known as <strong><a href="http://en.wikipedia.org/wiki/Continuous_Integration">
+            Continuous integration</a></strong>). The
         latest builds are posted here automatically as they're
         completed. For those tracking the latest development tip, this can serve
         as a useful reference when decided whether to update.</p>
     
     <p>In <a href="http://www.selenic.com/mercurial/">Mercurial</a>, the revision
         control system (RCS) used by Pylons, the latest revision is called the
-        tip. 
+        tip.</p>
     
     <h2>Latest Release (${app_globals.current_version})</h2>
     ${build_table(c.releases)}
