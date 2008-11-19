@@ -1,7 +1,6 @@
 <%def name="styles()">
 ${parent.styles()}
 ${h.stylesheet_link('/css/sphinx.css')}
-<link rel="stylesheet" href="/css/jquery.rating.css" type="text/css" media="screen" title="no title" charset="utf-8">
 <style type="text/css" media="screen">
 #report_box {
 	height: 150px;
