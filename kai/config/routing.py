@@ -27,17 +27,23 @@ def make_map(globs=None):
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
     
     # Doc url's
-    map.connect('doc_upload', '/docs/upload', controller='docs', action='upload')
-    map.connect('doc_upload_image', '/docs/upload_image', controller='docs', action='upload_image')
-    map.redirect('/docs/{version}', '/docs/{version}/')
-    map.connect('doc_home', '/docs/{version}/', controller='docs', 
-                action='view', url='index', version=globs.doc_version)
-    map.connect('doc_view', '/docs/{version}/{url:.*}', controller='docs',
-                action='view', version=globs.doc_version)
+    map.connect('doc_upload', '/docs/upload', controller='docs',
+                action='upload')
+    map.connect('doc_upload_image', '/docs/upload_image', controller='docs',
+                action='upload_image')
+    map.connect('doc_delete', '/docs/delete_revision/{project}/{version}', 
+                controller='docs', action='delete_revision')
+    map.redirect('/docs/{version}', '/docs/en/{version}/')
+    map.connect('doc_home', '/docs/{language}/{version}/', controller='docs', 
+                action='view', url='index', language='en',
+                version=globs.doc_version)
+    map.connect('doc_view', '/docs/{language}/{version}/{url:.*}',
+                controller='docs', action='view', language='en', 
+                version=globs.doc_version)
     
     map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
-    map.connect('download', '/download/{version}', controller='download', action='index', 
-                version=version)
+    map.connect('download', '/download/{version}', controller='download',
+                action='index', version=version)
     map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
     
     # Accounts

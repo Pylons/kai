@@ -12,9 +12,9 @@ setup(
     author='Ben Bangert',
     author_email='ben@groovie.org',
     install_requires=[
-        "Pylons>=0.9.7rc2", "Mako", "CouchDB>=0.4", "python-openid>=2.2.1",
+        "Pylons>=0.9.7rc4", "CouchDB>=0.4", "python-openid>=2.2.1",
     ],
-    setup_requires=["PasteScript==dev,>=1.6.3dev-r7326"],
+    setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
     test_suite='nose.collector',

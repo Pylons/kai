@@ -132,8 +132,8 @@ class Comment(Document):
 
 class Documentation(object):
     @classmethod
-    def fetch_doc(cls, project, version, path):
-        rows = pylons.c.db.view('documentation/by_path')[[project, version, path]]
+    def fetch_doc(cls, project, version, language, path):
+        rows = pylons.c.db.view('documentation/by_path')[[project, version, language, path]]
         if len(rows) > 0:
             return list(rows)[0].value
         else:
@@ -143,7 +143,7 @@ class Documentation(object):
     def delete_revision(cls, project, rev):
         rows = pylons.c.db.view('documentation/ids_for_version')[[project, rev]]
         for row in rows:
-            del db[row.id]
+            del pylons.c.db[row.id]
     
     @classmethod
     def exists(cls, doc):

@@ -24,7 +24,7 @@ class DocsController(BaseController):
         c.active_tab = 'Documentation'
         c.active_sub = 'Reference'
     
-    def view(self, version, url):
+    def view(self, version, url, language):
         # Change the url back to a string (just in case)
         url = str(url)
         
@@ -52,11 +52,11 @@ class DocsController(BaseController):
             url = url[:-1]
         
         # Grab the doc from CouchDB
-        c.doc = Documentation.fetch_doc('Pylons', version, url)
+        c.doc = Documentation.fetch_doc('Pylons', version, language, url)
         if not c.doc:
             # Try again with index just in case
             url += '/index'
-            c.doc = Documentation.fetch_doc('Pylons', version, url)
+            c.doc = Documentation.fetch_doc('Pylons', version, language, url)
             if not c.doc:
                 abort(404)
         if url == 'modindex':
@@ -131,6 +131,12 @@ class DocsController(BaseController):
             response.status = 409
             return dict(status='conflict')
         return dict(status='ok')
+    
+    @jsonify
+    def delete_revision(self, project, version):
+        Documentation.delete_revision(project, version)
+        return dict(status='ok')
+
 
 def ensure_dir(dir):
     """Copied from Mako, ensures a directory exists in the filesystem"""
