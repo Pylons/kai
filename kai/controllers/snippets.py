@@ -14,19 +14,15 @@ from kai.model import Snippet, forms
 
 log = logging.getLogger(__name__)
 
-class SnippetsController(BaseController):
-    
-    
+class SnippetsController(BaseController):    
     def __before__(self):
         c.active_tab = 'Tools'
         c.active_sub = 'Snippets'
 
-
     def index(self):
         """ Get the snippets by date and by author"""
-        
         snippets = Snippet.by_date(descending=True, count=100)
-        c.snippets = [Snippet.wrap(row.value) for row in snippets][:20]
+        c.snippets = [Snippet.wrap(row.doc) for row in snippets][:20]
         
         unique = []
         authors = []
@@ -38,7 +34,6 @@ class SnippetsController(BaseController):
         
         c.unique_authors = authors[:10]
         return render('snippets/index.mako')
-    
     
     @validate(forms.AddSnippet(), form='add')
     def add(self):
@@ -74,9 +69,7 @@ class SnippetsController(BaseController):
             
             if added:
                 return redirect_to('snippet_home')
-        
         return render('snippets/add.mako')
-    
     
     def view(self, id):
         """View a particular snippet
@@ -85,7 +78,6 @@ class SnippetsController(BaseController):
         id - actually a slug
         
         """
-        
         slug = id.lower().strip()
         snippet = Snippet.wrap(Snippet.fetch_snippet(slug))
         
@@ -100,15 +92,14 @@ class SnippetsController(BaseController):
         c.snippet_content = string
         c.snippet = snippet
         return render('snippets/view.mako')
-        
-        
+    
     def by_author(self, id=None):
         """View snippets by an authors human_id.
         
         Keyword arguments:
         id - authors human id.
-        """
         
+        """
         c.authors = None
         c.snippets = None
         
@@ -116,24 +107,18 @@ class SnippetsController(BaseController):
             c.authors = Snippet.by_author(group=True)
         else:
             snippets = Snippet.by_author_id(id, descending=True)
-            c.username = list(snippets)[0].value['username']
-            c.snippets = [Snippet.wrap(row.value) for row in snippets]
-            
-            
-        
+            c.username = list(snippets)[0].doc['username']
+            c.snippets = [Snippet.wrap(row.doc) for row in snippets]
         return render('snippets/byauthor.mako')
-        
-        
         
     def by_tag(self, tag):
         """View snippets by a particular tag.
         
         Keyword arguments:
         tag - a tag (string)
-        """
         
+        """        
         pass
-        
         
     def rate(self, slug, rating, human_id):
         """Rate a particular snippet and compute its overall rating.
@@ -142,13 +127,10 @@ class SnippetsController(BaseController):
         slug - the slug of the snippet (string)
         rating - the rating (integer)
         human_id - the person rating the snippet (integer)
+        
         """
-        
-        pass
-        
-        
+        pass        
+    
     def report(self, slug):
-        """Report a possible bad snippet."""
-        
-        
+        """Report a possible bad snippet."""    
         pass
