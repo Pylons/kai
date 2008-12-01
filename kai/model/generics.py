@@ -4,6 +4,8 @@ This module handles generic functionality that works against any kind
 of CouchDB document.
 
 """
+from datetime import datetime
+
 import pylons
 from couchdb.schema import DateTimeField, Document, TextField, FloatField
 
@@ -23,6 +25,19 @@ class Rating(Document):
     doc_id = TextField()
     username = TextField()
     rating = FloatField()
+    time = DateTimeField(default=datetime.now)
+    
+    @classmethod
+    def has_rated(cls, doc_id, username, **options):
+        """Checks the document to see if the username has already rated
+        the document, if so, returns the id of the rating doc"""
+        rows = pylons.c.db.view('rating/all_raters', **options)[doc_id]
+        if len(rows) > 0:
+            ratings = list(rows)[0].value
+            for rating in ratings:
+                if username == rating['username']:
+                    return rating['id']
+        return False
     
     @classmethod
     def by_id(cls, doc_id, **options):
@@ -40,7 +55,15 @@ class Rating(Document):
         
         user must be a user object with a id, and username in it
         
+        If the user has already rated the document, this will update
+        the rating to the new value
+        
         """
-        new_rating = cls(human_id=user.id, doc_id=doc_id,
-                         username=user.displayname, rating=rating)
-        new_rating.store(pylons.c.db)
+        prior_rating = cls.has_rated(doc_id, user.displayname)
+        if prior_rating:
+            rating_doc = Rating.load(pylons.c.db, prior_rating)
+        else:
+            rating_doc = cls(human_id=user.id, doc_id=doc_id,
+                         username=user.displayname)
+        rating_doc.rating = rating
+        rating_doc.store(pylons.c.db)
