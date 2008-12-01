@@ -1,7 +1,7 @@
-Content-Type: multipart/mixed; boundary="===============1618102349=="
+Content-Type: multipart/mixed; boundary="===============0996944170=="
 MIME-Version: 1.0
 
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 011b6ba08773a33e98b01e538265879b
@@ -65,7 +65,7 @@ ETag: 1543826887
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 072e71cec2170496f741d69e862c2075
@@ -124,7 +124,7 @@ ETag: 2814458008
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 097337c75773737022bb4e8cd3a92140
@@ -141,7 +141,7 @@ ETag: 1572022506
   "type": "Human", 
   "username": null
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 10562fd81cb5b8846cdabc5565562fec
@@ -209,7 +209,7 @@ ETag: 2169635759
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 117f0d32b25165a5eeb5bd2e15385f1f
@@ -268,7 +268,7 @@ ETag: 3204828146
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 1182e0a0d57de15a57b56627644eb083
@@ -285,7 +285,7 @@ ETag: 310700916
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 11cf93e53cfd8b9bf9c7b739c5ab29c1
@@ -349,7 +349,7 @@ ETag: 789338229
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 1ca7874dc226b200f1b71e517573e129
@@ -408,7 +408,7 @@ ETag: 2104705991
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 1faabe2e9e6ad38e8c471af5de47485d
@@ -467,7 +467,7 @@ ETag: 3926497916
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 1fe824d8a91a7c7865b1fe99fa374614
@@ -526,7 +526,7 @@ ETag: 1256175460
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 204550f775f2e43b70572c677e219772
@@ -541,7 +541,23 @@ ETag: 139004189
   "type": "Rating", 
   "username": "Ben Bangert"
 }
---===============1618102349==
+--===============0996944170==
+Content-Type: application/json
+MIME-Version: 1.0
+Content-ID: 20c967fcf06b3749a4f4801a52eafbfe
+ETag: 2792068402
+
+{
+  "_id": "20c967fcf06b3749a4f4801a52eafbfe", 
+  "_rev": "2792068402", 
+  "doc_id": "87de55a63dcf772efa6e6817e7d63e97", 
+  "human_id": "87de55a63dcf772efa6e6817e7d63e97", 
+  "rating": 2.0, 
+  "time": "2008-11-30T23:48:59Z", 
+  "type": "Rating", 
+  "username": "Ben Bangert"
+}
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 20ec5be5706beae31f87a64cdd572e69
@@ -589,7 +605,7 @@ ETag: 3001017302
   "use_opensearch": "", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 21bfd7587844a45124e90ba346112e71
@@ -648,7 +664,7 @@ ETag: 1225886406
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 28941d8811d649789d921e386521bdf5
@@ -707,7 +723,7 @@ ETag: 303791141
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 2e93d3c5dc2199b58e9b21286f0e1ab6
@@ -766,7 +782,7 @@ ETag: 4157357200
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 3c7b4d3a7bf64ef3c41c1f3159fca962
@@ -830,7 +846,7 @@ ETag: 3226786858
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 3fefb1f90316b029b7937c01964e4fd8
@@ -847,7 +863,7 @@ ETag: 1284119838
   "type": "Human", 
   "username": "fsmith"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 43c0564e45e6edbd6797062bec41bb00
@@ -911,7 +927,7 @@ ETag: 2157488662
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 4a201ad5bf600b8a01c482eb577d2a63
@@ -975,7 +991,7 @@ ETag: 4230558377
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 4d1e3f22c344200bcff3e0046abc04b4
@@ -1039,7 +1055,7 @@ ETag: 1305465345
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 506e0b58cd1cea302bea16f595f75b5e
@@ -1067,7 +1083,7 @@ ETag: 1949573019
   "type": "Snippet", 
   "username": "John Doe"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 51342639a3a6b54597f0398a66946e2d
@@ -1131,7 +1147,7 @@ ETag: 2668689921
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 54276ab49402432e0743883876eb1f1a
@@ -1199,7 +1215,7 @@ ETag: 1505604911
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 559db791238ccb618f7981938600e5fc
@@ -1263,7 +1279,7 @@ ETag: 995567847
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 56be5db2680d549463080e626fba2ffc
@@ -1331,7 +1347,7 @@ ETag: 1727789119
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 59175cb385f66cf7fdeb67e7bc8f2d66
@@ -1399,7 +1415,7 @@ ETag: 3704098533
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 5f11777cec88f68453ed17101c35231b
@@ -1458,7 +1474,7 @@ ETag: 2192127750
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 627395edc952932161ee12fd8cef8653
@@ -1517,7 +1533,7 @@ ETag: 3218272863
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 631a94e93348c482424a11206b0aa1e9
@@ -9738,7 +9754,7 @@ ETag: 4087368833
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 63b7eaa7c6f84ef653ed4ca3ea0a8412
@@ -9802,7 +9818,7 @@ ETag: 1046204515
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 64c99b235944871e08185960644d99d6
@@ -9866,7 +9882,7 @@ ETag: 1792295909
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 654f5fc3c8206abee045da722a42ddc3
@@ -9934,7 +9950,7 @@ ETag: 3514512867
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 661cab5e43bdc2d5c2d108131e1efc7d
@@ -10002,7 +10018,7 @@ ETag: 1408359062
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 69e2ace9a167d9357523bfe0bb38604d
@@ -10066,7 +10082,7 @@ ETag: 1891581159
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 6ca77804362243a40e930d4fe22343cc
@@ -10116,7 +10132,7 @@ ETag: 4220667589
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 6d7f435e1cc71064de35bd4c35b557ba
@@ -10175,7 +10191,7 @@ ETag: 44754533
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 6fea726ba1392467daf376cefead0860
@@ -10191,7 +10207,7 @@ ETag: 817842489
   "title": "Sample 2", 
   "type": "Paste"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 736aa62be923de2d554adf9be250fc5a
@@ -10250,7 +10266,7 @@ ETag: 1350088399
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 74aa8d37e83d363774e6f0325c4e23ae
@@ -37094,7 +37110,7 @@ ETag: 825242809
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 76a1bd1a6e3f8acbf335c00be845fbd8
@@ -37162,7 +37178,7 @@ ETag: 2813901921
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 77b32fe3148ca53fffcb29bddb8258eb
@@ -37226,7 +37242,7 @@ ETag: 2402742324
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 7915055a326a72ca31ba9724521c6d3f
@@ -37294,7 +37310,7 @@ ETag: 3845157885
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 792eafe3944cd285f53bcfffbee62ed1
@@ -37358,7 +37374,7 @@ ETag: 3682147112
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 8165c8a741340c2c1230abae38d869c8
@@ -37408,7 +37424,7 @@ ETag: 4148814538
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 84078d7c2705916c052bc01a542198e7
@@ -37476,7 +37492,7 @@ ETag: 3589644125
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 8440a2f3a720bb664a98df6bae93257f
@@ -37535,7 +37551,7 @@ ETag: 4026679206
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 877ea0cbd61fbfa555693f0d267816f7
@@ -37599,7 +37615,7 @@ ETag: 972907304
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 87de55a63dcf772efa6e6817e7d63e97
@@ -37618,7 +37634,7 @@ ETag: 3596572418
   "session_id": "66beadaadbef72f78b339bf6a500388f", 
   "type": "Human"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 8a58e193615214bf83b389d5b68495ad
@@ -37677,7 +37693,7 @@ ETag: 272003248
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 8f831c1ddf347155d0eb416451eca42a
@@ -37694,7 +37710,7 @@ ETag: 2976940769
   "type": "Human", 
   "username": null
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: 96b431741fa1277197d841d3f1cba8c5
@@ -37762,7 +37778,7 @@ ETag: 2959857303
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: _design/documentation
@@ -37785,7 +37801,7 @@ ETag: 346512714
     }
   }
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: _design/human
@@ -37804,24 +37820,31 @@ ETag: 4095630128
     }
   }
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: _design/rating
-ETag: 3548303010
+ETag: 2095670056
 
 {
   "_id": "_design/rating", 
-  "_rev": "3548303010", 
+  "_rev": "2095670056", 
   "language": "javascript", 
   "views": {
+    "all_raters": {
+      "map": "function(doc) {\n  if (doc.type == 'Rating') {\n    emit(doc.doc_id, {username:doc.username, id:doc._id});\n  }\n}", 
+      "reduce": "function(keys, values) {\n    return values;\n}"
+    }, 
     "by_id": {
       "map": "function(doc) {\n  if (doc.type == 'Rating') {\n    emit(doc.doc_id, doc.rating);\n  }\n}", 
       "reduce": "function(keys, values) {\n  return sum(values)/values.length;\n}"
+    }, 
+    "by_time": {
+      "map": "function(doc) {\n  if (doc.type == 'Rating') {\n    emit(doc.time, {doc_id:doc.doc_id, id:doc._id});\n  }\n}"
     }
   }
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: _design/snippets
@@ -37853,7 +37876,7 @@ ETag: 2446653005
     }
   }
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: a20bbc1b6f4994aac292c9d03084929a
@@ -37921,7 +37944,7 @@ ETag: 2225336788
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: a2310c71f92f83725ac737c48d64b9f7
@@ -37985,7 +38008,7 @@ ETag: 2426708457
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: a4cd797aecd97fe879d1743c7398c6ac
@@ -38049,7 +38072,7 @@ ETag: 4151022761
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: a815c92695a508008978d92a8b059005
@@ -38113,7 +38136,7 @@ ETag: 4109254060
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: a9e2f511934c68036e9c2ec89cb22009
@@ -38181,7 +38204,7 @@ ETag: 797003744
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: ac491808fe2df0c1d00bb79e52504431
@@ -38245,7 +38268,7 @@ ETag: 161397419
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: b25a1a1276acbef2a911e55da76fd870
@@ -38260,7 +38283,7 @@ ETag: 945269587
   "type": "Rating", 
   "username": "Ben Bangert"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: b31e2496d9c707d2f0268445763c0fc9
@@ -38319,7 +38342,7 @@ ETag: 2261658993
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: b52e25c42543415e180134e43d833330
@@ -38387,7 +38410,7 @@ ETag: 3255540580
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: b9a6890d3548d3ca46210dabd1069195
@@ -39105,7 +39128,7 @@ ETag: 955239678
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: be55757c42df91aac2f8be84beac0897
@@ -39169,7 +39192,7 @@ ETag: 1747174403
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: bfee47e77a3eeab795f09e1c32ee07d1
@@ -39197,7 +39220,7 @@ ETag: 1634792306
   "type": "Snippet", 
   "username": "John Doe"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: c17bb421381a8c186c9e4134185b4e04
@@ -39265,7 +39288,7 @@ ETag: 47798120
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: c5babecc0ec82822c4b59b51a7edd363
@@ -39333,7 +39356,7 @@ ETag: 3394856995
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: ca2c7c817b20fd42b3db142bd0a590e3
@@ -39397,7 +39420,7 @@ ETag: 2972371942
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: cd8c565a3b91df360b0322d75133a09a
@@ -39465,7 +39488,7 @@ ETag: 305240576
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d15737c1a5581c45668cccf32a515be0
@@ -39524,7 +39547,7 @@ ETag: 3750877222
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d220a5e3515bf54f74e816fcc53c27d5
@@ -39588,7 +39611,7 @@ ETag: 3151056728
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d2c391636f2da455460134fdbd2a6298
@@ -39647,7 +39670,7 @@ ETag: 3646847897
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d446ff75fc9866fdde2b4b4cdf2b1ff4
@@ -39706,7 +39729,7 @@ ETag: 1534500417
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d55862a973844403126b37f8d118b057
@@ -39770,7 +39793,7 @@ ETag: 4159839068
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: d5ad3af95aa9f6314ae50cc86635773b
@@ -39834,7 +39857,23 @@ ETag: 283572733
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
+Content-Type: application/json
+MIME-Version: 1.0
+Content-ID: d6d6bb49ceee97ec5fe51f5d9e4f4cb0
+ETag: 900052135
+
+{
+  "_id": "d6d6bb49ceee97ec5fe51f5d9e4f4cb0", 
+  "_rev": "900052135", 
+  "doc_id": "87de55a63dcf772efa6e6817e7d63e97", 
+  "human_id": "87de55a63dcf772efa6e6817e7d63e97", 
+  "rating": 9.0, 
+  "time": "2008-11-30T23:49:10Z", 
+  "type": "Rating", 
+  "username": "Ben Bangert"
+}
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: dd7d49e84929231c4384216e8dfbb133
@@ -39850,7 +39889,7 @@ ETag: 586618051
   "title": "Sample 1", 
   "type": "Paste"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: de8b478862c5d546fb9ddac652653219
@@ -39918,7 +39957,7 @@ ETag: 3908534278
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: df459bbf8a75f915fab3d6aa1e729cb0
@@ -39986,7 +40025,7 @@ ETag: 3632081766
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: df7d3019b2be1fb4df3454911225d2f8
@@ -40050,7 +40089,7 @@ ETag: 4101706625
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: e51c32a13246f0e0757e54e3bf747a5b
@@ -40114,7 +40153,7 @@ ETag: 3860837182
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: e641c612b19585a902b998d314d0ed18
@@ -40178,7 +40217,7 @@ ETag: 90835672
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: e6911b3708e685cd7b03714dc133ee65
@@ -40242,7 +40281,7 @@ ETag: 3401905665
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: e6b13e9783472a784eb97ff41815f9bf
@@ -40301,7 +40340,7 @@ ETag: 1071170195
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: e791e302c131d0bf7eea617ca0537a19
@@ -40365,7 +40404,7 @@ ETag: 6578374
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: ea0376f768c0a5467715327b52c39c03
@@ -40424,7 +40463,7 @@ ETag: 1131431121
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: ea0e9cf6dcfec81d70ce01c2689698ee
@@ -40488,7 +40527,7 @@ ETag: 1957187470
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: eb47ab88a7687010a858e687830f713f
@@ -40552,7 +40591,7 @@ ETag: 2484068639
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: f298ce17aef3615ab21a0b473018295f
@@ -40616,7 +40655,7 @@ ETag: 2650156274
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: f2edd2fb0aa5668305c12458153cc24d
@@ -40675,7 +40714,7 @@ ETag: 250151424
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: f827f76ff5739f09f25a3b4f7a0cf39e
@@ -40739,7 +40778,7 @@ ETag: 2629644447
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: fb2c45983b92a6ac1f0ae8b15381aa12
@@ -40807,7 +40846,7 @@ ETag: 981062820
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: fca82c270a6fdda9a9919900ce86b801
@@ -40866,7 +40905,7 @@ ETag: 2895218642
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: fe9ff5e0f81a15ecaf1fac8a6cd9024b
@@ -40925,7 +40964,7 @@ ETag: 409969135
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==
+--===============0996944170==
 Content-Type: application/json
 MIME-Version: 1.0
 Content-ID: febcf79e54033903a4121c5669f9ad74
@@ -40984,4 +41023,4 @@ ETag: 1428734877
   "type": "Documentation", 
   "version": "0.9.7"
 }
---===============1618102349==--
+--===============0996944170==--
