@@ -73,15 +73,15 @@
     <li id="nav-1"${active_tab.get('Home', '') | n}>${h.link_to('Home', url=url('home'))}
       <ul>
         <li${active_sub.get('Overview', '') | n}>${h.link_to('Overview', url=url('home'))}</li>
-        <li${active_sub.get('Features', '') | n}><a href="#">Features</a></li>
-        <li${active_sub.get('History', '') | n}><a href="#">History</a></li>
-        <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
+        <li${active_sub.get('Features', '') | n}>${h.link_to('Features', url=url('features'))}</li>
+        <li${active_sub.get('History', '') | n}>${h.link_to('History', url=url('history'))}</li>
+##        <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
       </ul>
     </li>
     <li id="nav-2"${active_tab.get('Documentation', '') | n}>${h.link_to('Documentation', url=url('doc_home'))}
       <ul>
         <li${active_sub.get('Reference', '') | n}>${h.link_to('Reference', url=url('doc_home'))}</li>
-        <li${active_sub.get('FAQ', '') | n}><a href="#">FAQ</a></li>
+##        <li${active_sub.get('FAQ', '') | n}><a href="#">FAQ</a></li>
         <li${active_sub.get('Modules', '') | n}>${h.link_to('Modules', url=url('doc_view', url='modules/'))}</li>
         <li${active_sub.get('Glossary', '') | n}>${h.link_to('Glossary', url=url('doc_view', url='glossary/'))}</li>
         <li${active_sub.get('Index', '') | n}><a href="#">${h.link_to('Index', url=url('doc_view', url='index/'))}</a></li>
@@ -91,9 +91,9 @@
       <ul>
         <li${active_sub.get('Blog', '') | n}><a href="#">Blog</a></li>
         <li${active_sub.get('Wiki', '') | n}>${h.link_to('Wiki', url=url('wiki'))}</li>
-        <li${active_sub.get('Jobs', '') | n}><a href="#">Jobs</a></li>
-        <li${active_sub.get('Sites Using Pylons', '') | n}><a href="#">Sites Using Pylons</a></li>
-        <li${active_sub.get('Aggregator', '') | n}><a href="#">Aggregator</a></li>
+##        <li${active_sub.get('Jobs', '') | n}><a href="#">Jobs</a></li>
+##        <li${active_sub.get('Sites Using Pylons', '') | n}><a href="#">Sites Using Pylons</a></li>
+##        <li${active_sub.get('Aggregator', '') | n}><a href="#">Aggregator</a></li>
       </ul>
     </li>
     <li id="nav-4"${active_tab.get('Tools', '') | n}><a href="#">Tools</a>
@@ -109,7 +109,7 @@
         <li${active_sub.get('Milestones', '') | n}><a href="#">Milestones</a></li>
         <li${active_sub.get('View Tickets', '') | n}><a href="#">View Tickets</a></li>
         <li${active_sub.get('Source', '') | n}><a href="#">Source</a></li>
-        <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
+##        <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
         <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=url('buildbot', action='index'))}</li>
       </ul>
     </li>

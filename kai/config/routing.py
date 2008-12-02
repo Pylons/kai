@@ -23,7 +23,12 @@ def make_map(globs=None):
     map.connect('/error/{action}', controller='error')
     map.connect('/error/{action}/{id}', controller='error')
 
+    # Home url's
     map.connect('home', '/', controller='home', action='index')
+    map.connect('features', '/features', controller='home', action='features')
+    map.connect('history', '/history', controller='home', action='history')
+    
+    # Code url's
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
     
     # Doc url's

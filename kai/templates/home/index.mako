@@ -109,4 +109,4 @@
 </div>
 <%def name="title()">${parent.title()} - Home</%def>
 <%def name="yui_class()"> class="home"</%def>
-<%inherit file="layout.mako" />
+<%inherit file="/layout.mako" />

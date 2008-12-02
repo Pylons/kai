@@ -9,4 +9,7 @@ log = logging.getLogger(__name__)
 
 class HomeController(BaseController):
     def index(self):
-        return render('/index.mako')
+        return render('/home/index.mako')
+    
+    def history(self):
+        return render('/home/history.mako')
