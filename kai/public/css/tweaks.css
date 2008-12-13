@@ -1,7 +1,7 @@
-/* @override http://localhost:5000/css/tweaks.css */
+/* @override http://localhost:5050/css/tweaks.css */
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
-    color:#6f4706;
+    color:#00607b;
     font-family:Georgia, "Times New Roman", Times, serif;
     font-weight:300;
     margin: 10px -20px 0px -20px;
@@ -11,6 +11,7 @@
 
 .content h1 {
     font-size: 200%;
+    color: #00607b;
 }
 .content h2 {
     font-size: 174%;
@@ -145,6 +146,43 @@ table.buildbot tr td:hover div.details a {
 	background: transparent url(images/information.gif) no-repeat 0 0;
 	display: block;
 	text-decoration: none;
+}
+
+/* Login bar */
+
+.home #bd, #bd {
+    position: relative;
+    padding-top: 33px;
+    margin-top: -20px;
+}
+
+div#loginbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+    margin: 0;
+    text-align: right;
+    width: 100%;
+    background: transparent url(images/loginbar.jpg) no-repeat 0 0;    
+}
+
+div#loginbar .links {
+    margin-right: 15px;
+    padding: 0;
+}
+div#loginbar a {
+    color: #ffd630;
+    font-size: 83%;
+    text-decoration: none;
+}
+
+div#loginbar a:hover {
+    text-decoration: underline;
+    color: #ffd630;
+}
+
+.home #bd h3 {
+    color: #00607b;
 }
 
 /* Overlay popup styling */

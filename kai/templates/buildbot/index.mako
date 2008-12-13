@@ -1,4 +1,4 @@
-<div class="yui-b">
+<div class="yui-b content">
     <h1>Buildbot Status</h1>
     <p>Pylons source code is <strong>automatically built and tested</strong> via
         <a href="http://buildbot.net/trac">Buildbot</a> to ensure consistent
@@ -19,6 +19,8 @@
     <div class="older release" style="display: none;">
         ${build_table(c.releases, start=1, limit=None, include_header=None)}
     </div>
+    
+    <div class="clearfix">&nbsp;</div>
     
     <h2>Development Tip</h2>
     ${build_table(c.dev)}

@@ -12,4 +12,5 @@ class HomeController(BaseController):
         return render('/home/index.mako')
     
     def history(self):
+        c.active_sub = 'History'
         return render('/home/history.mako')

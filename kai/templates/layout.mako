@@ -14,6 +14,7 @@
         <div id="bd">
             % if request.environ['pylons.routes_dict']['controller'] != 'accounts':
             <div id="loginbar">
+                <div class="links">
                 % if session.get('logged_in'):
                     Welcome ${session['displayname']}
                     ${h.link_to('Logout', url=url('account_logout'))}
@@ -21,6 +22,7 @@
                 ${h.link_to('Login', url=url('account_login'))} or 
                 ${h.link_to('Register', url=url('account_register'))}
                 % endif
+                </div>
             </div>
             % endif
             % for message_type in ['success', 'failure']:
