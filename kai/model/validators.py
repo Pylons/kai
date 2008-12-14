@@ -1,11 +1,33 @@
 """Custom validators"""
+from datetime import datetime
+
 import formencode
+import pylons
 
 from kai.model import Human
 
+
+class ExistingEmail(formencode.FancyValidator):
+    def _to_python(self, value, state):
+        users = list(Human.by_email(pylons.c.db)[value])
+        if not users:
+            raise formencode.Invalid('No such e-mail address was found',
+                                     value, state)
+        user = users[0]
+        
+        # Check to see if the user has recently asked for an email token
+        if user.email_token_issue:
+            diff = datetime.now() - user.email_token_issue
+            if diff.days < 1 and diff.seconds < 3600:
+                raise formencode.Invalid(
+                    "You've already requested a password recently.  Please " 
+                    "wait and try later.", value, state)
+        return value
+
+
 class UniqueDisplayname(formencode.FancyValidator):
     def _to_python(self, value, state):
-        if Human.get_displayname(value):
+        if list(Human.by_displayname(pylons.c.db)[value]):
             raise formencode.Invalid('Display name already exists',
                                      value, state)
         else:
@@ -14,11 +36,19 @@ class UniqueDisplayname(formencode.FancyValidator):
 
 class UniqueEmail(formencode.FancyValidator):
     def _to_python(self, value, state):
-        if Human.get_email(value):
+        if list(Human.by_email(pylons.c.db)[value]):
             raise formencode.Invalid('Email address already exists', value,
                                      state)
         else:
             return value
+
+
+class ValidPassword(formencode.FancyValidator):
+    def _to_python(self, value, state):
+        if len(value) < 6:
+            raise formencode.Invalid('Password is too short, must be at least'
+                                     ' 6 characters', value, state)
+        return value
 
 
 class ValidLogin(formencode.FancyValidator):
@@ -37,7 +67,11 @@ class ValidLogin(formencode.FancyValidator):
         email = field_dict[self.email]
         password = field_dict[self.password]
         
-        user = Human.get_email(email)
+        users = list(Human.by_email(pylons.c.db)[email])
+        if users:
+            user = users[0]
+        else:
+            user = None
         
         if not user:
             errors[self.email] = self.message('badlogin', state)

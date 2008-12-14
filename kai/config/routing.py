@@ -71,7 +71,10 @@ def make_map(globs=None):
     map.connect('account_register', '/account/register', controller='accounts', action='register')
     map.connect('account_oid_reg', '/account/register/openid', controller='accounts', action='openid_register')
     map.connect('account_logout', '/account/logout', controller='accounts', action='logout')
-
+    map.connect('verify_email', '/accounts/verify_email/{token}', controller='accounts', action='verify_email')
+    map.connect('forgot_password', '/accounts/forgot_password', controller='accounts', action='forgot_password')
+    map.connect('reset_password', '/accounts/reset_password/{token}', controller='accounts', action='change_password')
+    
     
     # Snippets
     map.connect('snippet_home', '/snippets', controller='snippets', action='index')

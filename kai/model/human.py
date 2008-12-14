@@ -3,7 +3,7 @@ import sha
 from datetime import datetime
 
 import pylons
-from couchdb.schema import DateTimeField, Document, TextField, ListField
+from couchdb.schema import DateTimeField, Document, TextField, ListField, View
 
 
 class Human(Document):
@@ -15,26 +15,54 @@ class Human(Document):
     created = DateTimeField(default=datetime.now)
     last_login = DateTimeField(default=datetime.now)
     blog = TextField()
-    openid = ListField(TextField())
     session_id = TextField()
+    locale = TextField()
     
-    @classmethod
-    def get_displayname(cls, displayname, **options):
-        options['include_docs'] = True
-        rows = pylons.c.db.view('human/by_displayname', **options)[displayname]
-        if len(rows) > 0:
-            return cls.wrap(list(rows)[0].doc)
-        else:
-            return False
+    email_token = TextField()
+    password_token = TextField()
     
-    @classmethod
-    def get_email(cls, email, **options):
-        options['include_docs'] = True
-        rows = pylons.c.db.view('human/by_email', **options)[email]
-        if len(rows) > 0:
-            return cls.wrap(list(rows)[0].doc)
-        else:
-            return False
+    email_token_issue = DateTimeField()
+    password_token_issue = DateTimeField()    
+    
+    openids = ListField(TextField())
+    groups = ListField(TextField())
+    
+    by_openid = View('human', '''
+        function(doc) {
+          if (doc.type == 'Human' && doc.openids) {
+            for (var idx in doc.openids) {
+              emit(doc.openids[idx], null);
+            }
+          }
+        }''', include_docs=True)
+    
+    by_displayname = View('human', '''
+        function(doc) {
+          if (doc.type == 'Human') {
+            emit(doc.displayname, null);
+          }
+        }''', include_docs=True)
+    
+    by_email = View('human', '''
+        function(doc) {
+          if (doc.type == 'Human') {
+            emit(doc.email, null);
+          }
+        }''', include_docs=True)
+    
+    by_email_token = View('human', '''
+        function(doc) {
+          if (doc.type == 'Human' && doc.email_token) {
+            emit(doc.email_token, null);
+          }
+        }''', include_docs=True)
+    
+    by_password_token = View('human', '''
+        function(doc) {
+          if (doc.type == 'Human' && doc.password_token) {
+            emit(doc.password_token, null);
+          }
+        }''', include_docs=True)
     
     @staticmethod
     def hash_password(plain_text):
@@ -57,6 +85,19 @@ class Human(Document):
         password_salt = self.password[:40]
         crypt_pass = sha.new(plain_text + password_salt).hexdigest()
         if crypt_pass == self.password[40:]:
+            return True
+        else:
+            return False
+
+    def generate_token(self):
+        """Generate's a token for use either for forgot password or
+        email verification"""
+        return sha.new(os.urandom(60)).hexdigest()
+    
+    def valid_password_token(self):
+        diff = datetime.now() - self.password_token_issue
+        token_lifespan = pylons.config['sso.password_token_lifespan']
+        if diff.days < 1 and diff.seconds < token_lifespan:
             return True
         else:
             return False

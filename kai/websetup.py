@@ -17,6 +17,9 @@ def setup_app(command, conf, vars):
     ViewDefinition.sync_many(db, [
         Article.all_months, Article.all_tags, Article.by_month,
         Article.by_tag, Article.by_time, Article.by_slug,
+        
+        Human.by_displayname, Human.by_email, Human.by_email_token,
+        Human.by_openid, Human.by_password_token,
     ])
     
     

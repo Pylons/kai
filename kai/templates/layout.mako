@@ -12,7 +12,6 @@
             ${nav(getattr(c, 'active_tab', None), getattr(c, 'active_sub', None))}
         </div>
         <div id="bd">
-            % if request.environ['pylons.routes_dict']['controller'] != 'accounts':
             <div id="loginbar">
                 <div class="links">
                 % if session.get('logged_in'):
@@ -24,7 +23,6 @@
                 % endif
                 </div>
             </div>
-            % endif
             % for message_type in ['success', 'failure']:
             <% 
                 messages = getattr(h, '%s_flash' % message_type).pop_messages() 
