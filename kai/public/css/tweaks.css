@@ -270,10 +270,12 @@ ul#success-flash-messages {
     margin-left: 40px;
     padding: 4px;
     list-style: none;
+    border: 2px solid green;
     }
 
 ul#failure-flash-messages {
     color: red;
+    border: 2px solid red;
     background-color: #FFFFCC;
     font-size: larger;
     font-style: italic;
