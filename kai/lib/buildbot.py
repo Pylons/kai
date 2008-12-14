@@ -3,6 +3,7 @@ import xmlrpclib
 from datetime import datetime
 
 import pylons
+from pytz import timezone
 
 buildbot_server = xmlrpclib.Server(pylons.config['buildbot_server'])
 day = 60 * 60 * 24
@@ -19,9 +20,10 @@ def recent_builds(num_builds=2):
     def get_items():
         results = buildbot_server.getAllLastBuilds(num_builds)
         builders = {}
+        tzinfo = timezone('US/Pacific')
         for res in results:
-            start = datetime.fromtimestamp(res[2])
-            end = datetime.fromtimestamp(res[3])
+            start = datetime.fromtimestamp(res[2], tzinfo)
+            end = datetime.fromtimestamp(res[3], tzinfo)
             elapsed = res[3] - res[2]
             build = dict(name=res[0], version=res[1], 
                          start=start, end=end, branch=res[4],
