@@ -146,9 +146,8 @@ class ConsumerController(BaseController):
                 return render('/accounts/register.mako')
             
             # The last option possible, is that the user is associating this
-            # OpenID account with an existing O'Reilly account. Present the
-            # association page
-            return theme_render('account/associate')
+            # OpenID account with an existing account
+            return render('/accounts/associate')
         elif info.status == consumer.CANCEL:
             failure_flash('Verification cancelled')
         elif info.status == consumer.SETUP_NEEDED:

@@ -73,9 +73,9 @@ def make_map(globs=None):
     map.connect('verify_email', '/accounts/verify_email/{token}', controller='accounts', action='verify_email')
     map.connect('forgot_password', '/accounts/forgot_password', controller='accounts', action='forgot_password')
     map.connect('reset_password', '/accounts/reset_password/{token}', controller='accounts', action='change_password')
-    map.connect('openid_associate', '/accounts/openid/associate', controller='accounts', action='openid_associate')
     
     # OpenID URL's
+    map.connect('openid_associate', '/accounts/openid/associate', controller='accounts', action='openid_associate')
     map.connect('openid_register', '/accounts/openid/register', controller='accounts', action='openid_register')
     map.connect('openid_login', '/accounts/openid/login', controller='consumer', action='login')
     map.connect('openid_process', '/accounts/openid/process', controller='consumer', action='process')
