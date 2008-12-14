@@ -163,17 +163,20 @@ div#loginbar {
     margin: 0;
     text-align: right;
     width: 100%;
+    color: #ddd;
+    font-size: 83%;
+    height: 20px;
     background: transparent url(images/loginbar.jpg) no-repeat 0 0;    
 }
 
 div#loginbar .links {
     margin-right: 15px;
-    padding: 0;
+    padding: 1px 0 0 0;
 }
 div#loginbar a {
     color: #ffd630;
-    font-size: 83%;
     text-decoration: none;
+    padding: 0 4px 0 4px;
 }
 
 div#loginbar a:hover {

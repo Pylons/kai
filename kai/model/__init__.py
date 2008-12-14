@@ -1,4 +1,5 @@
 """CouchDB Models"""
+from kai.model.blog import Article
 from kai.model.documentation import Documentation
 from kai.model.generics import Comment, Rating
 from kai.model.human import Human

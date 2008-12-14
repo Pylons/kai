@@ -28,6 +28,9 @@ def make_map(globs=None):
     map.connect('features', '/features', controller='home', action='features')
     map.connect('history', '/history', controller='home', action='history')
     
+    # Blog url's
+    map.resource('article', 'articles')
+    
     # Code url's
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
     

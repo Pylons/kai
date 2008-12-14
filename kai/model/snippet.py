@@ -30,19 +30,16 @@ class Snippet(Document):
     @classmethod
     def by_date(cls, **options):
         options['include_docs'] = True
-        rows = pylons.c.db.view('snippets/by_date', **options)
-        return rows
+        return pylons.c.db.view('snippets/by_date', **options)
         
     @classmethod
     def by_author(cls, **options):
-        rows = pylons.c.db.view('snippets/by_author', **options)
-        return rows
+        return pylons.c.db.view('snippets/by_author', **options)
         
     @classmethod
     def by_author_id(cls, human_id, **options):
         options['include_docs'] = True
-        rows = pylons.c.db.view('snippets/by_author_id', **options)[human_id]
-        return rows
+        return pylons.c.db.view('snippets/by_author_id', **options)[human_id]
         
     @classmethod
     def fetch_snippet(cls, slug, **options):
