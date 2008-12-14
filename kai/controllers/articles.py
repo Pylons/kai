@@ -14,5 +14,10 @@ class ArticlesController(BaseController):
         c.active_sub = 'Blog'
     
     def index(self):
-        c.articles = list(Article.by_time(descending=True, count=10))
+        c.articles = list(Article.by_time(c.db, descending=True, count=10))
         return render('/articles/index.mako')
+    
+    def archives(self, year, month, slug):
+        articles = list(Article.by_slug(c.db, include_docs=True)[(int(year), int(month), slug)]) or abort(404)
+        c.article = articles[0]
+        return render('/articles/show.mako')

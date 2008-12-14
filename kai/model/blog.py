@@ -3,7 +3,7 @@ import sha
 from datetime import datetime
 
 import pylons
-from couchdb.schema import DateTimeField, Document, TextField, ListField
+from couchdb.schema import DateTimeField, Document, TextField, ListField, View
 
 
 class Article(Document):
@@ -37,6 +37,76 @@ class Article(Document):
             self.updated = datetime.now()
         Document.store(self, db)
 
-    @classmethod
-    def by_time(cls, **options):
-        return cls.view(pylons.c.db, 'articles/by_time', **options)
+    all_months = View('articles', '''
+        function(doc) {
+          if (doc.type == 'Article') {
+            var year = parseInt(doc.published.substr(0, 4), 10);
+            var month = parseInt(doc.published.substr(5, 2), 10);
+            emit([year, month], 1);
+          }
+        }''', '''
+        function(keys, values) {
+          return sum(values);
+        }''',
+        wrapper=lambda row: datetime(row.key[0], row.key[1], 1),
+        name='months', group=True)
+
+    all_tags = View('articles', '''
+        function(doc) {
+          if (doc.type == 'Article' && doc.tags) {
+            for (var idx in doc.tags) {
+              emit(doc.tags[idx], 1);
+            }
+          }
+        }''', '''
+        function(keys, values) {
+          return sum(values);
+        }''',
+        wrapper=lambda row: row.key,
+        name='tags', group=True)
+    
+    by_month = View('articles', '''
+        function(doc) {
+          if (doc.type == 'Article') {
+            var year = parseInt(doc.published.substr(0, 4), 10);
+            var month = parseInt(doc.published.substr(5, 2), 10);
+            emit([year, month, doc.published], {
+              slug: doc.slug, title: doc.title, author: doc.author,
+              summary: doc.summary, published: doc.published,
+              updated: doc.updated, tags: doc.tags
+            });
+          }
+        }''')
+
+    by_tag = View('articles', u'''
+        function(doc) {
+          if (doc.type == 'Article' && doc.tags) {
+            for (var idx in doc.tags) {
+              emit([doc.tags[idx], doc.published], {
+                slug: doc.slug, title: doc.title, author: doc.author,
+                published: doc.published, updated: doc.updated,
+                summary: doc.summary, body: doc.body, tags: doc.tags,
+                extended: doc.extended != '' ? '...' : null
+              });
+            }
+          }
+        }''')
+
+    by_time = View('articles', '''
+        function(doc) {
+          if (doc.type == 'Article') {
+            emit(doc.published, 
+                 {slug:doc.slug, title:doc.title, 
+                  author:doc.author, body:doc.body,
+                  published:doc.published, summary:doc.summary});
+          }
+        }''')
+    
+    by_slug = View('articles', '''
+        function(doc) {
+          if (doc.type == 'Article') {
+            var year = parseInt(doc.published.substr(0, 4), 10);
+            var month = parseInt(doc.published.substr(5, 2), 10);
+            emit([year, month, doc.slug], null)
+          }
+        }''')

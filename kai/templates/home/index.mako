@@ -39,13 +39,11 @@
         <div id="news" class="side-section">
           <h3>Latest News</h3>
           <ul>
-            <li><strong><a href="#">Pylons 0.9.6.1 Released</a></strong><br />
-              Thu, 27 Sep 2007 </li>
-            <li><strong><a href="#">Pylons 0.9.6.1 Released</a></strong><br />
-              Thu, 27 Sep 2007 </li>
-            <li><strong><a href="#">Pylons 0.9.6.1 Released</a></strong><br />
-              Thu, 27 Sep 2007 </li>
-            <li><strong><a href="#">More</a></strong></li>
+              % for article in c.articles:
+                <li><strong>${h.link_to(article.title, url=url('article_archives', article=article))}</strong><br />
+                    ${format.date(article.published)}</li>
+              % endfor
+              <li><strong>${h.link_to('More', url=url('articles'))}</strong></li>
           </ul>
         </div>
         <div id="usefull" class="side-section">
@@ -62,14 +60,10 @@
         <div class="yui-u first">
           <h4>Recent Blog Entries</h4>
           <ul>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite</li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
+            % for article in c.articles[:4]:
+            <li>${h.link_to(article.title, url=url('article_archives', article=article))}<br />
+                ${h.truncate(article.summary, length=250, whole_word=True)}</li>
+            % endfor
           </ul>
         </div>
         <div class="yui-u">

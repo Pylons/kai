@@ -6,7 +6,7 @@
 </div>
 <%def name="display_article(article)">
 <div class="atomentry" id="article-${article.slug}">
-    <h2 class="title">${h.link_to(article.title, url='#')}</h2>
+    <h2 class="title">${h.link_to(article.title, url=url('article_archives', article=article))}</h2>
     <%
         author = '<cite>%s</cite>' % article.author
         date = '<span class="date">%s</span>' % format.date(article.published, "long")

@@ -9,6 +9,16 @@ from routes import Mapper
 
 wiki = 'http://wiki.pylonshq.com'
 
+def article_expand(kwargs):
+    if 'article' not in kwargs:
+        return kwargs
+    article = kwargs.pop('article')
+    kwargs['year'] = article.published.year
+    kwargs['month'] = article.published.month
+    kwargs['slug'] = article.slug
+    return kwargs
+
+
 def make_map(globs=None):
     """Create, configure and return the routes Mapper"""
     version = config['pylons.app_globals'].current_version
@@ -29,6 +39,8 @@ def make_map(globs=None):
     map.connect('history', '/history', controller='home', action='history')
     
     # Blog url's
+    map.connect('article_archives', '/articles/archives/{year:\d+}/{month:\d+}/{slug}',
+                controller='articles', action='archives', _filter=article_expand)
     map.resource('article', 'articles')
     
     # Code url's
