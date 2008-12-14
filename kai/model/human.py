@@ -11,12 +11,12 @@ class Human(Document):
     type = TextField(default='Human')
     displayname = TextField()
     email = TextField()
+    timezone = TextField()
     password = TextField()
     created = DateTimeField(default=datetime.now)
     last_login = DateTimeField(default=datetime.now)
     blog = TextField()
     session_id = TextField()
-    locale = TextField()
     
     email_token = TextField()
     password_token = TextField()
@@ -107,3 +107,12 @@ class Human(Document):
             return True
         else:
             return False
+    
+    def process_login(self):
+        session = pylons.session._current_obj()
+        session['logged_in'] = True
+        session['displayname'] = self.displayname
+        session['user_id'] = self.id
+        session.save()
+        self.session_id = session.id
+        self.store(pylons.c.db)

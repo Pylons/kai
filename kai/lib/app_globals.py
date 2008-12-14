@@ -1,6 +1,11 @@
 """The application's Globals object"""
 from datetime import datetime
 import md5
+import os
+
+from openid.server import server
+from openid.store import filestore
+from pylons import config
 
 class Globals(object):
     """Globals acts as a container for objects available throughout the
@@ -13,6 +18,10 @@ class Globals(object):
         'app_globals' variable
 
         """
+        oid_store = os.path.sep.join([config['pylons.cache_dir'], 'openid'])
+        self.openid_store = filestore.FileOpenIDStore(oid_store)
+        self.openid_server = server.Server(self.openid_store, config['openid.base_url'])
+        
         self.etag_id = md5.md5(str(datetime.now().timetuple()[3])).hexdigest()
         self.versions = ['0.8','0.8.1', '0.8.2', '0.9', '0.9.1', '0.9.2', 
                          '0.9.3', '0.9.4', '0.9.4.1', '0.9.5', '0.9.6', '0.9.6.1',

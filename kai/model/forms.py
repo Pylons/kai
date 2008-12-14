@@ -2,7 +2,8 @@ from formencode import All, Schema
 from formencode.validators import FieldsMatch
 from tw import forms
 from tw.api import WidgetsList
-from tw.forms.validators import DateTimeConverter, UnicodeString, Email
+from tw.forms.validators import DateTimeConverter, UnicodeString, Email, OneOf
+import pytz
 
 from kai.model.validators import ExistingEmail, UniqueDisplayname, UniqueEmail, ValidLogin, ValidPassword
 
@@ -52,7 +53,7 @@ change_password_form = ChangePasswordForm('change_password_form', validator=chan
 class ForgotPasswordForm(forms.TableForm):
     class fields(WidgetsList):
         email_address = forms.TextField(
-            label = 'Email',
+            label_text = 'Email',
             validator = ExistingEmail(not_empty=True))
         _authentication_token = SecureToken()
 forgot_password_form = ForgotPasswordForm('forgot_password_form')
@@ -69,17 +70,45 @@ login_validator = FilteringSchema(
     chained_validators=[ValidLogin(email='email_address', password='password')])
 login_form = LoginForm('login_form', validator=login_validator)
 
+class OpenIDLogin(forms.TableForm):
+    class fields(WidgetsList):
+        openid_identifier = forms.TextField(
+            label_text="OpenID Identifier",
+            validator = UnicodeString(not_empty=True))
+        _authentication_token = SecureToken()
+openid_login_form = OpenIDLogin('openid_login_form')
+
+
+class OpenIDRegistrationForm(forms.TableForm):
+    class fields(WidgetsList):
+        displayname = forms.TextField(
+            label_text = "Display Name",
+            help_text = "Name that will appear when posting/commenting",
+            validator = All(UnicodeString(not_empty=True), UniqueDisplayname()))
+        email_address = forms.TextField(
+            validator = All(Email(not_empty=True), UniqueEmail()))
+        timezone = forms.SingleSelectField(
+            options = pytz.common_timezones,
+            validator = OneOf(pytz.common_timezones, not_empty=True))
+openid_registration_form = OpenIDRegistrationForm('openid_registration_form')
+
 
 class RegistrationForm(forms.TableForm):
     class fields(WidgetsList):
         displayname = forms.TextField(
+            label_text = "Display Name",
+            help_text = "Name that will appear when posting/commenting",
             validator = All(UnicodeString(not_empty=True), UniqueDisplayname()))
         email_address = forms.TextField(
             validator = All(Email(not_empty=True), UniqueEmail()))
+        timezone = forms.SingleSelectField(
+            options = pytz.common_timezones,
+            validator = OneOf(pytz.common_timezones, not_empty=True))
         password = forms.PasswordField(
             validator = ValidPassword(not_empty=True))
         confirm_password = forms.PasswordField(
             validator = ValidPassword(not_empty=True))
+        _authentication_token = SecureToken()
 registration_validator = FilteringSchema(
     chained_validators=[FieldsMatch('password', 'confirm_password')])
 registration_form = RegistrationForm('registration_form', validator=registration_validator)

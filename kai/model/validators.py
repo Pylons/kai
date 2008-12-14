@@ -17,7 +17,7 @@ class ExistingEmail(formencode.FancyValidator):
         
         # Check to see if the user has recently asked for an email token
         if user.email_token_issue:
-            diff = datetime.now() - user.email_token_issue
+            diff = datetime.utcnow() - user.email_token_issue
             if diff.days < 1 and diff.seconds < 3600:
                 raise formencode.Invalid(
                     "You've already requested a password recently.  Please " 

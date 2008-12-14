@@ -22,8 +22,8 @@ from datetime import datetime
         % if step['text'] and step['text'][-1] == 'failed':
             <tr class="build-step failure">
                 <td>${pretty_text}</td>
-                <td class="times">${start.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
-                <td class="times">${end.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+                <td class="times">${format.datetime(start)}</td>
+                <td class="times">${format.datetime(end)}</td>
             </tr>
             <tr><td colspan="3">
                 <pre><code>
@@ -34,8 +34,8 @@ from datetime import datetime
             % else:
             <tr class="build-step success">
                 <td class="success">${pretty_text}</td>
-                <td class="times">${start.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
-                <td class="times">${end.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+                <td class="times">${format.datetime(start)}</td>
+                <td class="times">${format.datetime(end)}</td>
             </tr>
             % endif
             % endfor

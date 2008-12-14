@@ -188,6 +188,19 @@ div#loginbar a:hover {
     color: #00607b;
 }
 
+/* Form Styling */
+.fielderror { color: red; font-weight: bold; display: block;}
+
+input.has_error, select.has_error, textarea.has_error { background-color: red; }
+label.required { font-weight: bold; }
+form table { border: none;}
+form table tr, form table tr td { border: none;}
+form table tr td {vertical-align: top;}
+.fieldhelp {
+    color: #888;
+    font-size: 0.8em;
+}
+
 /* Overlay popup styling */
 div.close {
     float: right;

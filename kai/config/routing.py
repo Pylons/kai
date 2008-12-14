@@ -67,14 +67,19 @@ def make_map(globs=None):
     map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
     
     # Accounts
-    map.connect('account_login', '/account/login', controller='accounts', action='login')
-    map.connect('account_register', '/account/register', controller='accounts', action='register')
-    map.connect('account_oid_reg', '/account/register/openid', controller='accounts', action='openid_register')
-    map.connect('account_logout', '/account/logout', controller='accounts', action='logout')
+    map.connect('account_login', '/accounts/login', controller='accounts', action='login')
+    map.connect('account_register', '/accounts/register', controller='accounts', action='register')
+    map.connect('account_logout', '/accounts/logout', controller='accounts', action='logout')
     map.connect('verify_email', '/accounts/verify_email/{token}', controller='accounts', action='verify_email')
     map.connect('forgot_password', '/accounts/forgot_password', controller='accounts', action='forgot_password')
     map.connect('reset_password', '/accounts/reset_password/{token}', controller='accounts', action='change_password')
+    map.connect('openid_associate', '/accounts/openid/associate', controller='accounts', action='openid_associate')
     
+    # OpenID URL's
+    map.connect('openid_register', '/accounts/openid/register', controller='accounts', action='openid_register')
+    map.connect('openid_login', '/accounts/openid/login', controller='consumer', action='login')
+    map.connect('openid_process', '/accounts/openid/process', controller='consumer', action='process')
+    map.connect('openid_create', '/accounts/openid/create', controller='consumer', action='create')
     
     # Snippets
     map.connect('snippet_home', '/snippets', controller='snippets', action='index')

@@ -37,7 +37,7 @@ class BaseController(WSGIController):
         else:
             user = None
         if user:
-            tzinfo = user.locale or 'US/Pacific'
+            tzinfo = user.timezone or UTC
         else:
             tzinfo = UTC
         if isinstance(tzinfo, basestring):
