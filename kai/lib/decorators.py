@@ -14,7 +14,7 @@ def in_group(group):
         if not user:
             log.debug("No user logged in for permission restricted function")
             abort(401, "Not Authorized")
-        if group in user.groups:
+        if user.in_group(group):
             log.debug("User %s verified in group %s", user, group)
             return func(*args, **kwargs)
         else:

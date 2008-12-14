@@ -15,7 +15,7 @@
             <div id="loginbar">
                 <div class="links">
                 % if session.get('logged_in'):
-                    Welcome ${session['displayname']}
+                    Logged in as ${session['displayname']}
                     ${h.link_to('Logout', url=url('account_logout'))}
                 % else:
                 ${h.link_to('Login', url=url('account_login'))} or 

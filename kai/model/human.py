@@ -101,3 +101,9 @@ class Human(Document):
             return True
         else:
             return False
+    
+    def in_group(self, group):
+        if group in list(self.groups):
+            return True
+        else:
+            return False

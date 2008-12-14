@@ -63,7 +63,7 @@
             <% 
                 time = builds[build][here]['end']
             %>
-            <td>${time.strftime('%H:%M:%S PDT %b %d, %Y')}</td>
+            <td>${format.datetime(time, "medium")}</td>
             % endfor
         </tr>
         <tr>

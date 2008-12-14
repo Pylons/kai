@@ -2,7 +2,7 @@ from formencode import All, Schema
 from formencode.validators import FieldsMatch
 from tw import forms
 from tw.api import WidgetsList
-from tw.forms.validators import UnicodeString, Email
+from tw.forms.validators import DateTimeConverter, UnicodeString, Email
 
 from kai.model.validators import ExistingEmail, UniqueDisplayname, UniqueEmail, ValidLogin, ValidPassword
 
@@ -16,6 +16,25 @@ class FilteringSchema(Schema):
 
 class SecureToken(forms.HiddenField):
     template = 'kai.templates.widgets.secure'
+
+
+class NewArticleForm(forms.TableForm):
+    class fields(WidgetsList):
+        slug = forms.TextField(
+            validator = UnicodeString(not_empty=True))
+        title = forms.TextField(
+            validator = UnicodeString(not_empty=True))
+        summary = forms.TextField(
+            validator = UnicodeString(not_empty=True))
+        body = forms.TextArea(
+            rows = 15,
+            validator = UnicodeString(not_empty=True))
+        publish_date = forms.CalendarDateTimePicker(
+            validator = DateTimeConverter())
+        preview = forms.Button(
+            name='Preview',
+            attrs={'value':'Preview'})
+new_article_form = NewArticleForm('new_article_form')
 
 
 class ChangePasswordForm(forms.TableForm):

@@ -7,13 +7,13 @@ of CouchDB document.
 from datetime import datetime
 
 import pylons
-from couchdb.schema import DateTimeField, Document, TextField, FloatField
+from couchdb.schema import DateTimeField, Document, TextField, FloatField, View
 
 class Comment(Document):
     type = TextField(default='Comment')
     human_id = TextField()
     doc_id = TextField()
-    username = TextField()
+    displayname = TextField()
     content = TextField(default='')
     markup = TextField(default='')
     time = DateTimeField()
@@ -23,19 +23,30 @@ class Rating(Document):
     type = TextField(default='Rating')
     human_id = TextField()
     doc_id = TextField()
-    username = TextField()
+    displayname = TextField()
     rating = FloatField()
     time = DateTimeField(default=datetime.now)
     
+    all_raters = View('rating', '''
+        function(doc) {
+          if (doc.type == 'Rating') {
+            emit(doc.doc_id, {displayname:doc.displayname, id:doc._id});
+          }
+        }''', '''
+        function(keys, values) {
+          return values;
+        }''',
+        wrapper=lambda row: row.key,
+        name='raters', group=True)
+    
     @classmethod
-    def has_rated(cls, doc_id, username, **options):
-        """Checks the document to see if the username has already rated
+    def has_rated(cls, doc_id, displayname, **options):
+        """Checks the document to see if the displayname has already rated
         the document, if so, returns the id of the rating doc"""
-        rows = pylons.c.db.view('rating/all_raters', **options)[doc_id]
-        if len(rows) > 0:
-            ratings = list(rows)[0].value
-            for rating in ratings:
-                if username == rating['username']:
+        docs = list(cls.all_raters(pylons.c.db)[doc_id])
+        if docs:
+            for rating in docs[0]:
+                if displayname == rating['displayname']:
                     return rating['id']
         return False
     

@@ -1,5 +1,9 @@
 <div class="yui-b content">
-    <h1>${_('Recent Blog Postings')}</h1>
+    <h1>${_('Recent Blog Postings')}\
+% if c.user and c.user.in_group('admin'):
+ <span class="subtle">(${h.link_to('Add Posting', url=url('new_article'))})</span>\
+% endif
+</h1>
     % for article in c.articles:
     ${display_article(article)}
     % endfor
