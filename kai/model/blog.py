@@ -32,9 +32,9 @@ class Article(Document):
 
     def store(self, db, update_timestamp=True):
         if not self.published:
-            self.published = datetime.now()
+            self.published = datetime.utcnow()
         if update_timestamp or not self.updated:
-            self.updated = datetime.now()
+            self.updated = datetime.utcnow()
         Document.store(self, db)
 
     all_months = View('articles', '''

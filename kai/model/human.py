@@ -13,8 +13,8 @@ class Human(Document):
     email = TextField()
     timezone = TextField()
     password = TextField()
-    created = DateTimeField(default=datetime.now)
-    last_login = DateTimeField(default=datetime.now)
+    created = DateTimeField(default=datetime.utcnow)
+    last_login = DateTimeField(default=datetime.utcnow)
     blog = TextField()
     session_id = TextField()
     

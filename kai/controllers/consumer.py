@@ -147,7 +147,8 @@ class ConsumerController(BaseController):
             
             # The last option possible, is that the user is associating this
             # OpenID account with an existing account
-            return render('/accounts/associate')
+            c.openid = openid_identity
+            return render('/accounts/associate.mako')
         elif info.status == consumer.CANCEL:
             failure_flash('Verification cancelled')
         elif info.status == consumer.SETUP_NEEDED:

@@ -42,8 +42,8 @@ class BaseController(WSGIController):
             tzinfo = UTC
         if isinstance(tzinfo, basestring):
             tzinfo = timezone(tzinfo)
-        locale = Locale.negotiate(pylons.request.accept_language.best_matches(),
-                                  ['en', 'uk', 'ja'], sep='-')
+        langs = pylons.request.accept_language.best_matches() or ['en']
+        locale = Locale.negotiate(langs, ['en', 'uk', 'ja'], sep='-')
         pylons.c._format = Format(locale, tzinfo=tzinfo)
         pylons.c._locale = locale
         pylons.c._tzinfo = tzinfo

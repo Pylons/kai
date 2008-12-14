@@ -112,6 +112,26 @@ class AccountsController(BaseController):
         success_flash('You have logged into PylonsHQ')
         redirect_to('home')
     
+    @rest.dispatch_on(POST='_process_openid_associate')
+    def openid_associate(self):
+        openid_url = session.get('openid_identity')
+        if not openid_url:
+            redirect_to('account_register')
+        c.openid = openid_url
+        return render('/accounts/associate.mako')
+    
+    @validate(form=forms.login_form, error_handler='login')
+    def _process_openid_associate(self):
+        openid_url = session.get('openid_identity')
+        user = self.form_result['user']
+        if user.openids:
+            user.openids.append(openid_url)
+        else:
+            user.openids = [openid_url]
+        user.process_login()
+        success_flash('You have associated your OpenID to your account, and signed in')
+        redirect_to('home')
+    
     @rest.dispatch_on(POST='_process_openid_registration')
     def openid_register(self):
         openid_url = session.get('openid_identity')
