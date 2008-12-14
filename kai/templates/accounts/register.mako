@@ -23,7 +23,7 @@
         from the system will be sent to this email address, as well as lost password requests""")}.</p>
     
     <p>${_("""<b>Note: </b>A valid e-mail address is required to activate your
-        account.""")}</p>
+        account.""") |n}</p>
     
     ${registration_form(action=url('account_register')) | n}
     
