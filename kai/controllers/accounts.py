@@ -36,7 +36,7 @@ class AccountsController(BaseController):
                     redirect_to('home')
             
             # Valid e-mail token, remove it and log the user in
-            user.email_token = None
+            user.email_token = user.email_token_issue = None
             user.process_login()
             success_flash('Your email has been verified, and you have been'
                           ' logged into PylonsHQ')
