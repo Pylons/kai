@@ -1,16 +1,17 @@
 <div id="yui-main">
     <div id="intro">
-      <h2>Pylons is a lightweight web framework <br />
-        emphasizing flexibility and rapid development.</h2>
-      <div id="download"> <a href="#">Download Latest </a> Version: ${app_globals.current_version}</div>
+      <h2>${_("""Pylons is a lightweight web framework <br />
+        emphasizing flexibility and rapid development.""")}</h2>
+      <div id="download"> <a href="#">${_('Download Latest')} </a> ${_('Version: %s' % app_globals.current_version)}</div>
     </div>
 </div> 
   <div class="yui-b">
     <div class="yui-gc">
       <div class="yui-u first">
-        <h3>Why use Pylons?</h3>
+        <h3>${_('Why use Pylons?')}</h3>
         <p>Pylons combines the very best ideas from the worlds of Ruby, Python and Perl, providing a structured but extremely flexible Python web framework. It's also one of the first projects to leverage the emerging WSGI standard, which allows extensive re-use and flexibility — but only if you need it. Out of the box, Pylons aims to make web development fast, flexible and easy. <a href="#">Find out more</a>, <a href="#">Install the latest version</a> or <a href="#">Start learning Pylons</a>. </p>
-        <h3>Plays Well With Others </h3>
+
+        <h3>${_('Plays Well With Others')}</h3>
         <p>Pylons is built on <a href="#">Paste</a> and allows and encourages use of your favorite Python components and libraries: </p>
         <ol>
           <li>Models: <a href="#">SQLAlchemy</a>, <a href="#">SQLObject</a>, plain old DB-API </li>
@@ -33,11 +34,11 @@
         <div id="search">
           <form action="">
             <input type="text" name="search" id="search-input" />
-            <button type="submit">Search</button>
+            <button type="submit">${_('Search')}</button>
           </form>
         </div>
         <div id="news" class="side-section">
-          <h3>Latest News</h3>
+          <h3>${_('Latest News')}</h3>
           <ul>
               % for article in c.articles:
                 <li><strong>${h.link_to(article.title, url=url('article_archives', article=article))}</strong><br />
@@ -47,7 +48,7 @@
           </ul>
         </div>
         <div id="usefull" class="side-section">
-          <h3> Useful Resources</h3>
+          <h3>${_('Useful Resources')}</h3>
           <p>You might be <a href="#">interested to see</a> the production sites already using Pylons. If you are after specific information not found in the <a href="#">documentation</a> you should have a look at the wiki which is fast becoming a very useful resource for <a href="#"> Pylons programming</a>. You might also consider adding an article of your own.</p>
         </div>
       </div>
@@ -58,7 +59,7 @@
     <div class="yui-gc">
       <div class="yui-g first">
         <div class="yui-u first">
-          <h4>Recent Blog Entries</h4>
+          <h4>${_('Recent Blog Entries')}</h4>
           <ul>
             % for article in c.articles[:4]:
             <li>${h.link_to(article.title, url=url('article_archives', article=article))}<br />
@@ -67,7 +68,7 @@
           </ul>
         </div>
         <div class="yui-u">
-          <h4>Recent Pastebin Snippets</h4>
+          <h4>${_('Recent Pastebin Snippets')}</h4>
           <ul>
             <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
               Production Deployment Using Apache, FastCGI and mod_rewrite</li>
@@ -82,7 +83,7 @@
       </div>
       <div class="yui-u" id="bottom-content-sidebar">
         <div id="join" class="side-section">
-          <h3>Join the discussion</h3>
+          <h3>${_('Join the discussion')}</h3>
           <form action="">
             <p>
               <label for="join-nam">Name:</label>
@@ -94,13 +95,13 @@
               <input type="text" name="eamil" id="join-email" class="input" />
               
             </p>
-            <button type="submit">Join Mailing List</button>
+            <button type="submit">${_('Join Mailing List')}</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-<%def name="title()">${parent.title()} - Home</%def>
+<%def name="title()">${parent.title()} - ${_('Home')}</%def>
 <%def name="yui_class()"> class="home"</%def>
 <%inherit file="/layout.mako" />
