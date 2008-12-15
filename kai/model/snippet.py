@@ -14,8 +14,6 @@ class Snippet(Document):
     content = TextField()
     slug = TextField()
     tags = ListField(TextField())
-    reported = BooleanField(default=False)
-    reported_by = TextField() # human_id
     
     all_tags = View('snippets', '''
         function(doc) {
