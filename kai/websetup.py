@@ -30,5 +30,5 @@ def setup_app(command, conf, vars):
         Snippet.by_author_id, Snippet.by_tag, Snippet.all_tags,
         Snippet.author_totals,
         
-        Traceback.by_uuid, Traceback.by_time,
+        Traceback.by_uuid, Traceback.by_time, Traceback.by_session_id,
     ])

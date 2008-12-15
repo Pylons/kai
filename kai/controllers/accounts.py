@@ -9,7 +9,7 @@ from tw.mods.pylonshf import validate
 from kai.lib.base import BaseController, render
 from kai.lib.helpers import failure_flash, success_flash
 from kai.lib.mail import EmailMessage
-from kai.model import Human, forms
+from kai.model import Human, Traceback, forms
 
 log = logging.getLogger(__name__)
 
@@ -166,6 +166,17 @@ class AccountsController(BaseController):
         user.email_token = c.eail_token = user.generate_token()
         user.email_token_issue = datetime.utcnow()
         user.store(self.db)
+        
+        tracebacks = list(Traceback.by_session_id(self.db)[session.id])
+        if tracebacks:
+            for tb in tracebacks:
+                try:
+                    tb.session_id = None
+                    tb.human_id = user.id
+                    tb.displayname = user.displayname
+                    tb.store(self.db)
+                except:
+                    pass
         
         # Send out the welcome email with the reg token
         message = EmailMessage(subject="PylonsHQ - Registration Confirmation",

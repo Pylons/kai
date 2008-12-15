@@ -6,6 +6,7 @@ from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, render
+from kai.lib.helpers import success_flash
 from kai.model import Human, Traceback
 
 log = logging.getLogger(__name__)
@@ -14,6 +15,20 @@ class TracebacksController(BaseController):
     def __before__(self):
         c.active_tab = 'Tools'
         c.active_sub = 'Tracebacks'
+    
+    def index(self):
+        start = request.GET.get('start', '1')
+        startkey = request.GET.get('startkey')
+        prevkey = request.GET.get('prevkey')
+        if startkey:
+            c.tracebacks = Traceback.by_time(self.db, descending=True, startkey=startkey, count=11)
+        elif prevkey:
+            c.tracebacks = Traceback.by_time(self.db, startkey=prevkey, count=11)
+            c.reverse = True
+        else:
+            c.tracebacks = Traceback.by_time(self.db, descending=True, count=11)
+        c.start = start
+        return render('/tracebacks/index.mako')
     
     @jsonify
     def create(self):
@@ -32,10 +47,11 @@ class TracebacksController(BaseController):
             abort(500)
         tb = Traceback.load(self.db, id) or abort(404)
         session.save()
-        tb.session_id = session.id
         if c.user:
             tb.displayname = c.user.displayname
             tb.human_id = c.user.id
+        else:
+            tb.session_id = session.id
         tb.uuid = None
         tb.store(self.db)
         return 'ok'
@@ -46,3 +62,11 @@ class TracebacksController(BaseController):
             c.author = Human.load(self.db, c.traceback.human_id)
         c.is_owner = c.traceback.is_owner(c.user, check_session=True)
         return render('/tracebacks/show.mako')
+    
+    def delete(self, id):
+        traceback = Traceback.load(self.db, id) or abort(404)
+        if traceback.is_owner(c.user, check_session=True):
+            self.db.delete(traceback)
+            success_flash('Traceback deleted')
+        else:
+            abort(401)

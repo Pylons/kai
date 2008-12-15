@@ -1,19 +1,31 @@
-<div class="yui-b">
-    <h1>List Tracebacks <span class="subtle">(${c.tracebacks.results})</span></h1>
-    % for traceback in c.tracebacks.iterchildren(tag='traceback'):
-    <% frame = traceback.last_frame %>\
-    <h2 class="exception"><a href="${h.url_for('traceback', id=traceback.link.text.replace('.xml',''))}">\
-        ${traceback.exception}</a></h2>
-    <% date = h.parse_iso_date(traceback.created.text) %>\
-    <p class="date">Posted on ${date.strftime('%Y-%m-%d at %H:%M:%S')}</p>
-    <p class="moduleline">${frame.module}:\
-    <span class="lineno">${frame.line}</span>\
-     in ${frame.function}:<p>
-    % if hasattr(frame, 'operation'):
-    ${highlight(frame.operation.text, py_lexer, html_formatter) | n}\
-    % endif
+<div class="yui-b content">
+    <h1>List Tracebacks <span class="subtle">(${c.tracebacks.total_rows})</span></h1>
+    <%
+    results = list(c.tracebacks)
+    if c.reverse:
+        results.reverse()
+    %>
+    ${widgets.pager(c.start, results, c.tracebacks.total_rows, 'created')}
+    % for traceback in results[:10]:
+    <% frame = traceback.frames[-1] %>
+    <div class="exception">
+        <h2 class="exception"><a href="${url('traceback', id=traceback.id)}">\
+            ${traceback.exception_type} : ${traceback.exception_value}</a></h2>
+        <div class="traceback_posted">${widgets.format_timestamp(traceback.created)} by
+            <span class="traceback_author">${traceback.displayname or 'Anonymous'}</span>\
+            </div>
+        <div class="exception_frame">
+            <div class="frame">Last Frame:</div>
+            <div class="moduleline">${frame.module}:\
+                <span class="lineno">${frame.line}</span>\
+                in ${frame.function}
+            </div>
+            ${highlight(frame.operation, py_lexer, html_formatter) | n}\
+        </div>
+    </div>
     % endfor
 </div>
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - Traceback Listing</%def>\
 <%inherit file="../layout.mako" />\
 <%!

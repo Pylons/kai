@@ -29,7 +29,7 @@
         <ul>
         % for frame in frames:
         <li><h4>
-            Module <cite>${frame['module']}</cite>, line <em>${frame['line']}</em>, in \
+            <cite>${frame['module']}</cite> : <em>${frame['line']}</em>, in \
 <code>${frame['function']}</code></h4>
             ${highlight(frame['operation'], py_lexer, html_formatter) | n}\
         </li>
@@ -62,7 +62,22 @@
 <%def name="javascript()">
 ${parent.javascript()}
 <script>
-
+$(document).ready(function() {
+    $('#delete_traceback').click(function() {
+        var answer = window.confirm("Are you sure you want to delete this traceback?");
+        if (answer) {
+            $.ajax({
+                data: {"_method":"DELETE"},
+                type: "POST",
+                url: location.pathname,
+                success: function(data, textStatus) {
+                    window.location = '/tracebacks';
+                }
+            });
+        }
+        return false;
+    });
+});
 </script>
 </%def>
 <%inherit file="../layout.mako" />\

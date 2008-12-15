@@ -47,6 +47,13 @@ class Traceback(Document):
           }
         }''', include_docs=True)
     
+    by_session_id = View('traceback', '''
+        function(doc) {
+          if (doc.type == 'Traceback' && doc.session_id) {
+            emit(doc.session_id, null);
+          }
+        }''', include_docs=True)
+    
     @classmethod
     def from_xml(cls, content):
         try:

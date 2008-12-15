@@ -35,6 +35,7 @@ class BaseController(WSGIController):
                 user = None
                 pylons.session['logged_in'] = False
                 pylons.session.delete()
+                pylons.session.save()
         else:
             user = None
         if user:

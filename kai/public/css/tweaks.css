@@ -51,13 +51,13 @@ div.traceback, div.plain { background-color: #eee!important; border: 1px solid #
 div.traceback h3 { font-size: 1em; margin: 0 0 0.8em 0; }
 div.traceback ul { list-style: none; margin: 0; padding: 0 0 0 1em; }
 div.traceback ul li { list-style: none;}
-div.traceback h4 { font-size: 13px; font-weight: normal; margin: 0.7em 0 0.1em 0; }
+div.traceback h4 { font-size: 13px; font-weight: normal; margin: 0.7em 0 0.1em 0; padding: 0;}
 div.traceback ul li em { font-style: italic; }
 cite {font-style: italic;}
-div.traceback pre { margin: 0; padding: 5px 0 3px 15px;
+div.traceback pre { margin: 0; padding: 3px 0 3px 10px;
  background-color: #ccc; border-top: 1px solid #aaa;
  border-left: 1px solid #aaa; border-right: 1px solid #fafafa;
- border-bottom: 1px solid #fafafa; }
+ border-bottom: 1px solid #fafafa; font-size: 93%;}
 .details {font-size: 14px;}
 .errormsg {font-weight: bold;}
 table.buildbot, table.buildbot tr td, table.buildbot tr th {border:none;}
@@ -244,12 +244,44 @@ div#build-details table th{
     border-bottom: 1px solid #ddd;
 }
 
+
+div#paging {
+    float: right;
+    font-size: 77%;
+}
+div#paging div.showing {
+    text-align: right;
+}
+
 /* Traceback */
+
+div.exception {
+    border-bottom: 1px solid #ddd;
+}
+div.moduleline {
+    color: #00607b;
+    font-style:italic;
+}
+
+div.exception h2 {
+    font-size: 123.1%;
+    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
+    line-height: 1;
+}
 div.traceback_post.user_post {
 	float: right;
     width: 200px;
 }
-
+div.exception div.frame {
+    font-weight: bold;
+}
+div.exception_frame {
+    font-size: 85%;
+    padding: 0;
+    margin: 5px 0 0 0;
+    line-height: 1.2;
+}
 div.traceback_posted {
     font-size: 85%;
     color: #444;
@@ -308,7 +340,7 @@ table#traceback_libs {
     width: 100%;
 }
 div.sysinfo {
-	margin: 5px 0 0 550px;
+	margin: 20px 0 0 550px;
 	border: 1px solid #bbb;
     height: 200px;
     width: 350px;
