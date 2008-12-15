@@ -11,9 +11,10 @@
 <h1>View Snippets for ${c.username}</h1>
 <ul>
 % for snippet in c.snippets:
-    <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))} - ${format.datetime(snippet.created, "medium")}</li>
+    <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))} - ${widgets.format_timestamp(snippet.created)}</li>
 % endfor 
 </ul>
 % endif
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - Home</%def>
 <%inherit file="layout.mako" />

@@ -44,4 +44,5 @@ class TracebacksController(BaseController):
         c.traceback = Traceback.load(self.db, id) or abort(404)
         if c.traceback.displayname:
             c.author = Human.load(self.db, c.traceback.human_id)
+        c.is_owner = c.traceback.is_owner(c.user, check_session=True)
         return render('/tracebacks/show.mako')

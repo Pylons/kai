@@ -4,7 +4,7 @@
 <h1>Latest Snippets</h1>
 <ul>
 % for snippet in c.snippets:
-<li><a href="${url(controller='snippets', action='view', id=snippet.slug)}">${snippet.title}</a> - ${format.datetime(snippet.created)}</li>
+<li><a href="${url(controller='snippets', action='view', id=snippet.slug)}">${snippet.title}</a> - ${widgets.format_timestamp(snippet.created)}</li>
 % endfor
 </ul>
 
@@ -14,5 +14,6 @@
     <li>${h.link_to(author, url=url('snippet_author', id=author))}</li>
 % endfor
 </ul>
+<%namespace name="widgets" file="/widgets.mako" />
 <%def name="title()">${parent.title()} - ${_('Snippet Home')}</%def>
 <%inherit file="layout.mako" />

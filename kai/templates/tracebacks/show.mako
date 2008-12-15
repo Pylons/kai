@@ -1,48 +1,73 @@
 <div class="yui-b content">
     <% combined_exc = '%s: %s' % (c.traceback.exception_type, c.traceback.exception_value) %>
-    <div class="traceback_post user_post">
-        <div class="user_icon">\
-            % if c.author:
-                <img src="http://www.gravatar.com/avatar/${c.author.email_hash()}?s=30">
-            % else:
-                <img src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?s=30">
-            % endif
-        </div>
-        <div class="username">${c.author.displayname if c.author else 'Anonymous'}</div>
-        <div class="posted">${format.datetime(c.traceback.created)}</div>
-    </div>
     <h1>${h.link_to(combined_exc, url=url.current())}</h1>
-    <h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+    <div class="traceback_posted">\
+        % if c.is_owner:
+        <div class="traceback_delete">${h.link_to('Delete', id_='delete_traceback')}</div>
+        % endif
+        ${widgets.format_timestamp(c.traceback.created)} by
+        <span class="traceback_author">${c.author.displayname if c.author else 'Anonymous'}</span>\
+        </div>
     <div class="traceback">
+        <% 
+            sort = request.GET.get('sort')
+            options = ['In Call Order', 'Reverse Call Order']
+            if sort and sort not in options:
+                sort = options[0]
+        %>
+        <div class="sort_order">${h.select('order', sort, options, id='sort_order',
+            onchange="document.location='%s?sort=' + document.getElementById('sort_order').value" % url.current())}</div>
+        <%
+            if sort == options[1]:
+                frames = c.traceback.frames[::-1]
+            else:
+                frames = c.traceback.frames
+        %>
+        % if sort == options[1]:
+        <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
+        % endif
         <ul>
-        % for frame in c.traceback.frames:
+        % for frame in frames:
         <li><h4>
-            Module <cite>${frame.module}</cite>, line <em>${frame.line}</em>, in \
-<code>${frame.function}</code></h4>
-            ${highlight(frame.operation, py_lexer, html_formatter) | n}\
+            Module <cite>${frame['module']}</cite>, line <em>${frame['line']}</em>, in \
+<code>${frame['function']}</code></h4>
+            ${highlight(frame['operation'], py_lexer, html_formatter) | n}\
         </li>
         % endfor
         </ul>
+        % if sort == options[0]:
         <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
-    </div>
-    <div class="stats">
-        <h2 class="system">System Info</h2>
-        <div class="system">
-            ${c.traceback.language}: ${c.traceback.version}
+        % endif
+        <div class="description">
+            <h2>Description</h2>
+            <p>${c.traceback.description if c.traceback.description else 'No Description Entered'}</p>
         </div>
-        <div class="libraries">
-            <h3 class="libraries">Libraries</h3>
-            % for lib in c.traceback.libraries:
-            <div class="library">
-                ${lib.name}: <span class="version">${lib.version}</span>
-            </div>
-            % endfor
+        <div class="sysinfo">
+            <div class="language"><span class="language">${c.traceback.language}</span>: <span class="version">${c.traceback.version}</span></div>
+            <table id="traceback_libs">
+                <tbody>
+                    <%
+                        libs = sorted(list(c.traceback.libraries), lambda x,y: cmp(x.name, y.name))
+                    %>
+                    % for lib in libs:
+                    <tr><td>${lib.name}</td><td class="version">${lib.version}</td></tr>
+                    % endfor
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('Traceback %s' % c.traceback.id)}</%def>\
+<%def name="javascript()">
+${parent.javascript()}
+<script>
+
+</script>
+</%def>
 <%inherit file="../layout.mako" />\
 <%!
+from datetime import datetime
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter

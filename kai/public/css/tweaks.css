@@ -250,9 +250,71 @@ div.traceback_post.user_post {
     width: 200px;
 }
 
+div.traceback_posted {
+    font-size: 85%;
+    color: #444;
+}
+
+span.traceback_author {
+    font-weight: bold;
+}
+
 h2.traceback em {
     color: #888;
     font-size: 77%;
+}
+
+div.traceback select#sort_order {
+    float: right;
+    font-size: 85%;
+}
+
+div.traceback_delete {
+    float: right;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+div.traceback h2 {
+    margin: 0;
+    padding: 0;
+}
+
+div.traceback div.description {
+    float: left;
+    width: 550px;
+}
+
+div.traceback div.description p {
+	border: 1px solid #bbb;
+	margin-right: 20px;
+    padding: 6px;
+    font-size: 93%;
+}
+
+div.traceback div.sysinfo div.language {
+    font-weight: bold;
+    color: #4333;
+}
+
+table#traceback_libs tr td {
+    border: none;
+    padding: 2px 8px 0 0;
+}
+table#traceback_libs tr {
+    border-bottom: 1px solid #ccc;
+}
+table#traceback_libs {
+    width: 100%;
+}
+div.sysinfo {
+	margin: 5px 0 0 550px;
+	border: 1px solid #bbb;
+    height: 200px;
+    width: 350px;
+    overflow: auto;
+    padding: 4px;
+    font-size: 85%;
 }
 
 /* User data */

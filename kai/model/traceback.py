@@ -87,3 +87,12 @@ class Traceback(Document):
                 fd['operation'] = 'No operation context'
             tb.frames.append(fd)
         return tb
+    
+    def is_owner(self, user, check_session=False):
+        if user and self.human_id and user.id == self.human_id:
+            return True
+        else:
+            if check_session:
+                if pylons.session.id and self.session_id and pylons.session.id == self.session_id:
+                    return True
+            return False
