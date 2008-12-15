@@ -46,8 +46,8 @@ class SnippetsController(BaseController):
         
         if hasattr(self, 'form_result'):
             snippet = Snippet(**self.form_result)
-            snippet.human_id = 1
-            snippet.username = 'John Doe'
+            snippet.human_id = c.user.id
+            snippet.displayname = c.user.displayname
             
             ## generate the slug
             slug = snippet.title.replace(" ", "_")
