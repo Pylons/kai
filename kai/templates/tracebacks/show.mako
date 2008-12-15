@@ -35,7 +35,7 @@
         </li>
         % endfor
         </ul>
-        % if sort == options[0]:
+        % if not sort or sort == options[0]:
         <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
         % endif
         <div class="description">
