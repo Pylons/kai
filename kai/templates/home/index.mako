@@ -1,7 +1,7 @@
 <div id="yui-main">
     <div id="intro">
       <h2>${_("""Pylons is a lightweight web framework <br />
-        emphasizing flexibility and rapid development.""")}</h2>
+        emphasizing flexibility and rapid development.""") | n}</h2>
       <div id="download"> <a href="#">${_('Download Latest')} </a> ${_('Version: %s' % app_globals.current_version)}</div>
     </div>
 </div> 
