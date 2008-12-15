@@ -8,7 +8,7 @@ class Snippet(Document):
     type = TextField(default='Snippet')
     human_id = TextField()
     displayname = TextField()
-    created = DateTimeField(default=datetime.now)
+    created = DateTimeField(default=datetime.utcnow)
     title = TextField()
     description = TextField()
     content = TextField()
@@ -82,8 +82,6 @@ class Snippet(Document):
                              'id':row.key[1],
                              'amount':row.value},
         group=True)
-    
-    by_author
     
     by_author_id = View('snippets', '''
         function(doc) {
