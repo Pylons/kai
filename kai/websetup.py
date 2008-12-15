@@ -26,16 +26,3 @@ def setup_app(command, conf, vars):
         
         Rating.all_raters,
     ])
-    
-    
-    # admin = Human(name="Admin")
-    # admin.store(db)
-    # joe = Human(name="Joe")
-    # joe.store(db)
-    # fred = Human(name="Fred Smith", username="fsmith")
-    # fred.store(db)
-    # 
-    # sample = Paste(human_id=joe.id, title="Sample 1", code="This is a sample", language="text")
-    # sample.store(db)
-    # sample2 = Paste(human_id=admin.id, title="Sample 2", code="Another sample", lanugage="text")
-    # sample2.store(db)

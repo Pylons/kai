@@ -3,5 +3,5 @@
     ${article.display_article(c.article)}
 </div>
 <%namespace name="article" file="index.mako"/>
-<%def name="title()">${parent.title()} - Blog - ${c.article.title}</%def>
+<%def name="title()">${parent.title()} - ${_('Blog')} - ${c.article.title}</%def>
 <%inherit file="/layout.mako" />

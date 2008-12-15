@@ -22,5 +22,5 @@
     </div>
 </div>
 </%def>
-<%def name="title()">${parent.title()} - Blog</%def>
+<%def name="title()">${parent.title()} - ${_('Blog')}</%def>
 <%inherit file="/layout.mako" />
