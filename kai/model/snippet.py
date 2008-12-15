@@ -17,11 +17,33 @@ class Snippet(Document):
     reported = BooleanField(default=False)
     reported_by = TextField() # human_id
     
+    all_tags = View('snippets', '''
+        function(doc) {
+          if (doc.type == 'Snippet' && doc.tags) {
+            for (var idx in doc.tags) {
+              var tag = doc.tags[idx];
+              tag = tag.replace(/ /g, '');
+              if (tag) {
+                emit(tag, 1);
+              }
+            }
+          }
+        }''', '''
+        function(keys, values) {
+          return sum(values);
+        }''',
+        wrapper=lambda row: row.key,
+        name='tags', group=True)
+    
     by_tag = View('snippets', '''
         function(doc) {
           if (doc.type == 'Snippet' && doc.tags) {
             for (var idx in doc.tags) {
-              emit(doc.tags[idx], null)
+            var tag = doc.tags[idx];
+            tag = tag.replace(/ /g, '');
+            if (tag) {
+              emit(tag, null);
+            }
             }
           }
         }''', include_docs=True)
@@ -41,6 +63,13 @@ class Snippet(Document):
         }''', include_docs=True)
     
     by_author = View('snippets', '''
+        function (doc) {
+          if (doc.type == 'Snippet') {
+            emit(doc.displayname, null);
+          }
+        }''', include_docs=True)
+    
+    author_totals = View('snippets', '''
         function(doc) {
           if (doc.type == 'Snippet') {
             emit([doc.displayname, doc.human_id], 1);
@@ -53,6 +82,8 @@ class Snippet(Document):
                              'id':row.key[1],
                              'amount':row.value},
         group=True)
+    
+    by_author
     
     by_author_id = View('snippets', '''
         function(doc) {

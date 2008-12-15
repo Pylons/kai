@@ -23,14 +23,11 @@ class SnippetsController(BaseController):
         """ Get the snippets by date and by author"""
         snippets = list(Snippet.by_date(self.db, descending=True, count=100))
         c.snippets = snippets[:20]
-        unique = []
         authors = []
         for snippet in c.snippets:
             displayname = snippet.displayname.strip()
-            if displayname not in unique:
-                authors.append((displayname, int(snippet.human_id)))
-                unique.append(displayname)
-        
+            if displayname not in authors:
+                authors.append(displayname)        
         c.unique_authors = authors[:10]
         return render('/snippets/index.mako')
     
@@ -102,26 +99,26 @@ class SnippetsController(BaseController):
         id - authors human id.
         
         """
-        c.authors = None
-        c.snippets = None
-        
         if not id:
-            c.authors = list(Snippet.by_author(self.db))
+            c.authors = list(Snippet.author_totals(self.db))
         else:
-            snippets = list(Snippet.by_author_id(self.db, descending=True)[id]) or abort(404)
+            snippets = list(Snippet.by_author(self.db)[id]) or abort(404)
             c.username = snippets[0].displayname
             c.snippets = snippets
         return render('/snippets/byauthor.mako')
         
-    def by_tag(self, tag):
+    def by_tag(self, tag=None):
         """View snippets by a particular tag.
         
         Keyword arguments:
         tag - a tag (string)
         
-        """        
-        pass
-        
-    def report(self, slug):
-        """Report a possible bad snippet."""    
-        pass
+        """
+        if tag:
+            snippets = list(Snippet.by_tag(self.db)[tag]) or abort(404)
+            c.snippets = snippets
+            c.tag = tag
+            return render('/snippets/bytag.mako')
+        else:
+            tags = list(Snippet.all_tags(self.db)) or abort(404)
+            

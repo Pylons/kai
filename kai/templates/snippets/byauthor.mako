@@ -2,7 +2,7 @@
 <h1>Author List</h1>
 <ul>
 % for author in c.authors:
-    <li>${h.link_to(author['author'], url=url('snippet_author', id=author['id']))} - ${author['amount']} snippets</li>
+    <li>${h.link_to(author['author'], url=url('snippet_author', id=author['author']))} - ${author['amount']} snippets</li>
 % endfor
 </ul>
 % endif 

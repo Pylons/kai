@@ -27,5 +27,6 @@ def setup_app(command, conf, vars):
         Rating.all_raters,
         
         Snippet.by_date, Snippet.by_author, Snippet.by_slug, Snippet.by_title,
-        Snippet.by_author_id, Snippet.by_tag,
+        Snippet.by_author_id, Snippet.by_tag, Snippet.all_tags,
+        Snippet.author_totals,
     ])

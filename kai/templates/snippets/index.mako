@@ -11,7 +11,7 @@
 <h1>Latest Authors</h1>
 <ul>
 % for author in c.unique_authors:
-    <li>${h.link_to(author[0], url=url('snippet_author', id=author[1]))}</li>
+    <li>${h.link_to(author, url=url('snippet_author', id=author))}</li>
 % endfor
 </ul>
 <%def name="title()">${parent.title()} - ${_('Snippet Home')}</%def>
