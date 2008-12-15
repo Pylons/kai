@@ -47,18 +47,13 @@ def make_map(globs=None):
     map.connect('buildbot', '/buildbot/{action}', controller='buildbot')
     
     # Doc url's
-    map.connect('doc_upload', '/docs/upload', controller='docs',
-                action='upload')
-    map.connect('doc_upload_image', '/docs/upload_image', controller='docs',
-                action='upload_image')
-    map.connect('doc_delete', '/docs/delete_revision/{project}/{version}', 
-                controller='docs', action='delete_revision')
+    map.connect('doc_upload', '/docs/upload', controller='docs', action='upload')
+    map.connect('doc_upload_image', '/docs/upload_image', controller='docs', action='upload_image')
+    map.connect('doc_delete', '/docs/delete_revision/{project}/{version}', controller='docs', action='delete_revision')
     map.redirect('/docs/{version}', '/docs/en/{version}/')
-    map.connect('doc_home', '/docs/{language}/{version}/', controller='docs', 
-                action='view', url='index', language='en',
+    map.connect('doc_home', '/docs/{language}/{version}/', controller='docs', action='view', url='index', language='en',
                 version=globs.doc_version)
-    map.connect('doc_view', '/docs/{language}/{version}/{url:.*}',
-                controller='docs', action='view', language='en', 
+    map.connect('doc_view', '/docs/{language}/{version}/{url:.*}', controller='docs', action='view', language='en', 
                 version=globs.doc_version)
     
     map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
