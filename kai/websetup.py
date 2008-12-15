@@ -5,7 +5,7 @@ from couchdb.design import ViewDefinition
 import pylons
 
 from kai.config.environment import load_environment
-from kai.model import Article, Documentation, Human, Paste, Rating, Snippet
+from kai.model import Article, Documentation, Human, Paste, Rating, Snippet, Traceback
 
 log = logging.getLogger(__name__)
 
@@ -29,4 +29,6 @@ def setup_app(command, conf, vars):
         Snippet.by_date, Snippet.by_author, Snippet.by_slug, Snippet.by_title,
         Snippet.by_author_id, Snippet.by_tag, Snippet.all_tags,
         Snippet.author_totals,
+        
+        Traceback.by_uuid, Traceback.by_time,
     ])

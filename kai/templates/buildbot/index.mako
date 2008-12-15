@@ -11,7 +11,7 @@
     
     <p>${_("""In <a href="http://www.selenic.com/mercurial/">Mercurial</a>, the revision
         control system (RCS) used by Pylons, the latest revision is called the
-        tip.""")}</p>
+        tip.""") | n}</p>
     
     <h2>${_('Latest Release  (%s)' % app_globals.current_version)}</h2>
     ${build_table(c.releases)}

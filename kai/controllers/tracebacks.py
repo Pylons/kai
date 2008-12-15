@@ -1,17 +1,37 @@
 import logging
 
+from paste.script.util.uuid import uuid4
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
+from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, render
-#from kai import model
+from kai.model import Traceback
 
 log = logging.getLogger(__name__)
 
 class TracebacksController(BaseController):
-
-    def index(self):
-        # Return a rendered template
-        #   return render('/template.mako')
-        # or, Return a response
-        return 'Hello World'
+    @jsonify
+    def create(self):
+        """Create a new traceback in the system, pegged to the current
+        user ID and session ID"""
+        tb = Traceback.from_xml(request.body)
+        tb.uuid = uuid4()
+        tb.store(self.db)
+        result = {}
+        uuid = tb.uuid
+        result['traceback'] = dict(link=tb.id, uuid=uuid)
+        return result
+    
+    def reown(self, id):
+        if 'uuid' not in request.GET:
+            abort(500)
+        tb = Traceback.load(self.db, id) or abort(404)
+        session.save()
+        tb.session_id = session.id
+        if c.user:
+            tb.displayname = c.user.displayname
+            tb.human_id = c.user.id
+        tb.uuid = None
+        tb.store(self.db)
+        return 'ok'
