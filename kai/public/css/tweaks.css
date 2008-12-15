@@ -1,4 +1,4 @@
-/* @override http://localhost:5050/css/tweaks.css */
+/* @override http://localhost.com:5050/css/tweaks.css */
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     color:#00607b;
@@ -244,6 +244,35 @@ div#build-details table th{
     border-bottom: 1px solid #ddd;
 }
 
+/* Traceback */
+div.traceback_post.user_post {
+	float: right;
+    width: 200px;
+}
+
+h2.traceback em {
+    color: #888;
+    font-size: 77%;
+}
+
+/* User data */
+
+div.user_post {
+    padding: 4px;
+    margin: 0;
+    font-size: 77%;
+    border: 1px solid #ddd;
+}
+
+
+div.user_post div.user_icon {
+    float: left;
+    padding: 0 6px 0 0;
+}
+
+div.user_post div.username {
+    font-weight: bold;
+}
 
 /* Form errors */
 

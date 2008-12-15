@@ -1,4 +1,5 @@
 import os
+import md5
 import sha
 from datetime import datetime
 
@@ -88,7 +89,10 @@ class Human(Document):
             return True
         else:
             return False
-
+    
+    def email_hash(self):
+        return md5.md5(self.email).hexdigest()
+    
     def generate_token(self):
         """Generate's a token for use either for forgot password or
         email verification"""

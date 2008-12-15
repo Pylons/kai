@@ -6,11 +6,15 @@ from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, render
-from kai.model import Traceback
+from kai.model import Human, Traceback
 
 log = logging.getLogger(__name__)
 
 class TracebacksController(BaseController):
+    def __before__(self):
+        c.active_tab = 'Tools'
+        c.active_sub = 'Tracebacks'
+    
     @jsonify
     def create(self):
         """Create a new traceback in the system, pegged to the current
@@ -35,3 +39,9 @@ class TracebacksController(BaseController):
         tb.uuid = None
         tb.store(self.db)
         return 'ok'
+    
+    def show(self, id):
+        c.traceback = Traceback.load(self.db, id) or abort(404)
+        if c.traceback.displayname:
+            c.author = Human.load(self.db, c.traceback.human_id)
+        return render('/tracebacks/show.mako')
