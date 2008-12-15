@@ -17,6 +17,15 @@ class Snippet(Document):
     reported = BooleanField(default=False)
     reported_by = TextField() # human_id
     
+    by_tag = View('snippets', '''
+        function(doc) {
+          if (doc.type == 'Snippet' && doc.tags) {
+            for (var idx in doc.tags) {
+              emit(doc.tags[idx], null)
+            }
+          }
+        }''', include_docs=True)
+    
     by_title = View('snippets', '''
         function(doc) {
           if (doc.type == 'Snippet' && doc.title) {

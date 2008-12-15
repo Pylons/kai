@@ -37,6 +37,8 @@ class SnippetsController(BaseController):
     @validate(forms.AddSnippet(), form='add')
     def add(self):
         """ Simply add a code snippet to the database. """
+        if not c.user:
+            abort(401)
         
         c.exists = False
         c.add_error = None
