@@ -12,7 +12,7 @@ ${h.stylesheet_link('/css/sphinx.css')}
     <h1>Author List</h1>
 	<ul>
 	% for author in c.authors:
-		<li><a href="${url(controller='snippets', action='by_author', id=author.key[1])}">${author.key[0]}</a> - ${author.value} snippets</li>
+	    <li>${h.link_to(author['author'], url=url('snippet_author', id=author['id']))} - ${author['amount']} snippets</li>
 	% endfor
 	</ul>
 	% endif 
@@ -21,7 +21,7 @@ ${h.stylesheet_link('/css/sphinx.css')}
 	<h1>View Snippets for ${c.username}</h1>
 	<ul>
 	% for snippet in c.snippets:
-		<li><a href="${url('snippet_view', id=snippet.slug)}">${snippet.title}</a> - ${snippet.created.strftime('%m/%d/%Y %H:%M:%S')}</li>
+	    <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))} - ${format.datetime(snippet.created, "medium")}</li>
 	% endfor 
 	</ul>
 	% endif

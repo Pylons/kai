@@ -21,19 +21,18 @@ class SnippetsController(BaseController):
 
     def index(self):
         """ Get the snippets by date and by author"""
-        snippets = Snippet.by_date(descending=True, count=100)
-        c.snippets = [Snippet.wrap(row.doc) for row in snippets][:20]
-        
+        snippets = list(Snippet.by_date(self.db, descending=True, count=100))
+        c.snippets = snippets[:20]
         unique = []
         authors = []
         for snippet in c.snippets:
-            username = snippet.username.strip()
-            if username not in unique:
-                authors.append((username, int(snippet.human_id)))
-                unique.append(username)
+            displayname = snippet.displayname.strip()
+            if displayname not in unique:
+                authors.append((displayname, int(snippet.human_id)))
+                unique.append(displayname)
         
         c.unique_authors = authors[:10]
-        return render('snippets/index.mako')
+        return render('/snippets/index.mako')
     
     @validate(forms.AddSnippet(), form='add')
     def add(self):
@@ -79,7 +78,8 @@ class SnippetsController(BaseController):
         
         """
         slug = id.lower().strip()
-        snippet = Snippet.wrap(Snippet.fetch_snippet(slug))
+        snippets = list(Snippet.by_slug(self.db)[slug]) or abort(404)
+        snippet = snippets[0]
         
         defaults = {
             'file_insertion_enabled': 0,
@@ -91,7 +91,7 @@ class SnippetsController(BaseController):
             
         c.snippet_content = string
         c.snippet = snippet
-        return render('snippets/view.mako')
+        return render('/snippets/view.mako')
     
     def by_author(self, id=None):
         """View snippets by an authors human_id.
@@ -104,12 +104,12 @@ class SnippetsController(BaseController):
         c.snippets = None
         
         if not id:
-            c.authors = Snippet.by_author(group=True)
+            c.authors = list(Snippet.by_author(self.db))
         else:
-            snippets = Snippet.by_author_id(id, descending=True)
-            c.username = list(snippets)[0].doc['username']
-            c.snippets = [Snippet.wrap(row.doc) for row in snippets]
-        return render('snippets/byauthor.mako')
+            snippets = list(Snippet.by_author_id(self.db, descending=True)[id]) or abort(404)
+            c.username = snippets[0].displayname
+            c.snippets = snippets
+        return render('/snippets/byauthor.mako')
         
     def by_tag(self, tag):
         """View snippets by a particular tag.
@@ -120,17 +120,6 @@ class SnippetsController(BaseController):
         """        
         pass
         
-    def rate(self, slug, rating, human_id):
-        """Rate a particular snippet and compute its overall rating.
-        
-        Keyword arguments:
-        slug - the slug of the snippet (string)
-        rating - the rating (integer)
-        human_id - the person rating the snippet (integer)
-        
-        """
-        pass        
-    
     def report(self, slug):
         """Report a possible bad snippet."""    
         pass
