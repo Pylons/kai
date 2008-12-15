@@ -1,7 +1,7 @@
-<h1>Snippet Repository</h1>
-<p>Pylons snippet repository is a place to share their code snippets with the community.
+<h1>${_('Add Snippet')}</h1>
+<p>${_("""Pylons snippet repository is a place to share their code snippets with the community.
     Please only share fully functioning and tested snippets and include instructions so
-    that novice and experienced Pylons users can benefit.</p>
+    that novice and experienced Pylons users can benefit.""")}</p>
 
 % if c.exists:
     <h3><span class="error-message">A snippet with that title already exists, please choose another title.</span></h3>

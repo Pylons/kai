@@ -9,7 +9,7 @@
 % endfor
 </h5>
 </p>
-<%def name="title()">${parent.title()} - Home</%def>
+<%def name="title()">${parent.title()} - ${_('View Snippet: %s' % c.snippet.title)}</%def>
 <%inherit file="layout.mako" />
 <%def name="styles()">
 ${parent.styles()}

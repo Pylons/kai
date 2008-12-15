@@ -1,10 +1,11 @@
 <div class="yui-b content">
     <div class="relnav" id="relnav">\
-        ${h.link_to('Snippet Home', url=url('snippet_home'))} |
+        ${h.link_to(_('Snippet Home'), url=url('snippet_home'))} |
         % if c.user:
-        ${h.link_to('Add Snippet', url=url('snippet_add'))} | \
+        ${h.link_to(_('Add Snippet'), url=url('snippet_add'))} | \
         % endif
-        ${h.link_to('View By Author', url=url(controller='snippets', action='by_author'))}
+        ${h.link_to(_('View By Author'), url=url(controller='snippets', action='by_author'))} | \
+        ${h.link_to(_('View By Tag'), url=url('snippet_tagcloud'))}
     </div>
     ${next.body()}
 </div>

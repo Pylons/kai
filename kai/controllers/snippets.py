@@ -114,11 +114,11 @@ class SnippetsController(BaseController):
         tag - a tag (string)
         
         """
-        if tag:
-            snippets = list(Snippet.by_tag(self.db)[tag]) or abort(404)
-            c.snippets = snippets
-            c.tag = tag
-            return render('/snippets/bytag.mako')
-        else:
-            tags = list(Snippet.all_tags(self.db)) or abort(404)
-            
+        snippets = list(Snippet.by_tag(self.db)[tag]) or abort(404)
+        c.snippets = snippets
+        c.tag = tag
+        return render('/snippets/bytag.mako')
+    
+    def tagcloud(self):
+        c.tag_sizes = Snippet.tag_sizes()
+        return render('/snippets/tagcloud.mako')

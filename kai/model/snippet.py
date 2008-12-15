@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 
 import pylons
@@ -30,7 +31,7 @@ class Snippet(Document):
         function(keys, values) {
           return sum(values);
         }''',
-        wrapper=lambda row: row.key,
+        wrapper=lambda row: {'name':row.key, 'count':row.value},
         name='tags', group=True)
     
     by_tag = View('snippets', '''
@@ -99,3 +100,14 @@ class Snippet(Document):
     def exists(cls, title):
         rows = pylons.c.db.view('snippets/by_title')[title]
         return len(rows) > 0
+    
+    @classmethod
+    def tag_sizes(cls):
+        """This method returns all the tags and their relative size for
+        a tagcloud"""
+        tags = list(cls.all_tags(pylons.c.db))
+        totalcounts = []
+        for tag in tags:
+            weight = (math.log(tag['count'] or 1) * 4) + 10
+            totalcounts.append((tag['name'], tag['count'], weight))
+        return sorted(totalcounts, cmp=lambda x,y: cmp(x[0], y[0]))
