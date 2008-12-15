@@ -1,9 +1,9 @@
 <%!
 from datetime import datetime
 %>
-<div class="close"><a href="#">Close Window</a></div>
+<div class="close"><a href="#">${_('Close Window')}</a></div>
 <div id="build-details" style="cursor: default">
-    <h2>Build Steps</h2>
+    <h2>${_('Build Steps')}</h2>
     <table>
         <thead>
             <tr>
@@ -42,4 +42,4 @@ from datetime import datetime
         </tbody>
     </table>
 </div>
-<div class="close"><a href="#">Close Window</a></div>
+<div class="close"><a href="#">${_('Close Window')}</a></div>

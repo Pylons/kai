@@ -1,37 +1,37 @@
 <div class="yui-b content">
-    <h1>Buildbot Status</h1>
-    <p>Pylons source code is <strong>automatically built and tested</strong> via
+    <h1>${_('Buildbot Status')}</h1>
+    <p>${_("""Pylons source code is <strong>automatically built and tested</strong> via
         <a href="http://buildbot.net/trac">Buildbot</a> to ensure consistent
         release quality and track bugs that may occur during development (also
         known as <strong><a href="http://en.wikipedia.org/wiki/Continuous_Integration">
             Continuous integration</a></strong>). The
         latest builds are posted here automatically as they're
         completed. For those tracking the latest development tip, this can serve
-        as a useful reference when decided whether to update.</p>
+        as a useful reference when decided whether to update.""") | n}</p>
     
-    <p>In <a href="http://www.selenic.com/mercurial/">Mercurial</a>, the revision
+    <p>${_("""In <a href="http://www.selenic.com/mercurial/">Mercurial</a>, the revision
         control system (RCS) used by Pylons, the latest revision is called the
-        tip.</p>
+        tip.""")}</p>
     
-    <h2>Latest Release (${app_globals.current_version})</h2>
+    <h2>${_('Latest Release  (%s)' % app_globals.current_version)}</h2>
     ${build_table(c.releases)}
-    <div class="loadmore viewtoggle release"><a href="#">Older release builds</a></div>
+    <div class="loadmore viewtoggle release"><a href="#">${_('Older release builds')}</a></div>
     <div class="older release" style="display: none;">
         ${build_table(c.releases, start=1, limit=None, include_header=None)}
     </div>
     
     <div class="clearfix">&nbsp;</div>
     
-    <h2>Development Tip</h2>
+    <h2>${_('Development Tip')}</h2>
     ${build_table(c.dev)}
-    <div class="loadmore viewtoggle dev"><a href="#">Older tip builds</a></div>
+    <div class="loadmore viewtoggle dev"><a href="#">${_('Older tip builds')}</a></div>
     <div class="older dev" style="display: none;">
         ${build_table(c.dev, start=1, limit=None, include_header=None)}
     </div>
     
     <br /><br /><br />
     <div id="buildinfo" style="display:none; cursor: default">
-        <h1>Loading...</h1>
+        <h1>${_('Loading...')}</h1>
     </div>
 </div>
 <%def name="build_table(builds, start=0, limit=1, include_header=True)">
@@ -39,7 +39,7 @@
     % if include_header:
     <thead>
         <tr>
-            <th colspan="${len(builds)}">Build Name</th>
+            <th colspan="${len(builds)}">${_('Build Name')}</th>
         </tr>
         <tr>
             % for build in sorted(builds.keys()):
@@ -91,5 +91,5 @@
     </tbody>
 </table>
 </%def>
-<%def name="title()">${parent.title()} - Home</%def>
+<%def name="title()">${parent.title()} - ${_('Buildbot Status')}</%def>
 <%inherit file="../layout.mako" />
