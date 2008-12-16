@@ -51,7 +51,7 @@
 <%def name="title()">PylonsHQ</%def>
 <%def name="styles()">
 % if c.use_minified_assets:
-    ${h.stylesheet_link('/css/phq-06202008.1-min.css')}
+    ${h.stylesheet_link('/css/%s' % config['phq.minified_css'])}
 % else:
     ${h.stylesheet_link(*h.load_stylesheet_assets())}
 %endif
