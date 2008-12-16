@@ -163,7 +163,7 @@ class AccountsController(BaseController):
         return self._finish_registration(new_user)
     
     def _finish_registration(self, user):
-        user.email_token = c.eail_token = user.generate_token()
+        user.email_token = c.email_token = user.generate_token()
         user.email_token_issue = datetime.utcnow()
         user.store(self.db)
         
