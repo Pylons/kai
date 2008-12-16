@@ -1,29 +1,34 @@
 <div class="yui-b content">
     <h1>Posted Tracebacks</h1>
     <%
-    results = list(c.tracebacks)
+    if c.tracebacks:
+        results = list(c.tracebacks)
     if c.reverse:
         results.reverse()
     %>
-    ${widgets.pager(c.start, results, c.tracebacks.total_rows, 'created')}
-    % for traceback in results[:10]:
-    <% frame = traceback.frames[-1] %>
-    <div class="exception">
-        <h2 class="exception"><a href="${url('traceback', id=traceback.id)}">\
-            ${traceback.exception_type} : ${traceback.exception_value}</a></h2>
-        <div class="traceback_posted">${widgets.format_timestamp(traceback.created)} by
-            <span class="traceback_author">${traceback.displayname or 'Anonymous'}</span>\
+    % if c.tracebacks:
+        ${widgets.pager(c.start, results, c.tracebacks.total_rows, 'created')}
+        % for traceback in results[:10]:
+        <% frame = traceback.frames[-1] %>
+        <div class="exception">
+            <h2 class="exception"><a href="${url('traceback', id=traceback.id)}">\
+                ${traceback.exception_type} : ${traceback.exception_value}</a></h2>
+            <div class="traceback_posted">${widgets.format_timestamp(traceback.created)} by
+                <span class="traceback_author">${traceback.displayname or 'Anonymous'}</span>\
+                </div>
+            <div class="exception_frame">
+                <div class="frame">Last Frame:</div>
+                <div class="moduleline">${frame.module}:\
+                    <span class="lineno">${frame.line}</span>\
+                    in ${frame.function}
+                </div>
+                ${highlight(frame.operation, py_lexer, html_formatter) | n}\
             </div>
-        <div class="exception_frame">
-            <div class="frame">Last Frame:</div>
-            <div class="moduleline">${frame.module}:\
-                <span class="lineno">${frame.line}</span>\
-                in ${frame.function}
-            </div>
-            ${highlight(frame.operation, py_lexer, html_formatter) | n}\
         </div>
-    </div>
-    % endfor
+        % endfor
+    % else:
+    <p>No tracebacks posted</p>
+    % endif
 </div>
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - Traceback Listing</%def>\
