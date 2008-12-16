@@ -174,6 +174,7 @@ class AccountsController(BaseController):
                     tb.session_id = None
                     tb.human_id = user.id
                     tb.displayname = user.displayname
+                    tb.email = user.email
                     tb.store(self.db)
                 except:
                     pass

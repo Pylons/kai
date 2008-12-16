@@ -50,6 +50,7 @@ class TracebacksController(BaseController):
         if c.user:
             tb.displayname = c.user.displayname
             tb.human_id = c.user.id
+            tb.email = c.user.email
         else:
             tb.session_id = session.id
         tb.uuid = None
