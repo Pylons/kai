@@ -4,7 +4,15 @@
  <span class="subtle">(${h.link_to('Add Posting', url=url('new_article'))})</span>\
 % endif
 </h1>
-    % for article in c.articles:
+    <%
+    if c.articles:
+        results = list(c.articles)
+    if c.reverse:
+        results.reverse()
+    %>
+    
+    ${widgets.pager(c.start, results, c.articles.total_rows, 'published')}
+    % for article in results:
     ${display_article(article)}
     % endfor
 </div>
@@ -22,5 +30,6 @@
     </div>
 </div>
 </%def>
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('Blog')}</%def>
 <%inherit file="/layout.mako" />

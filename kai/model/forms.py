@@ -21,12 +21,10 @@ class SecureToken(forms.HiddenField):
 
 class NewArticleForm(forms.TableForm):
     class fields(WidgetsList):
-        slug = forms.TextField(
-            validator = UnicodeString(not_empty=True))
         title = forms.TextField(
             validator = UnicodeString(not_empty=True))
         summary = forms.TextField(
-            validator = UnicodeString(not_empty=True))
+            validator = UnicodeString())
         body = forms.TextArea(
             rows = 15,
             validator = UnicodeString(not_empty=True))

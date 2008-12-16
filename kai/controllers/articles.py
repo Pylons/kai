@@ -19,7 +19,17 @@ class ArticlesController(BaseController):
         c.active_sub = 'Blog'
     
     def index(self):
-        c.articles = list(Article.by_time(c.db, descending=True, count=10))
+        start = request.GET.get('start', '1')
+        startkey = request.GET.get('startkey')
+        prevkey = request.GET.get('prevkey')
+        if startkey:
+            c.articles = Article.by_time(self.db, descending=True, startkey=startkey, count=11)
+        elif prevkey:
+            c.articles = Article.by_time(self.db, startkey=prevkey, count=11)
+            c.reverse = True
+        else:
+            c.articles = Article.by_time(self.db, descending=True, count=11)
+        c.start = start
         return render('/articles/index.mako')
     
     def archives(self, year, month, slug):
@@ -35,10 +45,15 @@ class ArticlesController(BaseController):
     @validate(form=new_article_form, error_handler='new')
     def create(self):
         result = self.form_result
-        article = Article(slug=result['slug'], title=result['title'],
-                          summary=result['summary'], body=result['body'],
-                          published=result['publish_date'],
+        article = Article(title=result['title'], summary=result['summary'],
+                          body=result['body'], published=result['publish_date'],
                           human_id=c.user.id, author=c.user.displayname)
+        
+        ## generate the slug
+        slug = result['slug'].replace(" ", "_")
+        slug = slug.lower()
+        slug = re.sub('[^A-Za-z0-9_]+', '', slug)
+        article.slug = slug
         article.store(self.db)
         success_flash('Article saved and published')
         redirect_to('articles')
