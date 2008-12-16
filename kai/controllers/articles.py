@@ -50,7 +50,7 @@ class ArticlesController(BaseController):
                           human_id=c.user.id, author=c.user.displayname)
         
         ## generate the slug
-        slug = result['slug'].replace(" ", "_")
+        slug = result['title'].replace(" ", "_")
         slug = slug.lower()
         slug = re.sub('[^A-Za-z0-9_]+', '', slug)
         article.slug = slug
