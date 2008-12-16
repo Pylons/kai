@@ -8,6 +8,7 @@ class Traceback(Document):
     type = TextField(default='Traceback')
     human_id = TextField()
     displayname = TextField()
+    email = TextField()
     uuid = TextField()
     session_id = TextField()
     created = DateTimeField(default=datetime.utcnow)    

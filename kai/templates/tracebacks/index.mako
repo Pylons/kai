@@ -13,8 +13,14 @@
         <div class="exception">
             <h2 class="exception"><a href="${url('traceback', id=traceback.id)}">\
                 ${traceback.exception_type} : ${traceback.exception_value}</a></h2>
-            <div class="traceback_posted">${widgets.format_timestamp(traceback.created)} by
-                <span class="traceback_author">${traceback.displayname or 'Anonymous'}</span>\
+            <div class="traceback_posted">
+                <div class="traceback_gravatar">\
+                    <img src="http://www.gravatar.com/avatar/${gravatar(traceback.email or 'anonymous')}?s=30">
+                </div>
+                <div class="user_data">
+                    <div class="traceback_author">${traceback.displayname or 'Anonymous'}</div>\
+                    ${widgets.format_timestamp(traceback.created)}
+                </div>
                 </div>
             <div class="exception_frame">
                 <div class="frame">Last Frame:</div>
@@ -37,6 +43,10 @@
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
+import md5
+def gravatar(email):
+    return md5.md5(email).hexdigest()
+
 py_lexer = PythonLexer()
 html_formatter = HtmlFormatter()
 %>

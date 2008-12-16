@@ -262,7 +262,13 @@ div.moduleline {
     color: #00607b;
     font-style:italic;
 }
-
+div.traceback_gravatar {
+    float: left;
+}
+div.user_data {
+    margin: 6px 0 0 36px;
+    line-height: 1.2;
+}
 div.exception h2 {
     font-size: 123.1%;
     margin: 5px 0 0 0;
@@ -279,15 +285,16 @@ div.exception div.frame {
 div.exception_frame {
     font-size: 85%;
     padding: 0;
-    margin: 5px 0 0 0;
+    margin: 10px 0 0 0;
     line-height: 1.2;
+    clear: both;
 }
 div.traceback_posted {
     font-size: 85%;
     color: #444;
 }
 
-span.traceback_author {
+div.traceback_author {
     font-weight: bold;
 }
 
