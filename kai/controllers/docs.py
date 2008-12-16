@@ -85,6 +85,9 @@ class DocsController(BaseController):
         
     @jsonify
     def upload_image(self):
+        dockey = config['doc.security_key']
+        if request.environ['HTTP_AUTHKEY'] != dockey:
+            abort(401)
         doc = request.body
         version = request.GET.get('version')
         project = request.GET.get('project')
@@ -113,6 +116,10 @@ class DocsController(BaseController):
     
     @jsonify
     def upload(self):
+        dockey = config['doc.security_key']
+        if request.environ['HTTP_AUTHKEY'] != dockey:
+            abort(401)
+        
         try:
             doc = json.loads(request.body)
         except:

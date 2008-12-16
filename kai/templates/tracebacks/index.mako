@@ -1,5 +1,5 @@
 <div class="yui-b content">
-    <h1>List Tracebacks <span class="subtle">(${c.tracebacks.total_rows})</span></h1>
+    <h1>Posted Tracebacks</h1>
     <%
     results = list(c.tracebacks)
     if c.reverse:
