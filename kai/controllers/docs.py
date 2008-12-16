@@ -141,6 +141,10 @@ class DocsController(BaseController):
     
     @jsonify
     def delete_revision(self, project, version):
+        dockey = config['doc.security_key']
+        if request.environ['HTTP_AUTHKEY'] != dockey:
+            abort(401)
+        
         Documentation.delete_revision(project, version)
         return dict(status='ok')
 
