@@ -322,7 +322,7 @@ div.traceback h2 {
 
 div.traceback div.description {
     float: left;
-    width: 550px;
+    width: 510px;
 }
 
 div.traceback div.description p {
@@ -337,6 +337,10 @@ div.traceback div.sysinfo div.language {
     color: #4333;
 }
 
+div.traceback ul {
+    padding-left: 0;
+}
+
 table#traceback_libs tr td {
     border: none;
     padding: 2px 8px 0 0;
@@ -348,7 +352,7 @@ table#traceback_libs {
     width: 100%;
 }
 div.sysinfo {
-	margin: 20px 0 0 550px;
+	margin: 20px 0 0 510px;
 	border: 1px solid #bbb;
     height: 200px;
     width: 350px;
