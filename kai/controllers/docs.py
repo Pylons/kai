@@ -127,13 +127,18 @@ class DocsController(BaseController):
             return dict(status='error', reason='Unable to parse JSON')
         doc['type'] = 'Documentation'
         
+        update = False
         # Check to see we don't have it already
-        if Documentation.exists(doc):
-            response.status = 409
-            return dict(status='conflict')
-        
+        existing_doc = list(Documentation.doc_key(self.db)[doc['filename'], doc['version'], doc['project']])
+        if existing_doc:
+            existing_doc = dict(existing_doc[0].doc)
+            update = True
         try:
-            self.db.create(doc)
+            if update:
+                existing_doc.update(doc)
+                self.db.update([existing_doc])
+            else:
+                self.db.create(doc)
         except ResourceConflict:
             response.status = 409
             return dict(status='conflict')

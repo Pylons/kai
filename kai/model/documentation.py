@@ -26,12 +26,9 @@ class Documentation(object):
     doc_key = ViewDefinition('documentation', 'doc_key','''
         function(doc) {
           if (doc.type == 'Documentation') {
-            emit([doc.filename, doc.version, doc.project], 1);
+            emit([doc.filename, doc.version, doc.project], null);
           }
-        }''', '''
-        function(keys, values) {
-           return sum(values);
-        }''', group=True)
+        }''', include_docs=True)
     
     @classmethod
     def fetch_doc(cls, project, version, language, path, **options):
