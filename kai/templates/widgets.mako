@@ -1,16 +1,89 @@
-<%def name="user_post(user, post_date, extra_classes='')">
+<%!
+from datetime import datetime
+from md5 import md5
+import pytz
+
+from kai.model import Comment, forms
+
+%>
+<%def name="user_post(displayname, email, post_date, extra_classes='')">
 <div class="${extra_classes} user_post">
     <div class="user_icon">\
-        % if user:
-            <img src="http://www.gravatar.com/avatar/${user.email_hash()}?s=30">
+        % if email:
+            <img src="http://www.gravatar.com/avatar/${md5(email).hexdigest()}?s=40">
         % else:
-            <img src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?s=30">
+            <img src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?s=40">
         % endif
     </div>
-    <div class="username">${user.displayname if user else 'Anonymous'}</div>
-    <div class="posted">${format.datetime(post_date)}</div>
+    <div class="username">${displayname or 'Anonymous'}</div>
+    <div class="posted">${format_timestamp(post_date)}</div>
 </div>
 </%def>
+##
+<%def name="show_comments(doc_id, message=None)">
+<%
+total = Comment.total_comments(doc_id)
+if total > 0:
+    comments = list(Comment.by_time(c.db, startkey=[doc_id], endkey=[doc_id, {}]))
+else:
+    comments = []
+%>
+<div class="comments">
+    <a name="comments"></a>
+    <h2>Comments <span class="subtle">(${total})</span></h2>
+    % for comment in comments:
+        ${show_comment(comment)}
+    % endfor
+    
+    % if message:
+    <p class="suggest_comment">${message}</p>        
+    % endif
+    % if c.user:
+        <div style="display: none;" id="comment_preview">&nbsp;</div>
+        <div class="comment_format">${h.link_to('Formatting Quick Reference', url="http://hobix.com/textile/quick.html")}</div>
+        ${forms.comment_form(action='#') | n}
+    % else:
+        <p>You must ${h.link_to(_('login'), url=url('account_login', redir=url.current()))} before you can comment.</p>
+    % endif
+</div>
+</%def>
+##
+<%def name="comment_js(doc_id)">
+$('input#comment_form_preview').click(function() {
+    var content = $('#comment_form_comment')[0].value;
+    var preview_url = '${url('preview_comment')}';
+    $.ajax({
+        data: {content:content},
+        type: "POST",
+        url: preview_url,
+        success: function(data, textStatus) {
+            $('#comment_preview').html(data).slideDown();
+        }
+    });
+    return false;
+});
+$('input#comment_form_submit').click(function() {
+    var content = $('#comment_form_comment')[0].value;
+    var submit_url = '${url('post_comment', doc_id=doc_id)}';
+    $.ajax({
+        data: {content:content},
+        type: "POST",
+        url: submit_url,
+        success: function(data, textStatus) {
+            window.location = location.pathname;
+        }
+    });
+    return false;
+});
+</%def>
+##
+<%def name="show_comment(comment)">
+<div class="comment">
+    ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
+    <div class="content">${h.textilize(comment.content)}</div>
+</div>
+</%def>
+##
 <%def name="format_timestamp(date)">
 <%
     diff = datetime.utcnow() - date
@@ -23,6 +96,7 @@ ${h.distance_of_time_in_words(date, now, granularity='minute')} ago
 ${format.datetime(date)}
 % endif
 </%def>
+##
 <%def name="pager(start, lst, total, keyname)">
 <%
     start = int(start)
@@ -51,7 +125,3 @@ ${format.datetime(date)}
     <div class="showing">Showing ${start}-${end} of ${total}</div>
 </div>
 </%def>
-<%!
-from datetime import datetime
-import pytz
-%>

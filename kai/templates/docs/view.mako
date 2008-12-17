@@ -5,6 +5,7 @@
     % endif
     ${c.doc['body'] | n}
     ${show_nav()}
+    ${widgets.show_comments(c.doc.id, "Suggest an addition to the docs, or report errors.")}
 </div>
 <%def name="title()">${parent.title()} - Documentation - ${c.doc['title']}</%def>
 <%inherit file="../layout.mako" />
@@ -23,6 +24,7 @@ ${h.stylesheet_link('/css/sphinx.css')}
     % endif
 </div>
 </%def>
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="javascript()">
 ${parent.javascript()}
 <script>
@@ -31,7 +33,7 @@ $(function() {
   var
     toc = $('#toc').show(),
     items = $('#toc > ul').hide();
-
+  ${widgets.comment_js(c.doc.id)}
   $('#toc h3')
     .click(function() {
       if (items.is(':visible')) {

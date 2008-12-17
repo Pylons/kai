@@ -131,6 +131,10 @@ class ConsumerController(BaseController):
                 else:
                     user.process_login()
                     success_flash('You have logged into PylonsHQ')
+                    if session['redirect']:
+                        redir_url = session.pop('redirect')
+                        session.save()
+                        redirect_to(redir_url)
                     redirect_to('home')
             
             # Second, if this is a registration request, present the rest of

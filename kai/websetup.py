@@ -5,7 +5,7 @@ from couchdb.design import ViewDefinition
 import pylons
 
 from kai.config.environment import load_environment
-from kai.model import Article, Documentation, Human, Paste, Rating, Snippet, Traceback
+from kai.model import Article, Comment, Documentation, Human, Paste, Rating, Snippet, Traceback
 
 log = logging.getLogger(__name__)
 
@@ -17,6 +17,8 @@ def setup_app(command, conf, vars):
     ViewDefinition.sync_many(db, [
         Article.all_months, Article.all_tags, Article.by_month,
         Article.by_tag, Article.by_time, Article.by_slug,
+        
+        Comment.by_time, Comment.comment_count,
         
         Documentation.by_path, Documentation.ids_for_version,
         Documentation.doc_key,

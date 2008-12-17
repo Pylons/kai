@@ -7,7 +7,7 @@ from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, render
 from kai.lib.helpers import success_flash
-from kai.model import Human, Traceback
+from kai.model import Comment, Human, Traceback
 
 log = logging.getLogger(__name__)
 

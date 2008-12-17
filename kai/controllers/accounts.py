@@ -102,6 +102,10 @@ class AccountsController(BaseController):
     
     @rest.dispatch_on(POST='_process_login')
     def login(self):
+        redir = request.GET.get('redir')
+        if redir and redir.startswith('/'):
+            session['redirect'] = str(redir)
+            session.save()
         return render('/accounts/login.mako')
     
     @validate(form=forms.login_form, error_handler='login')
@@ -110,6 +114,10 @@ class AccountsController(BaseController):
         user = self.form_result['user']
         user.process_login()
         success_flash('You have logged into PylonsHQ')
+        if session['redirect']:
+            redir_url = session.pop('redirect')
+            session.save()
+            redirect_to(redir_url)
         redirect_to('home')
     
     @rest.dispatch_on(POST='_process_openid_associate')
@@ -130,6 +138,10 @@ class AccountsController(BaseController):
             user.openids = [openid_url]
         user.process_login()
         success_flash('You have associated your OpenID to your account, and signed in')
+        if session['redirect']:
+            redir_url = session.pop('redirect')
+            session.save()
+            redirect_to(redir_url)
         redirect_to('home')
     
     @rest.dispatch_on(POST='_process_openid_registration')

@@ -86,6 +86,10 @@ def make_map(globs=None):
     
     # Resources
     map.resource('traceback', 'tracebacks', member={'reown':'GET'})
+    
+    # Comments
+    map.connect('preview_comment', '/comment/preview', controller='comments', action='preview', conditions=dict(method='POST'))
+    map.connect('post_comment', '/comment/{doc_id}', controller='comments', action='create', conditions=dict(method='POST'))
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')

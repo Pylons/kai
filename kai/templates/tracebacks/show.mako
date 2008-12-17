@@ -1,6 +1,7 @@
 <div class="yui-b content">
     <% combined_exc = '%s: %s' % (c.traceback.exception_type, c.traceback.exception_value) %>
-    <h1>${h.link_to(combined_exc, url=url.current())}</h1>
+    <h1>${h.link_to(combined_exc, url=url.current())}\
+        <span class="subtle">(${h.link_to('comments', url='#comments')})</span></h1>
     <div class="traceback_posted">\
         % if c.is_owner:
         <div class="traceback_delete">${h.link_to('Delete', id_='delete_traceback')}</div>
@@ -23,21 +24,22 @@
             else:
                 frames = c.traceback.frames
         %>
-        % if sort == options[1]:
-        <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
-        % endif
-        <ul>
-        % for frame in frames:
-        <li><h4>
-            <cite>${frame['module']}</cite> : <em>${frame['line']}</em>, in \
-<code>${frame['function']}</code></h4>
-            ${highlight(frame['operation'], py_lexer, html_formatter) | n}\
-        </li>
-        % endfor
-        </ul>
-        % if not sort or sort == options[0]:
-        <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
-        % endif
+        <div class="traceback_frames">
+            % if sort == options[1]:
+            <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
+            % endif
+            <ul>
+            % for frame in frames:
+            <li><h4>
+                <cite>${frame['module']}</cite> : <em>${frame['line']}</em>, in <code>${frame['function']}</code></h4>
+                ${highlight(frame['operation'], py_lexer, html_formatter) | n}\
+            </li>
+            % endfor
+            </ul>
+            % if not sort or sort == options[0]:
+            <blockquote>${c.traceback.exception_type}: ${c.traceback.exception_value}</blockquote>
+            % endif
+        </div>
         <div class="description">
             <h2>Description</h2>
             <p>${c.traceback.description if c.traceback.description else 'No Description Entered'}</p>
@@ -56,6 +58,8 @@
             </table>
         </div>
     </div>
+    
+    ${widgets.show_comments(c.traceback.id, "Suggest a fix or tip to help solve this traceback.")}
 </div>
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('Traceback %s' % c.traceback.id)}</%def>\
@@ -77,15 +81,18 @@ $(document).ready(function() {
         }
         return false;
     });
+    ${widgets.comment_js(c.traceback.id)}
 });
 </script>
 </%def>
 <%inherit file="../layout.mako" />\
 <%!
 from datetime import datetime
+
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
+
 py_lexer = PythonLexer()
 html_formatter = HtmlFormatter()
 %>

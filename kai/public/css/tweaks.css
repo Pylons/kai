@@ -202,6 +202,25 @@ form table tr td {vertical-align: top;}
     font-size: 0.8em;
 }
 
+/* User data */
+
+div.user_post {
+    padding: 4px;
+    margin: 0;
+    font-size: 77%;
+    border: 1px solid #ddd;
+}
+
+
+div.user_post div.user_icon {
+    float: left;
+    padding: 0 6px 0 0;
+}
+
+div.user_post div.username {
+    font-weight: bold;
+}
+
 /* Overlay popup styling */
 div.close {
     float: right;
@@ -252,6 +271,60 @@ div#paging {
 }
 div#paging div.showing {
     text-align: right;
+}
+
+/* Blog Entry */
+form#new_article_form textarea {
+    width: 650px;
+    height: 300px;
+}
+
+form#new_article_form input.textfield {
+    width: 350px;
+}
+
+/* Comments */
+form#comment_form textarea {
+    width: 600px;
+    height: 150px;
+}
+div.comment_format{
+    margin: 0 0 0 90px;
+    font-size: 85%;
+    padding: 0;
+}
+
+div.comments.user_post {
+    width: 240px;
+    border: none;
+    float: left;
+}
+
+div.comment {
+	clear: both;
+    border-top: 1px solid #bbb;
+    margin: 0px 0 15px 0;
+    padding: 10px 0 0 0;
+}
+
+div.comment div.content {
+    font-size: 93%;
+    margin-left: 265px;
+    width: 550px;
+    min-height: 35px;
+    padding: 2px 0 0 0;
+}
+
+p.suggest_comment {
+    border-top: 1px solid #bbb;
+    padding-top: 10px;
+}
+
+#comment_preview {
+    border: 1px solid #bbb;
+    padding: 5px;
+    margin: 6px 4px;
+    width: 550px;
 }
 
 /* Traceback */
@@ -309,6 +382,10 @@ div.traceback select#sort_order {
     font-size: 85%;
 }
 
+span.subtle {
+    font-size: 77%;
+}
+
 div.traceback_delete {
     float: right;
     margin-right: 10px;
@@ -359,25 +436,6 @@ div.sysinfo {
     overflow: auto;
     padding: 4px;
     font-size: 85%;
-}
-
-/* User data */
-
-div.user_post {
-    padding: 4px;
-    margin: 0;
-    font-size: 77%;
-    border: 1px solid #ddd;
-}
-
-
-div.user_post div.user_icon {
-    float: left;
-    padding: 0 6px 0 0;
-}
-
-div.user_post div.username {
-    font-weight: bold;
 }
 
 /* Form errors */

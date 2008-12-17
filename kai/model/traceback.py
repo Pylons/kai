@@ -4,6 +4,8 @@ import pylons
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
     ListField, FloatField, Schema, IntegerField, BooleanField, View
 
+from kai.model.generics import Comment
+
 class Traceback(Document):
     type = TextField(default='Traceback')
     human_id = TextField()
@@ -104,3 +106,10 @@ class Traceback(Document):
                 if pylons.session.id and self.session_id and pylons.session.id == self.session_id:
                     return True
             return False
+    
+    def comment_count(self):
+        comments = Comment.comment_count(pylons.c.db)[self.id]
+        if not comments:
+            return 0
+        else:
+            return comments[0]

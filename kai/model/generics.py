@@ -12,11 +12,38 @@ from couchdb.schema import DateTimeField, Document, TextField, FloatField, View
 class Comment(Document):
     type = TextField(default='Comment')
     human_id = TextField()
-    doc_id = TextField()
     displayname = TextField()
+    email = TextField()
+    doc_id = TextField()
     content = TextField(default='')
-    markup = TextField(default='')
-    time = DateTimeField()
+    markup = TextField(default='textile')
+    created = DateTimeField(default=datetime.utcnow)
+    
+    by_time = View('comments', '''
+        function(doc) {
+          if (doc.type == 'Comment') {
+            emit([doc.doc_id, doc.created], null);
+          }
+        }''', include_docs=True)
+    
+    comment_count = View('comments', '''
+        function(doc) {
+          if (doc.type == 'Comment') {
+            emit(doc.doc_id, 1);
+          }
+        }''', '''
+        function(keys, values) {
+          return sum(values);
+        }''',
+        wrapper= lambda row: (row.key, row.value), group=True)
+    
+    @classmethod
+    def total_comments(cls, doc_id):
+        comments = list(Comment.comment_count(pylons.c.db)[doc_id])
+        if not comments:
+            return 0
+        else:
+            return comments[0][1]
 
 
 class Rating(Document):

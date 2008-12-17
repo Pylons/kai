@@ -19,6 +19,16 @@ class SecureToken(forms.HiddenField):
     template = 'kai.templates.widgets.secure'
 
 
+class CommentForm(forms.TableForm):
+    class fields(WidgetsList):
+        comment = forms.TextArea(
+            validator = UnicodeString(not_empty=True))
+        preview = forms.Button(
+            name='Preview',
+            attrs={'value':'Preview'})
+comment_form = CommentForm('comment_form')
+
+
 class NewArticleForm(forms.TableForm):
     class fields(WidgetsList):
         title = forms.TextField(
