@@ -59,7 +59,7 @@
         </div>
     </div>
     
-    ${widgets.show_comments(c.traceback.id, "Suggest a fix or tip to help solve this traceback.")}
+    ${widgets.show_comments(c.traceback.id, poster_id=c.traceback.human_id, message="Suggest a fix or tip to help solve this traceback.")}
 </div>
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('Traceback %s' % c.traceback.id)}</%def>\

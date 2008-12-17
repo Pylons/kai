@@ -20,7 +20,7 @@ from kai.model import Comment, forms
 </div>
 </%def>
 ##
-<%def name="show_comments(doc_id, message=None)">
+<%def name="show_comments(doc_id, poster_id=None, message=None)">
 <%
 total = Comment.total_comments(doc_id)
 if total > 0:
@@ -32,7 +32,7 @@ else:
     <a name="comments"></a>
     <h2>Comments <span class="subtle">(${total})</span></h2>
     % for comment in comments:
-        ${show_comment(comment)}
+        ${show_comment(comment, extra_class=(poster_id and poster_id == comment.human_id and 'highlight'))}
     % endfor
     
     % if message:
@@ -77,8 +77,8 @@ $('input#comment_form_submit').click(function() {
 });
 </%def>
 ##
-<%def name="show_comment(comment)">
-<div class="comment">
+<%def name="show_comment(comment, extra_class=None)">
+<div class="comment ${extra_class or ''}">
     ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
     <div class="content">${h.textilize(comment.content)}</div>
 </div>

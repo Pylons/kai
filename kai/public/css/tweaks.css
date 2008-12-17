@@ -214,7 +214,7 @@ div.user_post {
 
 div.user_post div.user_icon {
     float: left;
-    padding: 0 6px 0 0;
+    padding: 0 6px 5px 0;
 }
 
 div.user_post div.username {
@@ -303,15 +303,19 @@ div.comments.user_post {
 div.comment {
 	clear: both;
     border-top: 1px solid #bbb;
-    margin: 0px 0 15px 0;
-    padding: 10px 0 0 0;
+    margin: 0;
+    padding: 10px 0 19px 0;
+    min-height: 35px;
+}
+
+div.comment.highlight {
+    background: #effeff;
 }
 
 div.comment div.content {
     font-size: 93%;
     margin-left: 265px;
     width: 550px;
-    min-height: 35px;
     padding: 2px 0 0 0;
 }
 

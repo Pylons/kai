@@ -5,7 +5,7 @@
     % endif
     ${c.doc['body'] | n}
     ${show_nav()}
-    ${widgets.show_comments(c.doc.id, "Suggest an addition to the docs, or report errors.")}
+    ${widgets.show_comments(c.doc.id, message="Suggest an addition to the docs, or report errors.")}
 </div>
 <%def name="title()">${parent.title()} - Documentation - ${c.doc['title']}</%def>
 <%inherit file="../layout.mako" />
