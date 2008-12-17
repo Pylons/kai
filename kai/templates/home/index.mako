@@ -9,14 +9,20 @@
     <div class="yui-gc">
       <div class="yui-u first">
         <h3>${_('Why use Pylons?')}</h3>
-        <p>Pylons combines the very best ideas from the worlds of Ruby, Python and Perl, providing a structured but extremely flexible Python web framework. It's also one of the first projects to leverage the emerging WSGI standard, which allows extensive re-use and flexibility — but only if you need it. Out of the box, Pylons aims to make web development fast, flexible and easy. <a href="#">Find out more</a>, <a href="#">Install the latest version</a> or <a href="#">Start learning Pylons</a>. </p>
+        <p>Pylons combines the very best ideas from the worlds of Ruby, Python and Perl, providing a structured but
+            extremely flexible Python web framework. It's also one of the first projects to leverage the emerging
+            WSGI standard, which allows extensive re-use and flexibility — but only if you need it. Out of the box,
+            Pylons aims to make web development fast, flexible and easy. 
+            ${h.link_to('Find out more', url=url('doc_home'))}, 
+            ${h.link_to('Install the latest version', url=url('doc_view', url='gettingstarted/', anchor='installing'))}, 
+            or <b>${h.link_to('read the new Pylons Book', url=url('pylons_book'))}</b>. </p>
 
         <h3>${_('Plays Well With Others')}</h3>
         <p>Pylons is built on <a href="#">Paste</a> and allows and encourages use of your favorite Python components and libraries: </p>
         <ol>
-          <li>Models: <a href="#">SQLAlchemy</a>, <a href="#">SQLObject</a>, plain old DB-API </li>
-          <li>Templating: Mako, Genshi, Jinja, Kid, Cheetah, or whatever you like - using Buffet </li>
-          <li>AJAX: Rails-style WebHelpers based on Prototype, or Mochikit, jQuery, Dojo, Ext &amp; more </li>
+          <li>Models: ${h.link_to('SQLAlchemy', url=url('sqlalchemy'))}, ${h.link_to('SQLObject', url=url('sqlobject'))}, ${h.link_to('CouchDB', url=url('python-couchdb'))}, or none at all</li>
+          <li>Templating: Mako, Genshi, Jinja, or whatever you like</li>
+          <li>Helpers: WebHelpers for small HTML snippets, ${h.link_to('FormAlchemy', url=url('formalchemy'))} generates entire forms</li>
           <li>Request Dispatching: Routes by default, or plug in your favorite</li>
         </ol>
         <p><strong>Not sure which one to choose?</strong> No problem! Pylons recommends and documents
@@ -25,8 +31,6 @@
         <ul>
           <li><a href="#">Pylons Screencasts </a></li>
           <li><a href="#">How to write a basic blog with Pylons </a></li>
-          <li><a href="#">Getting started with AJAX </a></li>
-          <li><a href="#">Porting Rails Flickr Example </a></li>
           <li><a href="#">Production Deployment Using Apache, FastCGI and mod_rewrite </a></li>
         </ul>
       </div>
@@ -61,7 +65,7 @@
         <div class="yui-u first">
           <h4>${_('Recent Blog Entries')}</h4>
           <ul>
-            % for article in c.articles[:4]:
+            % for article in c.articles[:5]:
             <li>${h.link_to(article.title, url=url('article_archives', article=article))}<br />
                 ${h.truncate(article.summary, length=250, whole_word=True)}</li>
             % endfor

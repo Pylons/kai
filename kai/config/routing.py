@@ -90,6 +90,14 @@ def make_map(globs=None):
     # Comments
     map.connect('preview_comment', '/comment/preview', controller='comments', action='preview', conditions=dict(method='POST'))
     map.connect('post_comment', '/comment/{doc_id}', controller='comments', action='create', conditions=dict(method='POST'))
+    
+    # External Links
+    map.connect('sqlalchemy', 'http://sqlalchemy.org/', _static=True)
+    map.connect('sqlobject', 'http://www.sqlobject.org/', _static=True)
+    map.connect('python-couchdb', 'http://code.google.com/p/couchdb-python/', _static=True)
+    map.connect('formalchemy', 'http://code.google.com/p/formalchemy/', _static=True)
+    map.connect('mako', 'http://makotemplates.org/', _static=True)
+    map.connect('pylons_book', 'http://pylonsbook.com/', _static=True)
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')

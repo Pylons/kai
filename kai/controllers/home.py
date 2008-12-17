@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 
 class HomeController(BaseController):
     def index(self):
-        c.articles = list(Article.by_time(c.db, descending=True, count=4))
+        c.articles = list(Article.by_time(c.db, descending=True, count=5))
         return render('/home/index.mako')
     
     def history(self):
