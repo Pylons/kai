@@ -9,6 +9,8 @@
 % endfor
 </h5>
 </p>
+${widgets.show_comments(c.snippet.id)}
+<%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('View Snippet: %s' % c.snippet.title)}</%def>
 <%inherit file="layout.mako" />
 <%def name="styles()">
