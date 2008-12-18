@@ -26,7 +26,7 @@ class Documentation(object):
     doc_key = ViewDefinition('documentation', 'doc_key','''
         function(doc) {
           if (doc.type == 'Documentation') {
-            emit([doc.filename, doc.version, doc.project], null);
+            emit([doc.filename, doc.version, doc.language, doc.project], null);
           }
         }''', include_docs=True)
     

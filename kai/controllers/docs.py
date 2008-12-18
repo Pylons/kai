@@ -129,7 +129,7 @@ class DocsController(BaseController):
         
         update = False
         # Check to see we don't have it already
-        existing_doc = list(Documentation.doc_key(self.db)[doc['filename'], doc['version'], doc['project']])
+        existing_doc = list(Documentation.doc_key(self.db)[doc['filename'], doc['version'], doc['language'], doc['project']])
         if existing_doc:
             existing_doc = dict(existing_doc[0].doc)
             update = True

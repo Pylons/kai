@@ -6,20 +6,6 @@ import pytz
 from kai.model import Comment, forms
 
 %>
-<%def name="user_post(displayname, email, post_date, extra_classes='')">
-<div class="${extra_classes} user_post">
-    <div class="user_icon">\
-        % if email:
-            <img src="http://www.gravatar.com/avatar/${md5(email).hexdigest()}?s=40">
-        % else:
-            <img src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?s=40">
-        % endif
-    </div>
-    <div class="username">${displayname or 'Anonymous'}</div>
-    <div class="posted">${format_timestamp(post_date)}</div>
-</div>
-</%def>
-##
 <%def name="show_comments(doc_id, poster_id=None, message=None)">
 <%
 total = Comment.total_comments(doc_id)
@@ -46,6 +32,40 @@ else:
         <p>You must ${h.link_to(_('login'), url=url('account_login', redir=url.current()))} before you can comment.</p>
     % endif
 </div>
+</%def>
+##
+<%def name="show_comment(comment, extra_class=None)">
+<div class="comment ${extra_class or ''}">
+    ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
+    <div class="content">${h.textilize(comment.content)}</div>
+</div>
+</%def>
+##
+<%def name="user_post(displayname, email, post_date, extra_classes='')">
+<div class="${extra_classes} user_post">
+    <div class="user_icon">\
+        % if email:
+            <img src="http://www.gravatar.com/avatar/${md5(email).hexdigest()}?s=40">
+        % else:
+            <img src="http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?s=40">
+        % endif
+    </div>
+    <div class="username">${displayname or 'Anonymous'}</div>
+    <div class="posted">${format_timestamp(post_date)}</div>
+</div>
+</%def>
+##
+<%def name="format_timestamp(date)">
+<%
+    diff = datetime.utcnow() - date
+    date = timezone.localize(date)
+    now = timezone.localize(datetime.utcnow())
+%>
+% if diff.days < 3:
+${h.distance_of_time_in_words(date, now, granularity='minute')} ago
+% else:
+${format.datetime(date)}
+% endif
 </%def>
 ##
 <%def name="comment_js(doc_id)">
@@ -75,26 +95,6 @@ $('input#comment_form_submit').click(function() {
     });
     return false;
 });
-</%def>
-##
-<%def name="show_comment(comment, extra_class=None)">
-<div class="comment ${extra_class or ''}">
-    ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
-    <div class="content">${h.textilize(comment.content)}</div>
-</div>
-</%def>
-##
-<%def name="format_timestamp(date)">
-<%
-    diff = datetime.utcnow() - date
-    date = timezone.localize(date)
-    now = timezone.localize(datetime.utcnow())
-%>
-% if diff.days < 3:
-${h.distance_of_time_in_words(date, now, granularity='minute')} ago
-% else:
-${format.datetime(date)}
-% endif
 </%def>
 ##
 <%def name="pager(start, lst, total, keyname)">
