@@ -23,9 +23,24 @@ class CommentsController(BaseController):
         if not doc:
             abort(404)
         
-        
         comment = Comment(doc_id=doc_id, displayname=c.user.displayname,
                           email=c.user.email, human_id=c.user.id,
                           content=request.POST['content'])
         comment.store(self.db)
+        return ''
+    
+    def delete(self, id):
+        if not c.user or not c.user.in_group('admin'):
+            abort(401)
+        
+        # Ensure doc exists
+        doc = self.db.get(id)
+        if not doc:
+            abort(404)
+        
+        # Make sure its a comment
+        if not doc['type'] == 'Comment':
+            abort(404)
+        
+        self.db.delete(doc)
         return ''

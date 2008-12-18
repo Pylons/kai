@@ -329,6 +329,17 @@ p.suggest_comment {
     padding: 5px;
     margin: 6px 4px;
     width: 550px;
+} 
+
+div.comment_delete {
+    float: right;
+    font-size: 77%;
+    margin: 15px 5px 0 0;
+    display: none;
+}
+
+div.comment:hover div.comment_delete {
+    display: block;
 }
 
 /* Traceback */

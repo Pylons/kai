@@ -37,6 +37,9 @@ else:
 <%def name="show_comment(comment, extra_class=None)">
 <div class="comment ${extra_class or ''}">
     ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
+    % if c.user and c.user.in_group('admin'):
+    <div class="comment_delete commentid_${comment.id}">${h.link_to('Delete this comment', url='#', id_='comment_delete')}</div>
+    % endif
     <div class="content">${h.textilize(comment.content)}</div>
 </div>
 </%def>
@@ -95,6 +98,23 @@ $('input#comment_form_submit').click(function() {
     });
     return false;
 });
+% if c.user and c.user.in_group('admin'):
+$('div.comment_delete a').click(function() {
+    var answer = window.confirm("Are you sure you want to delete this comment?");
+    var delete_url = '/comment/' + $(this).parent().attr('class').replace(/^.*commentid_(\w*)$/,'$1');
+    if (answer) {
+        $.ajax({
+            data: {'_method':'DELETE'},
+            type: "POST",
+            url: delete_url,
+            success: function(data, textStatus) {
+                window.location = location.pathname;
+            }
+        });
+    }
+    return false;
+});
+% endif
 </%def>
 ##
 <%def name="pager(start, lst, total, keyname)">

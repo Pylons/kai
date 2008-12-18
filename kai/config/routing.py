@@ -90,6 +90,7 @@ def make_map(globs=None):
     # Comments
     map.connect('preview_comment', '/comment/preview', controller='comments', action='preview', conditions=dict(method='POST'))
     map.connect('post_comment', '/comment/{doc_id}', controller='comments', action='create', conditions=dict(method='POST'))
+    map.connect('delete_comment', '/comment/{id}', controller='comments', action='delete', conditions=dict(method='DELETE'))
     
     # External Links
     map.connect('sqlalchemy', 'http://sqlalchemy.org/', _static=True)
