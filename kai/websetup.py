@@ -26,6 +26,8 @@ def setup_app(command, conf, vars):
         Human.by_displayname, Human.by_email, Human.by_email_token,
         Human.by_openid, Human.by_password_token,
         
+        Paste.by_author, Paste.by_tag, Paste.all_tags, Paste.by_time,
+        
         Rating.all_raters,
         
         Snippet.by_date, Snippet.by_author, Snippet.by_slug, Snippet.by_title,

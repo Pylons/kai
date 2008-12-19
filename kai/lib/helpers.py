@@ -13,6 +13,9 @@ from webhelpers.html.secure_form import auth_token_hidden_field
 from webhelpers.text import truncate
 from webhelpers.pylonslib import Flash as _Flash
 
+from kai.lib.highlight import code_highlight
+
+
 success_flash = _Flash('success')
 failure_flash = _Flash('failure')
 

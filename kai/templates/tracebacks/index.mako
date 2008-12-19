@@ -1,5 +1,4 @@
 <div class="yui-b content">
-    <h1>Posted Tracebacks</h1>
     <%
     if c.tracebacks:
         results = list(c.tracebacks)
@@ -8,6 +7,8 @@
     %>
     % if c.tracebacks:
         ${widgets.pager(c.start, results, c.tracebacks.total_rows, 'created')}
+        <h1>Posted Tracebacks</h1>
+        
         % for traceback in results[:10]:
         <% frame = traceback.frames[-1] %>
         <div class="exception">
@@ -33,6 +34,8 @@
         </div>
         % endfor
     % else:
+    <h1>Posted Tracebacks</h1>
+    
     <p>No tracebacks posted</p>
     % endif
 </div>

@@ -98,7 +98,7 @@
     </li>
     <li id="nav-4"${active_tab.get('Tools', '') | n}><a href="#">Tools</a>
       <ul>
-        <li${active_sub.get('Pastebin', '') | n}><a href="#"> Pastebin</a></li>
+        <li${active_sub.get('Pastebin', '') | n}>${h.link_to('Pastebin', url=url('pasties'))}</li>
         <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=url('tracebacks'))}</li>
         <li${active_sub.get('Snippets', '') | n}><a href="#">${h.link_to('Snippets', url=url('snippet_home'))}</a></li>
       </ul>

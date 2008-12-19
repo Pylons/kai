@@ -84,6 +84,11 @@ def make_map(globs=None):
     map.connect('snippet_tag', '/snippets/by_tag/{tag}', controller='snippets', action='by_tag')
     map.connect('snippet_tagcloud', '/snippets/tagcloud', controller='snippets', action='tagcloud')
     
+    # Pastebin
+    map.connect('pasties_tagcloud', '/pasties/tagcloud', controller='pasties', action='tagcloud')
+    map.connect('pasties_tag', '/pasties/by_tag/{tag}', controller='pasties', action='by_tag')
+    map.resource('paste', 'pasties')
+
     # Resources
     map.resource('traceback', 'tracebacks', member={'reown':'GET'})
     
