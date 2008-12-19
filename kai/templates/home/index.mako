@@ -14,8 +14,8 @@
             WSGI standard, which allows extensive re-use and flexibility — but only if you need it. Out of the box,
             Pylons aims to make web development fast, flexible and easy. 
             ${h.link_to('Find out more', url=url('doc_home'))}, 
-            ${h.link_to('Install the latest version', url=url('doc_view', url='gettingstarted/', anchor='installing'))}, 
-            or <b>${h.link_to('read the new Pylons Book', url=url('pylons_book'))}</b>. </p>
+            ${h.link_to('install the latest version', url=url('doc_view', url='gettingstarted/', anchor='installing'))}, 
+            or <b>${h.link_to('read the new Pylons book', url=url('pylons_book'))}</b>. </p>
 
         <h3>${_('Plays Well With Others')}</h3>
         <p>Pylons is built on <a href="#">Paste</a> and allows and encourages use of your favorite Python components and libraries: </p>
@@ -25,13 +25,12 @@
           <li>Helpers: WebHelpers for small HTML snippets, ${h.link_to('FormAlchemy', url=url('formalchemy'))} generates entire forms</li>
           <li>Request Dispatching: Routes by default, or plug in your favorite</li>
         </ol>
-        <p><strong>Not sure which one to choose?</strong> No problem! Pylons recommends and documents
-            using a powerful templating solution (Mako) and database ORM (SQLAlchemy) to help you get started.</p>
+        <p><strong>Not sure which one to choose?</strong> No problem! The Pylons documentation recommends a powerful templating engine (Mako) and database ORM (SQLAlchemy) to help you get started.</p>
         <h3>Latest Tutorials </h3>
         <ul>
-          <li><a href="#">Pylons Screencasts </a></li>
+          <li><a href="#">Pylons screencasts </a></li>
           <li><a href="#">How to write a basic blog with Pylons </a></li>
-          <li><a href="#">Production Deployment Using Apache, FastCGI and mod_rewrite </a></li>
+          <li><a href="#">Production deployment using Apache, FastCGI and mod_rewrite </a></li>
         </ul>
       </div>
       <div class="yui-u" id="sidebar">
@@ -53,7 +52,7 @@
         </div>
         <div id="usefull" class="side-section">
           <h3>${_('Useful Resources')}</h3>
-          <p>You might be <a href="#">interested to see</a> the production sites already using Pylons. If you are after specific information not found in the <a href="#">documentation</a> you should have a look at the wiki which is fast becoming a very useful resource for <a href="#"> Pylons programming</a>. You might also consider adding an article of your own.</p>
+          <p>You might be <a href="#">interested to see</a> the production sites already using Pylons. If you are after specific information not found in the <a href="#">documentation</a>, have a look at the wiki.  The wiki is a useful resource for <a href="#"> Pylons programming</a>. You might also consider adding an article of your own.</p>
         </div>
       </div>
     </div>
