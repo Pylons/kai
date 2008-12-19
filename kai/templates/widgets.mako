@@ -61,8 +61,8 @@ else:
 <%def name="format_timestamp(date)">
 <%
     diff = datetime.utcnow() - date
-    date = timezone.localize(date)
-    now = timezone.localize(datetime.utcnow())
+    date = pytz.UTC.localize(date).astimezone(timezone)
+    now = pytz.UTC.localize(datetime.utcnow()).astimezone(timezone)
 %>
 % if diff.days < 3:
 ${h.distance_of_time_in_words(date, now, granularity='minute')} ago
