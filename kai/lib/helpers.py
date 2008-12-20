@@ -22,8 +22,8 @@ failure_flash = _Flash('failure')
 def load_stylesheet_assets():
     import pylons
     import os
-    path = os.path.join(pylons.config['pylons.paths']['root'], 'public', 
-                        'css', 'CSSLIST')
+    path = os.path.join(pylons.config['pylons.paths']['static_files'], 'css',
+                        'CSSLIST')
     f = open(path,'r')
     stylesheets = f.read()
     f.close()
