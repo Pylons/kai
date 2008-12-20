@@ -13,7 +13,7 @@ from webhelpers.html.secure_form import auth_token_hidden_field
 from webhelpers.text import truncate
 from webhelpers.pylonslib import Flash as _Flash
 
-from kai.lib.highlight import code_highlight
+from kai.lib.highlight import code_highlight, langdict
 
 
 success_flash = _Flash('success')

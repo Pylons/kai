@@ -27,9 +27,9 @@ def make_couch_paste(old):
         new.tags.append(tag.name)
     new.store(db)
 
-results = model.Session.query(model.Paste)
+results = model.Session.query(model.Paste).order_by(model.Paste.id.desc())
 for result in results:
-    doc = list(Paste.by_old_id(db)[result.id])
+    doc = list(Paste.by_old_id(db)[str(result.id)])
     if doc:
-        continue
+        break
     make_couch_paste(result)

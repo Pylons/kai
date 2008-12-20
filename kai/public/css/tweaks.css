@@ -510,6 +510,28 @@ div.pastebin input.textfield, div.pastebin input.autocomplete {
     width: 400px;
 }
 
+div.pastelist.user_post {
+    float: left;
+    width: 310px;
+    border: none;
+    font-size: 85%;
+}
+
+div.pastie {
+    clear: both;
+    border-bottom: 1px solid #ddd;
+    min-height: 90px;
+}
+
+div.pastie div.pastedata {
+    font-size: 85%;
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+}
+
+div.pastebin h2.pastie {
+    font-size: 123%;
+}
 
 /* Autocomplete styling */
 .yui_autocomplete_holder { position:relative; }
