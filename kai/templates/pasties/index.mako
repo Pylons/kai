@@ -17,14 +17,14 @@ ${widgets.pager(c.start, results, total, 'created')}
 % for paste in results[:10]:
 <div class="pastie">
     <h2 class="pastie">${h.link_to(paste.title, url=url('paste', id=paste.old_id or paste.id))}</h2>
-    % if paste.old_poster or not paste.email:
-    ${widgets.user_post(paste.old_poster, 'anonymous', paste.created, extra_classes='pastelist')}
-    % else:
-    ${widgets.user_post(h.link_to(paste.displayname, 
-                                  url=url('pasties_author', author=paste.displayname)), 
-                        paste.email, paste.created, extra_classes='pastelist')}
-    % endif
     <div class="pastedata">
+        <div class="language">Language: \
+        % if paste.language:
+        <span class="lang">${h.langdict[paste.language]}</span>\
+        % else:
+        No language provided\
+        % endif
+        </div>
         % if paste.tags:
         <div class="tags"><span class="tagheader">Tags: </span>\
             % for tag in paste.tags:
@@ -34,14 +34,15 @@ ${widgets.pager(c.start, results, total, 'created')}
             % endfor
         </div>
         % endif
-        <div class="language">Language: \
-            % if paste.language:
-            <span class="lang">${h.langdict[paste.language]}</span>\
-            % else:
-            No language provided\
-            % endif
-            </div>
     </div>
+    % if paste.old_poster or not paste.email:
+    ${widgets.user_post(paste.old_poster, 'anonymous', paste.created, extra_classes='pastelist')}
+    % else:
+    ${widgets.user_post(h.link_to(paste.displayname, 
+                                  url=url('pasties_author', author=paste.displayname)), 
+                        paste.email, paste.created, extra_classes='pastelist')}
+    % endif
+    <div class="clearfix">&nbsp;</div>
 </div>
 % endfor
 

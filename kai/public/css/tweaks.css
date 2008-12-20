@@ -511,30 +511,39 @@ div.pastebin input.textfield, div.pastebin input.autocomplete {
 }
 
 div.pastelist.user_post {
-    float: left;
-    width: 310px;
+	float: left;
     border: none;
     font-size: 85%;
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 0 0 0 4px;
+    width: 270px;
 }
 
 div.pastie {
     clear: both;
     border-bottom: 1px solid #dedede;
-    min-height: 85px;
+    padding: 5px 0 0px 0;
+    margin: 0;
+}
+
+div.pastebin div.clearfix {
+    height: 0;
 }
 
 div.pastie div.pastedata {
     font-size: 85%;
-    margin: 0;
+    margin: 10px 0 0 0;
     line-height: 1.5;
+    width: 300px;
+    float: left;
 }
 
 div.pastebin h2.pastie {
     font-size: 123%;
-    margin: 0;
-    padding: 4px 0 0 0;
+    margin: 10px 0 0 0;
+    padding: 0 5px 0 0;
+    float: left;
+    width: 310px;
 }
 
 /* Autocomplete styling */
