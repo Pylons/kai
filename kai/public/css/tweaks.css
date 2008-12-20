@@ -443,7 +443,7 @@ div.traceback div.description p {
 
 div.traceback div.sysinfo div.language {
     font-weight: bold;
-    color: #4333;
+    color: #333;
 }
 
 div.traceback ul {
