@@ -6,7 +6,7 @@ from pytz import UTC
 from kai.model import Human, Paste
 from kai.model.generics import all_doc_tags
 
-pylons.c.db = db = Database('http://localhost:5984/kai')
+pylons.c.db = db = Database('http://localhost:25984/kai')
 
 
 def make_couch_paste(old):
@@ -17,7 +17,7 @@ def make_couch_paste(old):
     from kai.model import Human, Paste
     from kai.model.generics import all_doc_tags
     
-    pylons.c.db = db = Database('http://localhost:5984/kai')
+    pylons.c.db = db = Database('http://localhost:25984/kai')
     
     od = old.date.astimezone(UTC)
     created = datetime(od.year, od.month, od.day, od.hour, od.minute, od.second)
