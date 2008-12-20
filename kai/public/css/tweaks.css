@@ -1,3 +1,5 @@
+/* @override http://localhost.com:5050/css/tweaks.css */
+
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     color:#00607b;
     font-family:Georgia, "Times New Roman", Times, serif;
@@ -514,7 +516,7 @@ div.pastebin input.textfield, div.pastebin input.autocomplete {
 
 .yui_autocomplete {position:relative;width:100px;margin-bottom:1em;}/* set width of widget here*/
 .yui_autocomplete {z-index:9000} /* for IE z-index of absolute divs inside relative divs issue */
-#tags {_position:absolute;width:450px;height:1.4em;z-index:0;} /* abs for ie quirks */
+#tags {position:absolute;width:450px;height:1.4em;z-index:0;} /* abs for ie quirks */
 .yui_autocomplete {position:absolute;top:1.7em;width:140px;}
 .yui_autocomplete .yui-ac-content {position:absolute;width:100%;border:1px solid #404040;background:#fff;overflow:hidden;z-index:9050;}
 .yui_autocomplete .yui-ac-shadow {position:absolute;margin:.3em;width:100%;background:#a0a0a0;z-index:9049;}
@@ -527,12 +529,12 @@ div.pastebin input.textfield, div.pastebin input.autocomplete {
 /* Form errors */
 
 span.error-message {
-	background: url(/images/icons/dialog-error22.png) no-repeat 0 top;
 	padding: 2px 0 0 25px;
 	color: red;
 	height: 24px;
 	display: block;
 	margin: 8px 0 -14px 2px;
+    background: url(/images/icons/dialog-error22.png) no-repeat left top;
 }
 
 .error {
