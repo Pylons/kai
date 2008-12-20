@@ -6,6 +6,7 @@ import pylons
 
 from kai.config.environment import load_environment
 from kai.model import Article, Comment, Documentation, Human, Paste, Rating, Snippet, Traceback
+from kai.model.generics import all_doc_tags
 
 log = logging.getLogger(__name__)
 
@@ -15,6 +16,8 @@ def setup_app(command, conf, vars):
     server = pylons.config['kai.server']
     db = pylons.config['kai.db']
     ViewDefinition.sync_many(db, [
+        all_doc_tags,
+        
         Article.all_months, Article.all_tags, Article.by_month,
         Article.by_tag, Article.by_time, Article.by_slug,
         
@@ -27,6 +30,7 @@ def setup_app(command, conf, vars):
         Human.by_openid, Human.by_password_token,
         
         Paste.by_author, Paste.by_tag, Paste.all_tags, Paste.by_time,
+        Paste.by_old_id, Paste.by_tag_time,
         
         Rating.all_raters,
         

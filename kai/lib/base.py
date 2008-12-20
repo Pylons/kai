@@ -14,7 +14,8 @@ from pytz import timezone
 import simplejson as json
 import pylons
 
-from kai.model import Human
+from kai.lib.helpers import success_flash
+from kai.model import Human, Comment
 
 def render(template_name, **kwargs):
     """Render override that add's babel objects"""
@@ -59,6 +60,40 @@ class BaseController(WSGIController):
         pylons.c.use_minified_assets = asbool(
             pylons.config.get('use_minified_assets', 'false'))
         return WSGIController.__call__(self, environ, start_response)
+
+
+class CMSObject(object):
+    """Provides common methods for CMS style objects like a blog entry,
+    snippet, traceback, etc.
+    
+    Note that this requires the controller class to have a '_cms_object'
+    attribute that points to the proper model for it.
+    
+    """
+    def _check_owner(self, obj, user, check_session=False):
+        if user and obj.human_id and user.id == obj.human_id:
+            return True
+        elif user and user.in_group('admin'):
+            return True
+        else:
+            if check_session:
+                if pylons.session.id and getattr(obj, 'session_id', None) and pylons.session.id == obj.session_id:
+                    return True
+            return False
+        
+    def delete(self, id):
+        cms_object = self._cms_object.load(self.db, id) or abort(404)
+        if self._check_owner(cms_object, pylons.c.user, check_session=True):
+            comments = list(Comment.by_time(self.db, startkey=[cms_object.id], endkey=[cms_object.id, {}]))
+            update_seq = []
+            for comment in comments:
+                update_seq.append({'_id':comment.id, '_rev':comment.rev, '_deleted':True})
+            update_seq.append({'_id':cms_object.id, '_rev':cms_object.rev, '_deleted':True})
+            self.db.update(update_seq)
+            success_flash('%s deleted' % cms_object.__class__.__name__)
+        else:
+            abort(401)
+
 
 # Monkey patch httplib to buffer
 import httplib

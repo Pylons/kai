@@ -3,7 +3,7 @@
     <h1>${h.link_to(combined_exc, url=url.current())}\
         <span class="subtle">(${h.link_to('comments', url='#comments')})</span></h1>
     <div class="traceback_posted">\
-        % if c.is_owner:
+        % if c.is_owner or (c.user and c.user.in_group('admin')):
         <div class="traceback_delete">${h.link_to('Delete', id_='delete_traceback')}</div>
         % endif
         ${widgets.format_timestamp(c.traceback.created)} by

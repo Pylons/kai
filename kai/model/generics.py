@@ -7,7 +7,25 @@ of CouchDB document.
 from datetime import datetime
 
 import pylons
+from couchdb.design import ViewDefinition
 from couchdb.schema import DateTimeField, Document, TextField, FloatField, View
+
+all_doc_tags = ViewDefinition('world', 'all_tags', '''
+    function (doc) {
+      if (doc.tags) {
+        for (var idx in doc.tags) {
+          var tag = doc.tags[idx];
+          tag = tag.replace(/ /g, '');
+          if (tag) {
+            emit(tag, 1);
+          }
+        }
+      }
+    }''', '''
+    function(keys, values) {
+      return sum(values);
+    }''', wrapper=lambda row: {'name':row.key, 'count':row.value}, group=True)
+
 
 class Comment(Document):
     type = TextField(default='Comment')

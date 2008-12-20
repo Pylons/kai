@@ -5,7 +5,8 @@ from tw.api import WidgetsList
 from tw.forms.validators import DateTimeConverter, UnicodeString, Email, OneOf
 import pytz
 
-from kai.model.validators import ExistingEmail, UniqueDisplayname, UniqueEmail, ValidLogin, ValidPassword
+from kai.lib.highlight import langdict
+from kai.model.validators import ExistingSnippetTitle, ExistingEmail, UniqueDisplayname, UniqueEmail, ValidLogin, ValidPassword
 
 forms.FormField.engine_name = "mako"
 
@@ -13,6 +14,10 @@ class FilteringSchema(Schema):
     filter_extra_fields = False
     allow_extra_fields = True
     ignore_key_missing = False
+
+
+class AutoComplete(forms.TextField):
+    template = 'kai.templates.widgets.autocomplete'
 
 
 class SecureToken(forms.HiddenField):
@@ -27,6 +32,33 @@ class CommentForm(forms.TableForm):
             name='Preview',
             attrs={'value':'Preview'})
 comment_form = CommentForm('comment_form')
+
+
+class SnippetForm(forms.TableForm):
+    class fields(WidgetsList):
+        title = forms.TextField(
+            validator = ExistingSnippetTitle(not_empty=True))
+        description = forms.TextArea(
+            validator = UnicodeString())
+        content = forms.TextArea(
+            validator = UnicodeString(not_empty=True))
+        tags = AutoComplete(
+            validator = UnicodeString())
+snippet_form = SnippetForm('snippet_form')
+
+
+class PastebinForm(forms.TableForm):
+    class fields(WidgetsList):
+        title = forms.TextField(
+            validator = UnicodeString(not_empty=True))
+        language = forms.SingleSelectField(
+            options = sorted(langdict.items(), cmp=lambda x,y: cmp(x[1], y[1])),
+            validator = OneOf(langdict.keys(), not_empty=True))
+        code = forms.TextArea(
+            validator = UnicodeString(not_empty=True))
+        tags = AutoComplete(
+            validator = UnicodeString(not_empty=False))
+pastebin_form = PastebinForm('pastebin_form')
 
 
 class NewArticleForm(forms.TableForm):
@@ -122,8 +154,3 @@ registration_validator = FilteringSchema(
 registration_form = RegistrationForm('registration_form', validator=registration_validator)
 
 
-class AddSnippet(FilteringSchema):
-    title = UnicodeString(not_empty=True)
-    description = UnicodeString(not_empty=True)
-    content = UnicodeString(not_empty=True)
-    tags = UnicodeString()

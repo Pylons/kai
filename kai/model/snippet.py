@@ -8,12 +8,14 @@ from couchdb.schema import DateTimeField, DictField, Document, TextField, \
 class Snippet(Document):
     type = TextField(default='Snippet')
     human_id = TextField()
+    email = TextField()
     displayname = TextField()
     created = DateTimeField(default=datetime.utcnow)
     title = TextField()
     description = TextField()
     content = TextField()
     slug = TextField()
+    
     tags = ListField(TextField())
     
     all_tags = View('snippets', '''

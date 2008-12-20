@@ -6,11 +6,14 @@ from docutils.core import publish_parts
 from formencode import htmlfill
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
-from pylons.decorators import validate
+from pylons.decorators import rest
+from tw.mods.pylonshf import validate
 
 import kai.lib.pygmentsupport
 from kai.lib.base import BaseController, render
+from kai.lib.helpers import success_flash, failure_flash
 from kai.model import Snippet, forms
+from kai.model.generics import all_doc_tags
 
 log = logging.getLogger(__name__)
 
@@ -31,43 +34,34 @@ class SnippetsController(BaseController):
         c.unique_authors = authors[:10]
         return render('/snippets/index.mako')
     
-    @validate(forms.AddSnippet(), form='add')
+    @rest.dispatch_on(POST='_process_add')
     def add(self):
-        """ Simply add a code snippet to the database. """
         if not c.user:
-            abort(401)
-        
-        c.exists = False
-        c.add_error = None
-        added = False
-        
-        if hasattr(self, 'form_result'):
-            snippet = Snippet(**self.form_result)
-            snippet.human_id = c.user.id
-            snippet.displayname = c.user.displayname
-            
-            ## generate the slug
-            slug = snippet.title.replace(" ", "_")
-            slug = slug.lower()
-            slug = re.sub('[^A-Za-z0-9_]+', '', slug)
-            
-            snippet.slug = slug
-            snippet.tags = self.form_result.get('tags').lower().split(",")           
-            
-            if Snippet.exists(snippet.title):
-                c.exists = True
-                return htmlfill.render(render('snippets/add.mako'), self.form_result)
-            else:
-                try:
-                    snippet.store(self.db)
-                    added = True
-                except Exception, e:
-                    c.add_error = True
-                    c.error = e
-            
-            if added:
-                return redirect_to('snippet_home')
+            abort(401)        
+        c.tags = [row['name'] for row in list(all_doc_tags(self.db))]
         return render('snippets/add.mako')
+    
+    @validate(form=forms.snippet_form, error_handler='add')
+    def _process_add(self):  
+        if not c.user:
+            abort(401)      
+        snippet = Snippet(**self.form_result)
+        snippet.human_id = c.user.id
+        snippet.email = c.user.email
+        snippet.displayname = c.user.displayname
+        
+        ## generate the slug
+        slug = snippet.title.replace(" ", "_")
+        slug = slug.lower()
+        slug = re.sub('[^A-Za-z0-9_]+', '', slug)
+        
+        snippet.slug = slug
+        if 'tags' in self.form_result:
+            snippet.tags = self.form_result['tags'].replace(',', ' ').strip().split(' ')
+        
+        snippet.store(self.db)
+        success_flash('Snippet has been added')
+        return redirect_to('snippet_home')
     
     def view(self, id):
         """View a particular snippet

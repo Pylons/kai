@@ -12,7 +12,7 @@
     %>
     
     ${widgets.pager(c.start, results, c.articles.total_rows, 'published')}
-    % for article in results:
+    % for article in results[:10]:
     ${display_article(article)}
     % endfor
 </div>

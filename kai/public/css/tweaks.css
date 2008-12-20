@@ -202,6 +202,7 @@ form table tr td {vertical-align: top;}
     font-size: 0.8em;
 }
 
+
 /* User data */
 
 div.user_post {
@@ -210,7 +211,6 @@ div.user_post {
     font-size: 77%;
     border: 1px solid #ddd;
 }
-
 
 div.user_post div.user_icon {
     float: left;
@@ -342,6 +342,25 @@ div.comment:hover div.comment_delete {
     display: block;
 }
 
+table.syntaxtable {
+    border: none;
+}
+table.syntaxtable td {
+    border: none;
+}
+table.syntaxtable td.linenos {
+	padding-top: 5px;
+    vertical-align: top;
+}
+table.syntaxtable td.linenos pre {
+    border: none;
+    background: inherit;
+}
+table.syntaxtable td.code pre {
+    width: 750px;
+    overflow: auto;
+}
+
 /* Traceback */
 
 div.exception {
@@ -452,6 +471,60 @@ div.sysinfo {
     padding: 4px;
     font-size: 85%;
 }
+
+/* Snippet styling */
+
+div.snippets div.user_post.header {
+    float: right;
+    width: 240px;
+    margin-top: 15px;
+    border: none;
+}
+
+div.snippets textarea {
+    width: 550px;
+}
+
+div.snippets input.textfield, div.snippets input.autocomplete {
+    width: 400px;
+}
+
+div.snippets textarea#snippet_form_content {
+    height: 240px;
+}
+
+/* Pastebin styling */
+
+div.pastebin div.user_post.header {
+    float: right;
+    width: 240px;
+    margin-top: 18px;
+}
+
+div.pastebin textarea {
+    width: 550px;
+    height: 220px;
+}
+
+div.pastebin input.textfield, div.pastebin input.autocomplete {
+    width: 400px;
+}
+
+
+/* Autocomplete styling */
+.yui_autocomplete_holder { position:relative; }
+
+.yui_autocomplete {position:relative;width:100px;margin-bottom:1em;}/* set width of widget here*/
+.yui_autocomplete {z-index:9000} /* for IE z-index of absolute divs inside relative divs issue */
+#tags {_position:absolute;width:450px;height:1.4em;z-index:0;} /* abs for ie quirks */
+.yui_autocomplete {position:absolute;top:1.7em;width:140px;}
+.yui_autocomplete .yui-ac-content {position:absolute;width:100%;border:1px solid #404040;background:#fff;overflow:hidden;z-index:9050;}
+.yui_autocomplete .yui-ac-shadow {position:absolute;margin:.3em;width:100%;background:#a0a0a0;z-index:9049;}
+.yui_autocomplete ul {padding:5px 0;width:100%; list-style: none; margin: 0;}
+.yui_autocomplete li {padding:0 5px;cursor:default;white-space:nowrap;}
+.yui_autocomplete li.yui-ac-highlight {background: #eafec2;}
+.yui_autocomplete li.yui-ac-prehighlight {background:#FFFFCC;}
+
 
 /* Form errors */
 

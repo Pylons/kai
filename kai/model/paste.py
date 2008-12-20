@@ -1,3 +1,4 @@
+import math
 from datetime import datetime
 
 import pylons
@@ -9,6 +10,7 @@ class Paste(Document):
     human_id = TextField()
     displayname = TextField()
     email = TextField()
+    session_id = TextField()
     created = DateTimeField(default=datetime.utcnow)
     title = TextField()
     language = TextField()
@@ -63,7 +65,28 @@ class Paste(Document):
             emit(doc.created, null);
           }
         }''', include_docs=True)
-
+    
+    by_tag_time = View('pastes', '''
+        function (doc) {
+          if (doc.type == 'Paste' && doc.tags) {
+            for (var idx in doc.tags) {
+              var tag = doc.tags[idx];
+              tag = tag.replace(/ /g, '');
+              if (tag) {
+                emit([tag, doc.created], null);
+              }
+            }
+          }
+        }''', include_docs=True)
+    
+    
+    by_old_id = View('pastes', '''
+        function (doc) {
+          if (doc.type == 'Paste' && doc.old_id) {
+            emit(doc.old_id, null);
+          }
+        }''', include_docs=True)
+    
     @classmethod
     def tag_sizes(cls):
         """This method returns all the tags and their relative size for

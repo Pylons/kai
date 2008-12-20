@@ -1,15 +1,15 @@
 <%
-if c.pasties:
-    results = list(c.pasties)
+results = list(c.pasties)
 if c.reverse:
-    pasties.reverse()
+    results.reverse()
+total = c.total or c.pasties.total_rows
 %>
 
-${widgets.pager(c.start, results, c.pasties.total_rows, 'created')}
+${widgets.pager(c.start, results, total, 'created')}
 <h1>Pastes</h1>
 
 <ul>
-% for paste in results:
+% for paste in results[:10]:
 <li><a href="${url('paste', id=paste.old_id or paste.id)}">${paste.title}</a> - ${widgets.format_timestamp(paste.created)}</li>
 % endfor
 </ul>

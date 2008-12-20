@@ -5,13 +5,15 @@ from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import jsonify
 
-from kai.lib.base import BaseController, render
+from kai.lib.base import BaseController, CMSObject, render
 from kai.lib.helpers import success_flash
 from kai.model import Comment, Human, Traceback
 
 log = logging.getLogger(__name__)
 
-class TracebacksController(BaseController):
+class TracebacksController(BaseController, CMSObject):
+    _cms_object = Traceback
+    
     def __before__(self):
         c.active_tab = 'Tools'
         c.active_sub = 'Tracebacks'
@@ -61,13 +63,5 @@ class TracebacksController(BaseController):
         c.traceback = Traceback.load(self.db, id) or abort(404)
         if c.traceback.displayname:
             c.author = Human.load(self.db, c.traceback.human_id)
-        c.is_owner = c.traceback.is_owner(c.user, check_session=True)
+        c.is_owner = self._check_owner(c.traceback, c.user, check_session=True)
         return render('/tracebacks/show.mako')
-    
-    def delete(self, id):
-        traceback = Traceback.load(self.db, id) or abort(404)
-        if traceback.is_owner(c.user, check_session=True):
-            self.db.delete(traceback)
-            success_flash('Traceback deleted')
-        else:
-            abort(401)

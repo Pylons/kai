@@ -1,4 +1,4 @@
-<div class="yui-b content">
+<div class="yui-b content snippets">
     <div class="relnav" id="relnav">\
         ${h.link_to(_('Snippet Home'), url=url('snippet_home'))} |
         % if c.user:

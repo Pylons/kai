@@ -86,7 +86,8 @@ def make_map(globs=None):
     
     # Pastebin
     map.connect('pasties_tagcloud', '/pasties/tagcloud', controller='pasties', action='tagcloud')
-    map.connect('pasties_tag', '/pasties/by_tag/{tag}', controller='pasties', action='by_tag')
+    map.connect('pasties_tag', '/pasties/by_tag/{tag}', controller='pasties', action='index')
+    map.connect('pasties_author', '/pasties/by_author/{author}', controller='pasties', action='by_author')
     map.resource('paste', 'pasties')
 
     # Resources

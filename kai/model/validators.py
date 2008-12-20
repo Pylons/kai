@@ -4,7 +4,14 @@ from datetime import datetime
 import formencode
 import pylons
 
-from kai.model import Human
+from kai.model import Human, Snippet
+
+
+class ExistingSnippetTitle(formencode.FancyValidator):
+    def _to_python(self, value, state):
+        if Snippet.exists(value):
+            raise formencode.Invalid('Title already exists', value, state)
+        return value
 
 
 class ExistingEmail(formencode.FancyValidator):
