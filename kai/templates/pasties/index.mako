@@ -5,7 +5,9 @@ if c.reverse:
 total = c.total or c.pasties.total_rows
 %>
 
+% if results:
 ${widgets.pager(c.start, results, total, 'created')}
+% endif
 <h1>Pastes</h1>
 
 <ul>
