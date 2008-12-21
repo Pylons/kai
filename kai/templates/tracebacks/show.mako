@@ -45,7 +45,7 @@
             <p>${c.traceback.description if c.traceback.description else 'No Description Entered'}</p>
         </div>
         <div class="sysinfo">
-            <div class="language"><span class="language">${c.traceback.language}</span>: <span class="version">${c.traceback.version}</span></div>
+            <div class="language"><span class="language">${c.traceback.language} on ${c.traceback.platform}</span>: <span class="version">${c.traceback.version}</span></div>
             <table id="traceback_libs">
                 <tbody>
                     <%
