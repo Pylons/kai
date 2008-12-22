@@ -142,9 +142,12 @@ class ConsumerController(BaseController):
             if session.get('openid_action', '') == 'register':
                 sreg_response = sreg.SRegResponse.fromSuccessResponse(info)
                 results = {}
-                results['displayname'] = sreg_response['fullname']
-                results['timezone'] = sreg_response['timezone']
-                results['email_address'] = sreg_response['email']
+                
+                # Just in case the user didn't provide sreg details
+                if sreg_response:
+                    results['displayname'] = sreg_response.get('fullname')
+                    results['timezone'] = sreg_response.get('timezone')
+                    results['email_address'] = sreg_response.get('email')
                 c.defaults = results
                 c.openid = openid_identity
                 return render('/accounts/register.mako')
