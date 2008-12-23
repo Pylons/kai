@@ -83,6 +83,12 @@ class Human(Document):
         """Verify a plain text string is the users password"""  
         if isinstance(plain_text, unicode):
             plain_text = plain_text.encode('utf-8')
+        
+        # Some users don't have passwords, like OpenID users, so they
+        # can't use a password to login
+        if not self.password:
+            return False
+        
         password_salt = self.password[:40]
         crypt_pass = sha.new(plain_text + password_salt).hexdigest()
         if crypt_pass == self.password[40:]:
