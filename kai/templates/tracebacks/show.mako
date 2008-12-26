@@ -1,5 +1,5 @@
 <div class="yui-b content">
-    <% combined_exc = '%s: %s' % (c.traceback.exception_type, h.truncate(c.traceback.exception_value, 140)) %>
+    <% combined_exc = '%s: %s' % (c.traceback.exception_type, h.truncate(c.traceback.exception_value, 100)) %>
     <h1>${h.link_to(combined_exc, url=url.current())}\
         <span class="subtle">(${h.link_to('comments', url='#comments')})</span></h1>
     <div class="traceback_posted">\
