@@ -13,7 +13,7 @@
         <% frame = traceback.frames[-1] %>
         <div class="exception">
             <h2 class="exception"><a href="${url('traceback', id=traceback.id)}">\
-                ${traceback.exception_type} : ${traceback.exception_value}</a></h2>
+                ${traceback.exception_type} : ${h.truncate(traceback.exception_value, 140)}</a></h2>
             <div class="traceback_posted">
                 <div class="traceback_gravatar">\
                     <img src="http://www.gravatar.com/avatar/${gravatar(traceback.email or 'anonymous')}?s=30">
