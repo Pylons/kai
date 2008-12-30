@@ -106,7 +106,7 @@
     <li id="nav-5"${active_tab.get('Code', '') | n}><a href="#">Code</a>
       <ul>
         <li${active_sub.get('Contributing', '') | n}><a href="#">Contributing</a></li>
-        <li${active_sub.get('Milestones', '') | n}><a href="#">Milestones</a></li>
+        <li${active_sub.get('Milestones', '') | n}>${h.link_to('Milestones', url=url('trac_link', url='roadmap'))}</li>
         <li${active_sub.get('View Tickets', '') | n}><a href="#">View Tickets</a></li>
         <li${active_sub.get('Source', '') | n}><a href="#">Source</a></li>
 ##        <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
