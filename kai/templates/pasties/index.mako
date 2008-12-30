@@ -38,9 +38,7 @@ ${widgets.pager(c.start, results, total, 'created')}
     % if paste.old_poster or not paste.email:
     ${widgets.user_post(paste.old_poster, 'anonymous', paste.created, extra_classes='pastelist')}
     % else:
-    ${widgets.user_post(h.link_to(paste.displayname, 
-                                  url=url('pasties_author', author=paste.displayname)), 
-                        paste.email, paste.created, extra_classes='pastelist')}
+    ${widgets.user_post(paste.displayname, paste.email, paste.created, extra_classes='pastelist')}
     % endif
     <div class="clearfix">&nbsp;</div>
 </div>
