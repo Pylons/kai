@@ -1,3 +1,6 @@
+<%!
+from webob.exc import strip_tags
+%>
 <div class="yui-b content">
     ${show_nav()}
     % if c.doc.get('prev', False):
@@ -7,7 +10,7 @@
     ${show_nav()}
     ${widgets.show_comments(c.doc.id, message="Suggest an addition to the docs, or report errors.")}
 </div>
-<%def name="title()">${parent.title()} - Documentation - ${c.doc['title']}</%def>
+<%def name="title()">${parent.title()} - Documentation - ${strip_tags(c.doc['title'])|n}</%def>
 <%inherit file="../layout.mako" />
 <%def name="styles()">
 ${parent.styles()}
