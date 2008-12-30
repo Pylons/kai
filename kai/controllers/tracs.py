@@ -7,11 +7,11 @@ from pylons.controllers.util import abort
 try:
     import os
     os.environ['TRAC_ENV_PARENT_DIR'] = '/usr/local/www'
-    os.environ['PYTHON_EGG_CACHE'] = os.path.join([config['pylons.paths']['root'], 'egg_cache'])
+    os.environ['PYTHON_EGG_CACHE'] = os.path.join(config['pylons.paths']['root'], 'egg_cache')
     import trac.web.main
     trac_app = trac.web.main.dispatch_request
 except:
-    trac_app = None
+    pass
 
 from kai.lib.base import BaseController
 
