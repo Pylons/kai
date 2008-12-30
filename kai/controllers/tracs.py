@@ -3,6 +3,10 @@ import logging
 from pylons import config, tmpl_context as c
 from pylons.controllers.util import abort
 
+# Monkey patch the lazywriter, since mercurial needs that on the stdout
+import paste.script.serve as serve
+serve.LazyWriter.closed = False
+
 # Conditionally import the trac components in case things trac isn't installed
 try:
     import os
