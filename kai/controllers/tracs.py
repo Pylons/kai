@@ -33,5 +33,5 @@ class TracsController(BaseController):
             return trac_app(environ, start_response)
         except HTTPException, obj:
             response.status_int = c.code = obj.code
-            c.message = literal(obj.detail)
+            c.message = literal(obj.message)
             return render('/error.mako')
