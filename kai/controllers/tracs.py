@@ -1,6 +1,6 @@
 import logging
 
-from pylons import config, tmpl_context as c
+from pylons import response, config, tmpl_context as c
 from pylons.controllers.util import abort
 from webhelpers.html.builder import literal
 
