@@ -2,7 +2,6 @@ import logging
 
 from pylons import response, config, tmpl_context as c
 from pylons.controllers.util import abort
-from webhelpers.html.builder import literal
 
 # Monkey patch the lazywriter, since mercurial needs that on the stdout
 import paste.script.serve as serve
@@ -32,6 +31,6 @@ class TracsController(BaseController):
         try:
             return trac_app(environ, start_response)
         except HTTPException, obj:
-            response.status_int = c.code = obj.code
-            c.message = literal(obj.message)
-            return render('/error.mako')
+            response.status_int = obj.code
+            response.body = obj.message
+            return response(environ, start_response)
