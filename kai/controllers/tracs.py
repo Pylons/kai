@@ -32,5 +32,5 @@ class TracsController(BaseController):
             return trac_app(environ, start_response)
         except HTTPException, obj:
             response.status_int = obj.code
-            response.body = obj.message
+            response.write(obj.message)
             return response(environ, start_response)
