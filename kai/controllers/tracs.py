@@ -29,7 +29,7 @@ class TracsController(BaseController):
         if not trac_app:
             abort(404)
         if c.user:
-            environ['REMOTE_USER'] = c.user.displayname
+            environ['REMOTE_NAME'] = c.user.displayname
             environ['REMOTE_EMAIL'] = c.user.email
             environ['REMOTE_TZ'] = _tzoffsetmap.get(c._tzinfo.utcoffset(None))
             environ['REMOTE_ID']= c.user.id
