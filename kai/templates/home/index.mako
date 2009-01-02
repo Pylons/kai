@@ -62,25 +62,30 @@
     <div class="yui-gc">
       <div class="yui-g first">
         <div class="yui-u first">
-          <h4>${_('Recent Blog Entries')}</h4>
+          <h4>${_('Recent Snippets')}</h4>
           <ul>
-            % for article in c.articles[:5]:
-            <li>${h.link_to(article.title, url=url('article_archives', article=article))}<br />
-                ${h.truncate(article.summary, length=250, whole_word=True)}</li>
+            % for snippet in c.snippets:
+            <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))}<br />
+                ${h.truncate(snippet.description, length=90, whole_word=True)}</li>
             % endfor
           </ul>
         </div>
         <div class="yui-u">
-          <h4>${_('Recent Pastebin Snippets')}</h4>
+          <h4>${_('Recent Pasts')}</h4>
           <ul>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite</li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
-            <li><a href="#">Lorem ipsum dolor sit amet, consectetur </a><br />
-              Production Deployment Using Apache, FastCGI and mod_rewrite </li>
+              % for paste in c.pastes:
+              <li>${h.link_to(paste.title, url=url('paste', id=paste.old_id or paste.id))}<br />
+                  ${widgets.format_timestamp(paste.created)}<br />
+                  % if len(paste.tags) > 0:
+                  <span class="tagheader">Tags: </span>\
+                      % for tag in paste.tags:
+                          % if tag:
+                          ${h.link_to(tag, url=url('pasties_tag', tag=tag))} 
+                          % endif
+                      % endfor
+                  % endif
+              </li>
+              % endfor
           </ul>
         </div>
       </div>
@@ -108,3 +113,4 @@
 <%def name="title()">${parent.title()} - ${_('Home')}</%def>
 <%def name="yui_class()"> class="home"</%def>
 <%inherit file="/layout.mako" />
+<%namespace name="widgets" file="/widgets.mako"/>
