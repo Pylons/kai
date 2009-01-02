@@ -31,7 +31,7 @@ class TracsController(BaseController):
         if c.user:
             environ['REMOTE_USER'] = c.user.displayname
             environ['REMOTE_EMAIL'] = c.user.email
-            environ['REMOTE_TZ'] = _tzoffsetmap.get(c._tzinfo.utcoffset(None))
+            environ['REMOTE_TZ'] = str(_tzoffsetmap.get(c._tzinfo.utcoffset(None)))
             environ['REMOTE_ID']= c.user.id
         try:
             return trac_app(environ, start_response)
