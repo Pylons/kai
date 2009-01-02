@@ -15,6 +15,8 @@ try:
     import trac.web.main
     trac_app = trac.web.main.dispatch_request
     from trac.web import HTTPException
+    from trac.util.datefmt import _tzoffsetmap
+    from pytz import timezone
 except:
     pass
 
@@ -29,7 +31,7 @@ class TracsController(BaseController):
         if c.user:
             environ['REMOTE_USER'] = c.user.displayname
             environ['REMOTE_EMAIL'] = c.user.email
-            environ['REMOTE_TZ'] = c.user.timezone
+            environ['REMOTE_TZ'] = _tzoffsetmap.get(c._tzinfo.utcoffset(None))
             environ['REMOTE_ID']= c.user.id
         try:
             return trac_app(environ, start_response)
