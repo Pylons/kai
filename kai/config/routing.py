@@ -108,7 +108,9 @@ def make_map(globs=None):
     map.connect('sqlobject', 'http://www.sqlobject.org/', _static=True)
     map.connect('python-couchdb', 'http://code.google.com/p/couchdb-python/', _static=True)
     map.connect('formalchemy', 'http://code.google.com/p/formalchemy/', _static=True)
-    map.connect('mako', 'http://makotemplates.org/', _static=True)
+    map.connect('mako', 'http://www.makotemplates.org/', _static=True)
+    map.connect('genshi', 'http://genshi.edgewall.org/', _static=True)
+    map.connect('jinja2', 'http://jinja.pocoo.org/', _static=True)
     map.connect('pylons_book', 'http://pylonsbook.com/', _static=True)
 
     map.connect('/{controller}/{action}')
