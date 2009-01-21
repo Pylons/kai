@@ -34,12 +34,12 @@
         </ul>
       </div>
       <div class="yui-u" id="sidebar">
-        <div id="search">
-          <form action="">
-            <input type="text" name="search" id="search-input" />
-            <button type="submit">${_('Search')}</button>
-          </form>
-        </div>
+##        <div id="search">
+##          <form action="">
+##            <input type="text" name="search" id="search-input" />
+##            <button type="submit">${_('Search')}</button>
+##          </form>
+##        </div>
         <div id="news" class="side-section">
           <h3>${_('Latest News')}</h3>
           <ul>
