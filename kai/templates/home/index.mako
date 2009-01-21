@@ -28,9 +28,8 @@
         <p><strong>Not sure which one to choose?</strong> No problem! The Pylons documentation recommends a powerful templating engine (Mako) and database ORM (SQLAlchemy) to help you get started.</p>
         <h3>Latest Tutorials </h3>
         <ul>
-          <li><a href="#">Pylons screencasts </a></li>
-          <li><a href="#">How to write a basic blog with Pylons </a></li>
-          <li><a href="#">Production deployment using Apache, FastCGI and mod_rewrite </a></li>
+          <li><a href="http://www.pylonscasts.com/">Pylons screencasts </a></li>
+          <li><a href="http://wiki.pylonshq.com/display/pylonscookbook/Production+Deployment+Using+Apache,+FastCGI+and+mod_rewrite">Production deployment using Apache, FastCGI and mod_rewrite </a></li>
         </ul>
       </div>
       <div class="yui-u" id="sidebar">
