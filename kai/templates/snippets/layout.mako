@@ -11,6 +11,7 @@
 </div>
 <%inherit file="../layout.mako" />
 <%def name="styles()">
+${h.auto_discovery_link(url('formatted_snippets', format='atom', qualified=True), feed_type='atom', title='PylonsHQ Snippet Feed')}
 ${parent.styles()}
 ${h.stylesheet_link('/css/sphinx.css')}
 </%def>

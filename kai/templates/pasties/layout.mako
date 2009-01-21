@@ -9,5 +9,6 @@
 <%inherit file="../layout.mako" />
 <%def name="styles()">
 ${parent.styles()}
+${h.auto_discovery_link(url('formatted_pasties', format='atom', qualified=True), feed_type='atom', title='PylonsHQ Pasties Feed')}
 ${h.stylesheet_link('/css/sphinx.css')}
 </%def>

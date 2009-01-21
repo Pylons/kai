@@ -4,6 +4,7 @@ from datetime import datetime
 import pylons
 from couchdb.schema import DateTimeField, Document, ListField, TextField, View
 
+from kai.lib.highlight import code_highlight, langdict
 
 class Paste(Document):
     type = TextField(default='Paste')
@@ -20,6 +21,22 @@ class Paste(Document):
 
     old_id = TextField()
     old_poster = TextField()
+    
+    
+    @property
+    def feed_title(self):
+        return self.title
+    
+    @property
+    def feed_link(self):
+        return pylons.url('paste', id=self.old_id or self.id, qualified=True)
+    
+    @property
+    def feed_description(self):
+        content = "<p>Created by %s, Language: %s</p>" % \
+            (self.displayname or 'Anonymous', langdict[self.language])
+        content += code_highlight(self)
+        return content
     
     all_tags = View('pastes', '''
         function(doc) {

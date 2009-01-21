@@ -1,12 +1,13 @@
 import logging
 
-from pylons import request, response, session, tmpl_context as c
+from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest
 from tw.mods.pylonshf import validate
 
 from kai.lib.base import BaseController, CMSObject, render
 from kai.lib.helpers import success_flash
+from kai.lib.serialization import render_feed
 from kai.model import Paste, forms
 from kai.model.generics import all_doc_tags
 
@@ -50,7 +51,7 @@ class PastiesController(BaseController, CMSObject):
         c.is_owner = self._check_owner(doc, c.user, check_session=True)
         return render('/pasties/show.mako')
     
-    def index(self, tag=None):
+    def index(self, format='html', tag=None):
         """ Get the pasties by date and by author"""
         start = request.GET.get('start', '1')
         startkey = request.GET.get('startkey')
@@ -78,6 +79,16 @@ class PastiesController(BaseController, CMSObject):
         else:    
             c.pasties = Paste.by_time(self.db, **kwargs)
         c.start = start
+        if format in ['atom', 'rss']:
+            response.content_type = 'application/atom+xml'
+            title = "PylonsHQ Pastie Feed"
+            if tag:
+                title += " - Tag: %s" % tag
+            return render_feed(
+                title=tag, link=url(qualified=True),
+                description="Recent PylonsHQ pasties", objects=c.pasties[:10],
+                pub_date='created')
+        
         return render('/pasties/index.mako')
     
     def tagcloud(self):
