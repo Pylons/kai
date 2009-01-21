@@ -21,7 +21,7 @@
         <p>Pylons is built on <a href="#">Paste</a> and allows and encourages use of your favorite Python components and libraries: </p>
         <ol>
           <li>Models: ${h.link_to('SQLAlchemy', url=url('sqlalchemy'))}, ${h.link_to('SQLObject', url=url('sqlobject'))}, ${h.link_to('CouchDB', url=url('python-couchdb'))}, or none at all</li>
-          <li>Templating: Mako, Genshi, Jinja, or whatever you like</li>
+          <li>Templating: ${h.link_to('Mako', url=url('mako'))}, ${h.link_to('Genshi', url=url('genshi'))}, ${h.link_to('Jinja2', url=url('jinja2'))}, or whatever you like</li>
           <li>Helpers: WebHelpers for small HTML snippets, ${h.link_to('FormAlchemy', url=url('formalchemy'))} generates entire forms</li>
           <li>Request Dispatching: Routes by default, or plug in your favorite</li>
         </ol>
