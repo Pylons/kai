@@ -71,7 +71,7 @@
           </ul>
         </div>
         <div class="yui-u">
-          <h4>${_('Recent Pasts')}</h4>
+          <h4>${_('Recent Pastes')}</h4>
           <ul>
               % for paste in c.pastes:
               <li>${h.link_to(paste.title, url=url('paste', id=paste.old_id or paste.id))}<br />
