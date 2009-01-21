@@ -51,9 +51,9 @@
         </div>
         <div id="usefull" class="side-section">
           <h3>${_('Useful Resources')}</h3>
-          <p>You might be <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">interested to see</a> 
-              the production sites already using Pylons. If you are after specific information not found in the
-               <a href="${url('doc_home')}">documentation</a>, have a look at the wiki.  The wiki is a useful
+          <p>You might be interested to see the production 
+              <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">sites already using Pylons</a>. If you are after specific information not found in the
+               <a href="${url('doc_home')}">documentation</a>, have a look at the <a href="${url('wiki')}">wiki</a>.  The ${h.link_to('wiki', url=url('wiki'))} is a useful
                 resource for Pylons programming. You might also consider adding an article of your own.</p>
         </div>
       </div>
