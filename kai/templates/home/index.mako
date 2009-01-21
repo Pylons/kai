@@ -65,7 +65,7 @@
           <h4>${_('Recent Snippets')}</h4>
           <ul>
             % for snippet in c.snippets:
-            <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))}<br />
+            <li>${h.link_to(snippet.title, url=url('snippet', id=snippet.slug))}<br />
                 ${h.truncate(snippet.description, length=90, whole_word=True)}</li>
             % endfor
           </ul>
@@ -114,3 +114,7 @@
 <%def name="yui_class()"> class="home"</%def>
 <%inherit file="/layout.mako" />
 <%namespace name="widgets" file="/widgets.mako"/>
+<%def name="styles()">
+${h.auto_discovery_link(url('formatted_articles', format='atom', qualified=True), feed_type='atom', title='PylonsHQ News Feed')}
+${parent.styles()}
+</%def>

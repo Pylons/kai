@@ -4,7 +4,7 @@
 <h1>Latest Snippets</h1>
 <ul>
 % for snippet in c.snippets:
-<li><a href="${url(controller='snippets', action='view', id=snippet.slug)}">${snippet.title}</a> - ${widgets.format_timestamp(snippet.created)}</li>
+<li><a href="${url('snippet', id=snippet.slug)}">${snippet.title}</a> - ${widgets.format_timestamp(snippet.created)}</li>
 % endfor
 </ul>
 

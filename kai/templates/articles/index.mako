@@ -34,6 +34,6 @@
 <%def name="title()">${parent.title()} - ${_('Blog')}</%def>
 <%inherit file="/layout.mako" />
 <%def name="styles()">
-${h.auto_discovery_link(url.current(format='atom', qualified=True), feed_type='atom', title='Article Feed')}
+${h.auto_discovery_link(url.current(format='atom', qualified=True), feed_type='atom', title='News Feed')}
 ${parent.styles()}
 </%def>

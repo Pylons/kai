@@ -63,8 +63,8 @@ class SnippetsController(BaseController):
         success_flash('Snippet has been added')
         return redirect_to('snippet_home')
     
-    def view(self, id):
-        """View a particular snippet
+    def show(self, id):
+        """Show a particular snippet
         
         Keyword arguments:
         id - actually a slug

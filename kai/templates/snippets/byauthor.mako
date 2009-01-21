@@ -11,7 +11,7 @@
 <h1>View Snippets for ${c.username}</h1>
 <ul>
 % for snippet in c.snippets:
-    <li>${h.link_to(snippet.title, url=url('snippet_view', id=snippet.slug))} - ${widgets.format_timestamp(snippet.created)}</li>
+    <li>${h.link_to(snippet.title, url=url('snippet', id=snippet.slug))} - ${widgets.format_timestamp(snippet.created)}</li>
 % endfor 
 </ul>
 % endif
