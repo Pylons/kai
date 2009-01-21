@@ -2,7 +2,7 @@
     <div id="intro">
       <h2>${_("""Pylons is a lightweight web framework <br />
         emphasizing flexibility and rapid development.""") | n}</h2>
-      <div id="download"> <a href="#">${_('Download Latest')} </a> ${_('Version: %s' % app_globals.current_version)}</div>
+      <div id="download"> <a href="${url('doc_view', url='gettingstarted/', anchor='installing')}">${_('Download Latest')} </a> ${_('Version: %s' % app_globals.current_version)}</div>
     </div>
 </div> 
   <div class="yui-b">
@@ -51,7 +51,10 @@
         </div>
         <div id="usefull" class="side-section">
           <h3>${_('Useful Resources')}</h3>
-          <p>You might be <a href="#">interested to see</a> the production sites already using Pylons. If you are after specific information not found in the <a href="#">documentation</a>, have a look at the wiki.  The wiki is a useful resource for <a href="#"> Pylons programming</a>. You might also consider adding an article of your own.</p>
+          <p>You might be <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">interested to see</a> 
+              the production sites already using Pylons. If you are after specific information not found in the
+               <a href="${url('doc_home')}">documentation</a>, have a look at the wiki.  The wiki is a useful
+                resource for Pylons programming. You might also consider adding an article of your own.</p>
         </div>
       </div>
     </div>
@@ -90,7 +93,7 @@
       </div>
       <div class="yui-u" id="bottom-content-sidebar">
         <div id="join" class="side-section">
-          <h3>${_('Join the discussion')}</h3>
+          <h3><a href="http://groups.google.com/group/pylons-discuss">${_('Join the discussion')}</a></h3>
           <form action="">
             <p>
               <label for="join-nam">Name:</label>
