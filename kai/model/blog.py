@@ -28,7 +28,7 @@ class Article(Document):
     
     @property
     def feed_link(self):
-        return pylons.url('article_archives', article=self)
+        return pylons.url('article_archives', article=self, qualified=True)
     
     @property
     def feed_description(self):

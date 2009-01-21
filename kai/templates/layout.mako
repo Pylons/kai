@@ -100,7 +100,7 @@
       <ul>
         <li${active_sub.get('Pastebin', '') | n}>${h.link_to('Pastebin', url=url('pasties'))}</li>
         <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=url('tracebacks'))}</li>
-        <li${active_sub.get('Snippets', '') | n}><a href="#">${h.link_to('Snippets', url=url('snippet_home'))}</a></li>
+        <li${active_sub.get('Snippets', '') | n}><a href="#">${h.link_to('Snippets', url=url('snippets'))}</a></li>
       </ul>
     </li>
     <li id="nav-5"${active_tab.get('Code', '') | n}>${h.link_to('Code', url=url('trac_link', url='roadmap'))}

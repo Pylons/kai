@@ -2,16 +2,17 @@ import logging
 import re
 
 from couchdb import ResourceConflict
-from docutils.core import publish_parts
 from formencode import htmlfill
-from pylons import request, response, session, tmpl_context as c
+from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest
 from tw.mods.pylonshf import validate
 
 import kai.lib.pygmentsupport
 from kai.lib.base import BaseController, render
-from kai.lib.helpers import success_flash, failure_flash
+from kai.lib.decorators import logged_in
+from kai.lib.helpers import success_flash, failure_flash, rst_render
+from kai.lib.serialization import render_feed
 from kai.model import Snippet, forms
 from kai.model.generics import all_doc_tags
 
@@ -22,10 +23,17 @@ class SnippetsController(BaseController):
         c.active_tab = 'Tools'
         c.active_sub = 'Snippets'
 
-    def index(self):
+    def index(self, format='html'):
         """ Get the snippets by date and by author"""
         snippets = list(Snippet.by_date(self.db, descending=True, count=100))
         c.snippets = snippets[:20]
+        if format in ['atom', 'rss']:
+            response.content_type = 'application/atom+xml'
+            return render_feed(
+                title="PylonsHQ Snippet Feed", link=url(qualified=True), 
+                description="Recent PylonsHQ snippets", objects=c.snippets,
+                pub_date='created')
+
         authors = []
         for snippet in c.snippets:
             displayname = snippet.displayname.strip()
@@ -34,17 +42,16 @@ class SnippetsController(BaseController):
         c.unique_authors = authors[:10]
         return render('/snippets/index.mako')
     
-    @rest.dispatch_on(POST='_process_add')
-    def add(self):
+    def new(self):
         if not c.user:
             abort(401)        
         c.tags = [row['name'] for row in list(all_doc_tags(self.db))]
         return render('snippets/add.mako')
     
-    @validate(form=forms.snippet_form, error_handler='add')
-    def _process_add(self):  
+    @validate(form=forms.snippet_form, error_handler='new')
+    def create(self):
         if not c.user:
-            abort(401)      
+            abort(401)
         snippet = Snippet(**self.form_result)
         snippet.human_id = c.user.id
         snippet.email = c.user.email
@@ -61,7 +68,13 @@ class SnippetsController(BaseController):
         
         snippet.store(self.db)
         success_flash('Snippet has been added')
-        return redirect_to('snippet_home')
+        return redirect_to('snippets')
+    
+    @logged_in
+    def preview(self):
+        """Return a HTML version of the rST content"""
+        data = request.POST['content']
+        return rst_render(data)
     
     def show(self, id):
         """Show a particular snippet
@@ -72,17 +85,8 @@ class SnippetsController(BaseController):
         """
         slug = id.lower().strip()
         snippets = list(Snippet.by_slug(self.db)[slug]) or abort(404)
-        snippet = snippets[0]
-        
-        defaults = {
-            'file_insertion_enabled': 0,
-            'raw_enabled': 0,
-            'input_encoding': 'unicode',
-        }
-        string = publish_parts(snippet.content, writer_name='html',
-                               settings_overrides=defaults)['html_body']
-            
-        c.snippet_content = string
+        snippet = snippets[0]        
+        c.snippet_content = rst_render(snippet.content)
         c.snippet = snippet
         return render('/snippets/view.mako')
     

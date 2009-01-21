@@ -21,3 +21,10 @@ def in_group(group):
             log.debug("User %s not in group %s", user, group)
             abort(401, "Not Authorized")
     return decorator(wrapper)
+
+@decorator
+def logged_in(func, *args, **kwargs):
+    if not pylons.c.user:
+        abort(401, "Not Authorized")
+    else:
+        return func(*args, **kwargs)

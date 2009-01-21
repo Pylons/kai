@@ -78,12 +78,10 @@ def make_map(globs=None):
     map.connect('openid_create', '/accounts/openid/create', controller='consumer', action='create')
     
     # Snippets
-    map.connect('snippet_home', '/snippets', controller='snippets', action='index')
-    map.connect('snippet_add', '/snippets/add', controller='snippets', action='add')
     map.connect('snippet_author', '/snippets/by_author/{id}', controller='snippets', action='by_author')
     map.connect('snippet_tag', '/snippets/by_tag/{tag}', controller='snippets', action='by_tag')
     map.connect('snippet_tagcloud', '/snippets/tagcloud', controller='snippets', action='tagcloud')
-    map.resource('snippet', 'snippets')
+    map.resource('snippet', 'snippets', collection={'preview':'POST'})
     
     # Pastebin
     map.connect('pasties_tagcloud', '/pasties/tagcloud', controller='pasties', action='tagcloud')

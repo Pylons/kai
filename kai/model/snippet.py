@@ -5,6 +5,8 @@ import pylons
 from couchdb.schema import DateTimeField, DictField, Document, TextField, \
     ListField, FloatField, Schema, IntegerField, BooleanField, View
 
+from kai.lib.helpers import rst_render
+
 class Snippet(Document):
     type = TextField(default='Snippet')
     human_id = TextField()
@@ -17,6 +19,19 @@ class Snippet(Document):
     slug = TextField()
     
     tags = ListField(TextField())
+    
+    
+    @property
+    def feed_title(self):
+        return self.title
+    
+    @property
+    def feed_link(self):
+        return pylons.url('snippet', id=self.slug, qualified=True)
+    
+    @property
+    def feed_description(self):
+        return rst_render(self.content)
     
     all_tags = View('snippets', '''
         function(doc) {

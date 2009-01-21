@@ -6,7 +6,7 @@ from kai.model.forms import snippet_form
     Please only share fully functioning and tested snippets and include instructions so
     that novice and experienced Pylons users can benefit.""")}</p>
 
-${snippet_form() | n}
+${snippet_form(action=url('snippets')) | n}
 
 <%def name="title()">${parent.title()} - ${_('Add Snippet')}</%def>
 <%def name="javascript()">
