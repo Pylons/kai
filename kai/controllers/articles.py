@@ -9,6 +9,7 @@ from tw.mods.pylonshf import validate
 from kai.lib.base import BaseController, render
 from kai.lib.decorators import in_group
 from kai.lib.helpers import failure_flash, success_flash
+from kai.lib.serialization import render_feed
 from kai.model.forms import new_article_form
 from kai.model import Article
 
@@ -19,7 +20,7 @@ class ArticlesController(BaseController):
         c.active_tab = 'Community'
         c.active_sub = 'Blog'
     
-    def index(self):
+    def index(self, format='html'):
         start = request.GET.get('start', '1')
         startkey = request.GET.get('startkey')
         prevkey = request.GET.get('prevkey')
@@ -31,7 +32,15 @@ class ArticlesController(BaseController):
         else:
             c.articles = Article.by_time(self.db, descending=True, count=11)
         c.start = start
-        return render('/articles/index.mako')
+        
+        if format == 'html':
+            return render('/articles/index.mako')
+        elif format in ['atom', 'rss']:
+            response.content_type = 'application/atom+xml'
+            return render_feed(
+                title="PylonsHQ Article Feed", link=url(qualified=True), 
+                description="Recent PylonsHQ articles", objects=c.articles,
+                pub_date='published')
     
     def archives(self, year, month, slug):
         articles = list(Article.by_slug(c.db, include_docs=True)[(int(year), int(month), slug)]) or abort(404)

@@ -18,3 +18,7 @@ class HomeController(BaseController):
     def history(self):
         c.active_sub = 'History'
         return render('/home/history.mako')
+
+    def features(self):
+        c.active_sub = 'Features'
+        return render('/home/features.mako')

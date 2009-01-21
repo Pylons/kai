@@ -5,6 +5,7 @@ from datetime import datetime
 import pylons
 from couchdb.schema import DateTimeField, Document, TextField, ListField, View
 
+from kai.lib.helpers import textilize
 
 class Article(Document):
     """Represents an article"""
@@ -21,6 +22,19 @@ class Article(Document):
 
     tags = ListField(TextField())
 
+    @property
+    def feed_title(self):
+        return self.title
+    
+    @property
+    def feed_link(self):
+        return pylons.url('article_archives', article=self)
+    
+    @property
+    def feed_description(self):
+        return textilize(self.body)
+    
+    @property
     def atom_id(self):
         host = pylons.request.host
         if ':' in host:

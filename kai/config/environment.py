@@ -10,6 +10,7 @@ import kai.lib.app_globals as app_globals
 import kai.lib.helpers
 from kai.config.routing import make_map
 
+
 def load_environment(global_conf, app_conf):
     """Configure the Pylons environment via the ``pylons.config``
     object

@@ -33,3 +33,7 @@
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('Blog')}</%def>
 <%inherit file="/layout.mako" />
+<%def name="styles()">
+${h.auto_discovery_link(url.current(format='atom', qualified=True), feed_type='atom', title='Article Feed')}
+${parent.styles()}
+</%def>
