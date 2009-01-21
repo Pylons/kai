@@ -31,7 +31,9 @@ class Snippet(Document):
     
     @property
     def feed_description(self):
-        return rst_render(self.content)
+        content = "<p>Created by %s</p>" % self.displayname
+        content += rst_render(self.content)
+        return content
     
     all_tags = View('snippets', '''
         function(doc) {

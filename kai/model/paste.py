@@ -6,6 +6,7 @@ from couchdb.schema import DateTimeField, Document, ListField, TextField, View
 
 from kai.lib.highlight import code_highlight, langdict
 
+
 class Paste(Document):
     type = TextField(default='Paste')
     human_id = TextField()
@@ -37,7 +38,7 @@ class Paste(Document):
             (self.displayname or 'Anonymous', langdict[self.language])
         content += code_highlight(self)
         return content
-    
+        
     all_tags = View('pastes', '''
         function(doc) {
           if (doc.type == 'Paste' && doc.tags) {
