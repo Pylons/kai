@@ -47,3 +47,11 @@ ${widgets.pager(c.start, results, total, 'created')}
 <%namespace name="widgets" file="/widgets.mako" />
 <%def name="title()">${parent.title()} - ${_('Pastebin')}</%def>
 <%inherit file="layout.mako" />
+<%def name="styles()">
+% if c.tag:
+${h.auto_discovery_link(url('formatted_pasties_tag', tag=c.tag, format='atom', qualified=True), feed_type='atom', title='PylonsHQ Pasties Feed')}
+% else:
+${h.auto_discovery_link(url('formatted_pasties', format='atom', qualified=True), feed_type='atom', title='PylonsHQ Pasties Feed')}
+% endif
+${parent.styles()}
+</%def>

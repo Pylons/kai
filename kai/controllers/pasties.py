@@ -85,7 +85,7 @@ class PastiesController(BaseController, CMSObject):
             if tag:
                 title += " - Tag: %s" % tag
             return render_feed(
-                title=tag, link=url(qualified=True),
+                title=title, link=url(qualified=True),
                 description="Recent PylonsHQ pasties", objects=c.pasties[:10],
                 pub_date='created')
         
