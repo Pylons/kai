@@ -2,7 +2,7 @@ import logging
 
 from openid import sreg
 from openid.consumer import consumer
-from pylons import app_globals, request, response, session, tmpl_context as c, url
+from pylons import app_globals, cache, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest, secure, jsonify
 from tw.mods.pylonshf import validate
@@ -24,7 +24,9 @@ class ConsumerController(BaseController):
     def __before__(self):
         c.active_tab = True
         c.active_sub = True
-        self.openid_session = session.get("openid_session", {})
+        self.my_cache = cache.get_cache('ConsumerController.openid_session')
+        self.openid_session = self.my_cache.get_value(
+            key=session.id, createfunc=lambda: {}, expiretime=300)
     
     @rest.dispatch_on(POST='_handle_create')
     def create(Self):
@@ -82,15 +84,13 @@ class ConsumerController(BaseController):
             redirect_url = authrequest.redirectURL(realm=trust_root, 
                                                    return_to=return_to, 
                                                    immediate=False)
-            session['openid_session'] = self.openid_session
-            session.save()
+            self.my_cache.set_value(key=session.id, value=self.openid_session, expiretime=300)
             redirect_to(redirect_url)
         else:
             form_html = authrequest.formMarkup(
                 realm=trust_root, return_to=return_to, immediate=False,
                 form_tag_attrs={'id':'openid_message'})
-            session['openid_session'] = self.openid_session
-            session.save()
+            self.my_cache.set_value(key=session.id, value=self.openid_session, expiretime=300)
             return form_html
     
     def process(self):
