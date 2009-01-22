@@ -25,7 +25,7 @@ class ErrorController(BaseController):
         resp = request.environ.get('pylons.original_response')
         c.prefix = request.environ.get('SCRIPT_NAME', '')
         c.code = str(request.params.get('code', resp.status_int))
-        c.message = literal(resp.body) or cgi.escape(request.GET.get('message'))
+        c.message = literal(resp.body) or cgi.escape(request.GET.get('message', ''))
         return render('error.mako')
 
     def img(self, id):
