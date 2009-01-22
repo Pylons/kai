@@ -29,7 +29,7 @@ class ConsumerController(BaseController):
             key=session.id, createfunc=lambda: {}, expiretime=300)
     
     @rest.dispatch_on(POST='_handle_create')
-    def create(Self):
+    def create(self):
         return render('/accounts/register.mako')
     
     @validate(form=forms.openid_login_form, error_handler='create')
