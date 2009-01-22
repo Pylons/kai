@@ -3,7 +3,7 @@ import re
 
 from couchdb import ResourceConflict
 from formencode import htmlfill
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import cache, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest
 from tw.mods.pylonshf import validate
@@ -118,5 +118,6 @@ class SnippetsController(BaseController):
         return render('/snippets/bytag.mako')
     
     def tagcloud(self):
-        c.tag_sizes = Snippet.tag_sizes()
+        c.tag_sizes = cache.get_cache('snippets.py_tagcloud').get_value(
+            'snippet', createfunc=lambda: Snippet.tag_sizes(), expiretime=180)
         return render('/snippets/tagcloud.mako')

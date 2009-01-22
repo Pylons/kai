@@ -1,6 +1,6 @@
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import cache, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest
 from tw.mods.pylonshf import validate
@@ -92,5 +92,6 @@ class PastiesController(BaseController, CMSObject):
         return render('/pasties/index.mako')
     
     def tagcloud(self):
-        c.tag_sizes = Paste.tag_sizes()
+        c.tag_sizes = cache.get_cache('pasties.py_tagcloud').get_value(
+            'tags', createfunc=lambda: Paste.tag_sizes(), expiretime=180)
         return render('/pasties/tagcloud.mako')
