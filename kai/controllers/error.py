@@ -2,10 +2,9 @@ import cgi
 import os.path
 
 from paste.urlparser import StaticURLParser
-from pylons import request
-from pylons.controllers.util import forward
+from pylons import tmpl_context as c, request
+from pylons.controllers.util import abort, forward
 from pylons.middleware import error_document_template, media_path
-from pylons import tmpl_context as c
 from webhelpers.html.builder import literal
 
 from kai.lib.base import BaseController, render
@@ -23,6 +22,8 @@ class ErrorController(BaseController):
     def document(self):
         """Render the error document"""
         resp = request.environ.get('pylons.original_response')
+        if not resp:
+            abort(404)
         c.prefix = request.environ.get('SCRIPT_NAME', '')
         c.code = str(request.params.get('code', resp.status_int))
         c.message = literal(resp.body) or cgi.escape(request.GET.get('message', ''))
