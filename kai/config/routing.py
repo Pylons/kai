@@ -37,6 +37,8 @@ def make_map(globs=None):
     map.connect('home', '/', controller='home', action='index')
     map.connect('features', '/features', controller='home', action='features')
     map.connect('history', '/history', controller='home', action='history')
+    map.connect('search', '/search', controller='home', action='search')
+    map.connect('community', '/community', controller='home', action='community')
     
     # Blog url's
     map.connect('article_archives', '/articles/archives/{year:\d+}/{month:\d+}/{slug}',

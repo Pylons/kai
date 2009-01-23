@@ -1,7 +1,9 @@
 <div class="yui-b content">
     <div id="searchcontrol"/>
+    </div>
 </div>
 <%def name="styles()">
+${parent.styles()}
 <link href="http://www.google.com/uds/css/gsearch.css" type="text/css" rel="stylesheet"/>
 <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAgvmgA94hbkqC7kh6JzKluxQQvUAzTIjSyGWv2egO9TxsQcw_PhRfptE4k-DD1r2KrOOojaXEJjVp-Q" type="text/javascript"></script>
 <script type="text/javascript">
@@ -142,4 +144,5 @@ table.gsc-resultsHeader, div.gsc-blogConfig {
 
 </style>
 </%def>
-<%inherit file="/layout.mako"/>    
+<%def name="title()">${parent.title()} - ${_('Search')}</%def>
+<%inherit file="/layout.mako" />

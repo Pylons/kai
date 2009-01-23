@@ -33,12 +33,12 @@
         </ul>
       </div>
       <div class="yui-u" id="sidebar">
-##        <div id="search">
-##          <form action="">
-##            <input type="text" name="search" id="search-input" />
-##            <button type="submit">${_('Search')}</button>
-##          </form>
-##        </div>
+        <div id="search">
+          <form action="/search" method="GET">
+            <input type="text" name="search" id="search-input" />
+            <button id="search_button" type="submit">${_('Search')}</button>
+          </form>
+        </div>
         <div id="news" class="side-section">
           <h3>${_('Latest News')}</h3>
           <ul>
@@ -112,6 +112,18 @@
     </div>
   </div>
 </div>
+<%def name="javascript()">
+${parent.javascript()}
+<script>
+$(document).ready(function() {
+    $('#search_button').click(function() {
+        var search = document.getElementById('search-input').value;
+        document.location = '/search#' + escape(search);
+        return false;
+    });
+});
+</script>
+</%def>
 <%def name="title()">${parent.title()} - ${_('Home')}</%def>
 <%def name="yui_class()"> class="home"</%def>
 <%inherit file="/layout.mako" />

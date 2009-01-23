@@ -87,7 +87,7 @@
         <li${active_sub.get('Index', '') | n}><a href="#">${h.link_to('Index', url=url('doc_view', url='index/'))}</a></li>
       </ul>
     </li>
-    <li id="nav-3"${active_tab.get('Community', '') | n}>${h.link_to('Community', url=url('articles'))}
+    <li id="nav-3"${active_tab.get('Community', '') | n}>${h.link_to('Community', url=url('community'))}
       <ul>
         <li${active_sub.get('Blog', '') | n}>${h.link_to('Blog', url=url('articles'))}</li>
         <li${active_sub.get('Wiki', '') | n}>${h.link_to('Wiki', url=url('wiki'))}</li>
