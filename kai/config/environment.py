@@ -3,6 +3,7 @@ import os
 
 from couchdb import Server, Database
 from mako.lookup import TemplateLookup
+from paste.deploy.converters import asbool
 from pylons.error import handle_mako_error
 from pylons import config
 
@@ -36,6 +37,7 @@ def load_environment(global_conf, app_conf):
         module_directory=os.path.join(app_conf['cache_dir'], 'templates'),
         input_encoding='utf-8', output_encoding='utf-8',
         imports=['from webhelpers.html import escape'],
+        filesystem_checks=asbool(config['debug']),
         default_filters=['escape'])
     
     # Setup the database connection
