@@ -16,7 +16,7 @@
     ${display_article(article)}
     % endfor
 </div>
-<%def name="display_article(article)">
+<%def name="display_article(article)" cached="True" cache_timeout="600" cache_key="${article.id}" cache_type="ext:memcached" cache_url="127.0.0.1:11211">
 <div class="atomentry" id="article-${article.slug}">
     <h2 class="title">${h.link_to(article.title, url=url('article_archives', article=article))}</h2>
     <%

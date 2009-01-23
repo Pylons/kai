@@ -1,7 +1,7 @@
 import logging
 import re
 
-from pylons import cache, request, response, session, tmpl_context as c, url
+from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest
 from tw.mods.pylonshf import validate
