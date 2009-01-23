@@ -12,6 +12,9 @@ from tw.api import make_middleware
 
 from kai.config.environment import load_environment
 
+# Import the docutil extension promptly to ensure the code-block is regged
+import kai.lib.pygmentsupport
+
 def make_app(global_conf, full_stack=True, **app_conf):
     """Create a Pylons WSGI application and return it
 
@@ -65,6 +68,7 @@ def make_app(global_conf, full_stack=True, **app_conf):
 
     # Static files (If running in production, and Apache or another web 
     # server is handling this static content, remove the following 3 lines)
-    static_app = StaticURLParser(config['pylons.paths']['static_files'])
-    app = Cascade([static_app, app])
+    if asbool(config['debug']):
+        static_app = StaticURLParser(config['pylons.paths']['static_files'])
+        app = Cascade([static_app, app])
     return app
