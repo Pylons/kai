@@ -33,7 +33,7 @@ class HomeController(BaseController):
         
         # Load various latest data
         c.snippets = list(Snippet.by_date(c.db, descending=True, count=5))
-        c.pastes = list(Paste.by_time(c.db, descending=True, count=5))
+        c.pastes = list(Paste.by_time(c.db, descending=True, count=10))
         
         # Pull comments and grab the docs with them for their info
         comments = list(Comment.by_anytime(c.db, descending=True, count=10))
@@ -43,6 +43,7 @@ class HomeController(BaseController):
             comment['displayname'] = comment_doc.displayname or 'Anonymous'
             comment['created'] = comment_doc.created
             comment['email'] = comment_doc.email or 'anonymous'
+            comment['content'] = comment_doc.content
             comment['id'] = comment_doc.id
             doc = c.db.get(comment_doc.doc_id)
             if doc['type'] == 'Traceback':

@@ -13,6 +13,7 @@ from webhelpers.html.tags import auto_discovery_link, link_to, select, styleshee
 from webhelpers.html.secure_form import auth_token_hidden_field
 from webhelpers.text import truncate
 from webhelpers.pylonslib import Flash as _Flash
+from webob.exc import strip_tags
 
 from kai.lib.highlight import code_highlight, langdict
 

@@ -19,10 +19,7 @@
         <h3>Comments &nbsp; <a href="${url('formatted_comments', format='atom', qualified=True)}"><img src="/images/icons/RSS_16.png" /></a></h3>
         <div class="itemlist">
         % for comment in c.comments:
-            <div class="result">
-                ${widgets.comment_link(title=comment['title'], comment_id=comment['id'], doc=comment['doc'], type=comment['type'])}
-                <div class="meta">${widgets.format_timestamp(comment['created'])} - ${comment['displayname']}</div>
-            </div>
+            ${render_comment(comment)}
         % endfor
         </div>
     </div>
@@ -53,6 +50,13 @@
         </div>
     </div>
 </div>
+<%def name="render_comment(comment)" cached="True" cache_timeout="3600" cache_key="${comment['id']}" cache_type="ext:memcached" cache_url="127.0.0.1:11211">
+<div class="result">
+    ${widgets.comment_link(title='%s on %s' % (comment['displayname'], comment['title']), comment_id=comment['id'], doc=comment['doc'], type=comment['type'])}
+    <div class="blurb">${h.truncate(h.strip_tags(h.textilize(comment['content'])), length=120, whole_word=True)}</div>
+    <div class="meta">${widgets.format_timestamp(comment['created'])}</div>
+</div>
+</%def>
 <%def name="title()">${parent.title()} - ${_('Community')}</%def>
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="javascript()">
