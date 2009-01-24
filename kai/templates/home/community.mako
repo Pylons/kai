@@ -53,7 +53,7 @@
 <%def name="render_comment(comment)" cached="True" cache_timeout="3600" cache_key="${comment['id']}" cache_type="ext:memcached" cache_url="127.0.0.1:11211">
 <div class="result">
     ${widgets.comment_link(title='%s on %s' % (comment['displayname'], comment['title']), comment_id=comment['id'], doc=comment['doc'], type=comment['type'])}
-    <div class="blurb">${h.truncate(h.strip_tags(h.textilize(comment['content'])), length=120, whole_word=True)}</div>
+    <div class="blurb">${h.truncate(h.strip_tags(h.textilize(comment['content'])), length=120, whole_word=True) | n}</div>
     <div class="meta">${widgets.format_timestamp(comment['created'])}</div>
 </div>
 </%def>
