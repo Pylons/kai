@@ -35,6 +35,7 @@ else:
 </%def>
 ##
 <%def name="show_comment(comment, extra_class=None)">
+<a name="${comment.id}" />
 <div class="comment ${extra_class or ''}">
     ${user_post(comment.displayname, comment.email, comment.created, 'comments')}
     % if c.user and c.user.in_group('admin'):
@@ -114,6 +115,25 @@ $('div.comment_delete a').click(function() {
     }
     return false;
 });
+% endif
+</%def>
+##
+<%def name="comment_link(title, comment_id, doc, type, urlonly=False)">
+<%
+link = '#'
+if type == 'Documentation':
+    link = url('doc_view', version=doc['version'], language=doc['language'], url=doc['current_page_name'], anchor=comment_id)
+elif type == 'Traceback':
+    link = url('traceback', id=doc['_id'], anchor=comment_id)
+elif type == 'Paste':
+    link = url('paste', id=doc.get(old_id, doc['_id']), anchor=comment_id)
+elif type == 'Snippet':
+    link = url('snippet', id=doc['slug'], anchor=comment_id)
+%>
+% if urlonly:
+${link}
+% else:
+${h.link_to(title, url=link)}
 % endif
 </%def>
 ##

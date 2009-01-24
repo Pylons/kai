@@ -44,6 +44,13 @@ class Comment(Document):
           }
         }''', include_docs=True)
     
+    by_anytime = View('comments', '''
+        function(doc) {
+          if (doc.type == 'Comment') {
+            emit([doc.created], null);
+          }
+        }''', include_docs=True)
+    
     comment_count = View('comments', '''
         function(doc) {
           if (doc.type == 'Comment') {

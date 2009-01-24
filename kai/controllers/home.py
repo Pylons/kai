@@ -36,19 +36,22 @@ class HomeController(BaseController):
         c.pastes = list(Paste.by_time(c.db, descending=True, count=5))
         
         # Pull comments and grab the docs with them for their info
-        comments = list(Comment.by_time(c.db, descending=True, count=20))
+        comments = list(Comment.by_anytime(c.db, descending=True, count=10))
         commentdata = []
         for comment_doc in comments:
             comment = {}
             comment['displayname'] = comment_doc.displayname or 'Anonymous'
             comment['created'] = comment_doc.created
             comment['email'] = comment_doc.email or 'anonymous'
+            comment['id'] = comment_doc.id
             doc = c.db.get(comment_doc.doc_id)
             if doc['type'] == 'Traceback':
                 comment['title'] = '%s: %s' % (doc['exception_type'], doc['exception_value'])
             else:
                 comment['title'] = doc.get('title', '-- No title --')
             comment['type'] = doc['type']
+            comment['doc'] = doc
+            comment['doc_id'] = comment_doc.doc_id
             commentdata.append(comment)
-        
+        c.comments = commentdata
         return render('/home/community.mako')

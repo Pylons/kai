@@ -21,7 +21,7 @@ def setup_app(command, conf, vars):
         Article.all_months, Article.all_tags, Article.by_month,
         Article.by_tag, Article.by_time, Article.by_slug,
         
-        Comment.by_time, Comment.comment_count,
+        Comment.by_time, Comment.comment_count, Comment.by_anytime,
         
         Documentation.by_path, Documentation.ids_for_version,
         Documentation.doc_key,

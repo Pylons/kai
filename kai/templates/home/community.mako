@@ -15,6 +15,16 @@
             </div>
             % endfor
         </div>
+        <br />
+        <h3>Comments &nbsp; <a href="${url('formatted_comments', format='atom', qualified=True)}"><img src="/images/icons/RSS_16.png" /></a></h3>
+        <div class="itemlist">
+        % for comment in c.comments:
+            <div class="result">
+                ${widgets.comment_link(title=comment['title'], comment_id=comment['id'], doc=comment['doc'], type=comment['type'])}
+                <div class="meta">${widgets.format_timestamp(comment['created'])} - ${comment['displayname']}</div>
+            </div>
+        % endfor
+        </div>
     </div>
     <div class="yui-u">
         <h3>Pastes &nbsp; <a href="${url('formatted_pasties', format='atom', qualified=True)}"><img src="/images/icons/RSS_16.png" /></a></h3>
