@@ -39,6 +39,8 @@ class TracsController(BaseController):
             # Mercurial throws lots of these when odd options are triggered, mainly
             # from bots trying every available option, I don't want the email about it
             abort(404)
+        except AttributeError:
+            abort(404)
         except HTTPException, obj:
             response.status_int = obj.code
             response.write(obj.message)
