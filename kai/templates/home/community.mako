@@ -3,7 +3,7 @@
     <h2>Community Overview</h2>
     <p>Latest happenings from the Pylons community, mail lists, etc.</p>
     <div class="yui-u first">
-        <h3>Snippets</h3>
+        <h3>Snippets &nbsp; <a href="${url('formatted_snippets', format='atom', qualified=True)}"><img src="/images/icons/RSS_16.png" /></a></h3>
         <div class="itemlist">
             % for snippet in c.snippets:
             <div class="result">
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="yui-u">
-        <h3>Pastes</h3>
+        <h3>Pastes &nbsp; <a href="${url('formatted_pasties', format='atom', qualified=True)}"><img src="/images/icons/RSS_16.png" /></a></h3>
         <div class="itemlist">
             % for paste in c.pastes:
             <div class="result">
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="yui-u">
-        <h2>Mail List</h2>
+        <h2>Mail List  &nbsp; <a href="http://groups.google.com/group/pylons-discuss/feed/atom_v1_0_msgs.xml"><img src="/images/icons/RSS_16.png" /></a></h2>
         <div id="maillist" class="itemlist">
         </div>
     </div>
