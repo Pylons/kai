@@ -35,13 +35,9 @@ class TracsController(BaseController):
             environ['REMOTE_ID']= c.user.id
         try:
             return trac_app(environ, start_response)
-        except TypeError:
-            # Mercurial throws lots of these when odd options are triggered, mainly
-            # from bots trying every available option, I don't want the email about it
-            abort(404)
-        except AttributeError:
-            abort(404)
         except HTTPException, obj:
             response.status_int = obj.code
             response.write(obj.message)
             return response(environ, start_response)
+        except:
+            abort(404)
