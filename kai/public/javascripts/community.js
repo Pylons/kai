@@ -29,7 +29,7 @@ $(document).ready(function() {
                 var meta = $(document.createElement('div')).addClass('meta');
                 meta.html(val.date + ' - ' + val.from);
                 result.append(meta);
-                if (i < 5) ml.append(result);
+                ml.append(result);
             });
             var searchlink = document.createElement('a');
             searchlink.href = data.search.permalink;
