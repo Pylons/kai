@@ -662,3 +662,7 @@ ul#failure-flash-messages {
 ul#failure-flash-messages li, ul#success-flash-messages li {
     list-style: none;
 }
+
+html {
+    background-color: #0f0f0f;
+}
