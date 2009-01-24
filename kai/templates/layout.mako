@@ -57,7 +57,7 @@
 %endif
 </%def>
 <%def name="javascript()">
-<script type="text/javascript" src="/javascripts/jquery-1.2.6.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/javascripts/jquery-1.3.1.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="/javascripts/jquery.blockUI.js" charset="utf-8"></script>
 <script type="text/javascript" src="/javascripts/behavior.js" charset="utf-8"></script>
 </%def>
@@ -75,6 +75,7 @@
         <li${active_sub.get('Overview', '') | n}>${h.link_to('Overview', url=url('home'))}</li>
         <li${active_sub.get('Features', '') | n}>${h.link_to('Features', url=url('features'))}</li>
         <li${active_sub.get('History', '') | n}>${h.link_to('History', url=url('history'))}</li>
+        <li${active_sub.get('Search', '') | n}>${h.link_to('Search', url=url('search'))}</li>
 ##        <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
       </ul>
     </li>

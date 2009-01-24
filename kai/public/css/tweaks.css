@@ -609,6 +609,34 @@ span.error-message {
 }
 
 
+/* Markmail results */
+div.itemlist div.result {
+	margin-bottom: 5px;
+	padding: 2px 0px 2px 4px;
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(235, 235, 235);
+}
+
+div.itemlist div.result div.meta {
+	font-size: 0.8em;
+	color: rgb(1, 116, 22);
+}
+
+p.results a {
+    float: right;
+}
+
+div.itemlist div.blurb {
+	font-size: 0.8em;
+}
+
+div.itemlist div.result a {
+	text-decoration: underline;
+	font-size: 0.9em;
+	cursor: pointer;
+}
+
+
 /* Flash messages */
 ul#success-flash-messages {
     color: green;
