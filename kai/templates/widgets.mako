@@ -122,7 +122,7 @@ $('div.comment_delete a').click(function() {
 <%
 link = '#'
 if type == 'Documentation':
-    link = url('doc_view', version=doc['version'], language=doc['language'], url=doc['current_page_name'], anchor=comment_id)
+    link = url('doc_view', version=doc['version'], language=doc['language'], url=doc['current_page_name'] + '/', anchor=comment_id)
 elif type == 'Traceback':
     link = url('traceback', id=doc['_id'], anchor=comment_id)
 elif type == 'Paste':
