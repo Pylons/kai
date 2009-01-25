@@ -75,7 +75,10 @@ class PastiesController(BaseController, CMSObject):
                 kwargs['startkey'] = [tag, {}]
                 kwargs['endkey'] = [tag]
             c.pasties = Paste.by_tag_time(self.db, **kwargs)
-            c.total = list(Paste.all_tags(self.db)[tag])[0]['count']
+            total_count = list(Paste.all_tags(self.db)[tag]) or 0
+            if total_count:
+                total_count = total_count[0]['count']
+            c.total = total_count
         else:    
             c.pasties = Paste.by_time(self.db, **kwargs)
         c.start = start

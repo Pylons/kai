@@ -43,6 +43,9 @@ ${widgets.pager(c.start, results, total, 'created')}
     <div class="clearfix">&nbsp;</div>
 </div>
 % endfor
+% if not results:
+<p>No pasties found</p>
+% endif
 
 <%namespace name="widgets" file="/widgets.mako" />
 <%def name="title()">${parent.title()} - ${_('Pastebin')}</%def>
