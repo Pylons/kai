@@ -58,8 +58,9 @@ class PastiesController(BaseController, CMSObject):
             if not docs:
                 abort(404)
             doc = docs[0]
+        id = doc.old_id or doc.id
         response.content_type = 'text/plain'
-        response.headers['Content-disposition'] = 'attachment; filename=paste_%s.txt' % doc.old_id or doc.id
+        response.headers['Content-disposition'] = 'attachment; filename=paste_%s.txt' % id
         return doc.code
     
     def index(self, format='html', tag=None):
