@@ -51,6 +51,17 @@ class PastiesController(BaseController, CMSObject):
         c.is_owner = self._check_owner(doc, c.user, check_session=True)
         return render('/pasties/show.mako')
     
+    def download(self, id):
+        doc = Paste.load(self.db, id)
+        if not doc:
+            docs = list(Paste.by_old_id(self.db)[id])
+            if not docs:
+                abort(404)
+            doc = docs[0]
+        response.content_type = 'text/plain'
+        response.headers['Content-disposition'] = 'attachment; filename=paste_%s.txt' % doc.old_id or doc.id
+        return doc.code
+    
     def index(self, format='html', tag=None):
         """ Get the pasties by date and by author"""
         start = request.GET.get('start', '1')

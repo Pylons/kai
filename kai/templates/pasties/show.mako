@@ -22,6 +22,8 @@ ${widgets.user_post(h.link_to(c.paste.displayname,
 
 ${h.code_highlight(c.paste) |n}
 
+<p class="subtle">${h.link_to('Download', url=url('download_paste', id=c.paste.old_id or c.paste.id))}</p>
+
 ${widgets.show_comments(c.paste.id)}
 <%namespace name="widgets" file="/widgets.mako"/>
 <%def name="title()">${parent.title()} - ${_('View Paste: %s' % c.paste.title)}</%def>

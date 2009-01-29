@@ -92,7 +92,7 @@ def make_map(globs=None):
     map.redirect('/pastetags/{tag}', '/pasties/by_tag/{tag}')
     map.connect('pasties_tag', '/pasties/by_tag/{tag}', controller='pasties', action='index')
     map.connect('pasties_author', '/pasties/by_author/{author}', controller='pasties', action='by_author')
-    map.resource('paste', 'pasties')
+    map.resource('paste', 'pasties', member={'download':'GET'})
 
     # Resources
     map.resource('traceback', 'tracebacks', member={'reown':'GET'})
