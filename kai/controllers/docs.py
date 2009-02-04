@@ -63,6 +63,9 @@ class DocsController(BaseController):
             return render('/docs/modindex.mako')
         if url == 'genindex':
             return render('/docs/genindex.mako')
+        if url == 'objects.inv':
+            response.content_type = 'text/plain'
+            return c.doc['content']
         return render('/docs/view.mako')
     
     def _view_old(self, version, url):
