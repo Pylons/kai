@@ -56,7 +56,7 @@ class AccountsController(BaseController):
         user.store(self.db)
         message = EmailMessage(subject="PylonsHQ - Lost Password", 
                                body=render('/email/lost_password.mako'),
-                               from_email="PylonsHQ <pylons@pylonshq.com>",
+                               from_email="PylonsHQ <pylonshq@groovie.org>",
                                to=[self.form_result['email_address']])
         message.send(fail_silently=True)
         success_flash('An e-mail has been sent to your account to verify the password reset request.')
@@ -194,7 +194,7 @@ class AccountsController(BaseController):
         # Send out the welcome email with the reg token
         message = EmailMessage(subject="PylonsHQ - Registration Confirmation",
                                body=render('/email/register.mako'),
-                               from_email="PylonsHQ <pylons@pylonshq.com>",
+                               from_email="PylonsHQ <pylonshq@groovie.org>",
                                to=[self.form_result['email_address']])
         message.send(fail_silently=True)
         
