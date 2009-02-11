@@ -8,7 +8,7 @@ from webob.exc import strip_tags
     % endif
     ${c.doc['body'] | n}
     ${show_nav()}
-    ${widgets.show_comments(c.doc.id, message="Suggest an addition to the docs, or report errors.")}
+    ${widgets.show_comments(c.doc.id, message="Suggest an addition to the docs, or report errors. Note that for documentation fixes we will delete comments as we apply them.")}
 </div>
 <%def name="title()">${parent.title()} - Documentation - ${strip_tags(c.doc['title'])|n}</%def>
 <%inherit file="../layout.mako" />
