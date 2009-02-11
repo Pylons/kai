@@ -15,6 +15,10 @@ class HomeController(BaseController):
         c.pastes = list(Paste.by_time(c.db, descending=True, count=5))
         return render('/home/index.mako')
     
+    def robots(self):
+        response.content_type = 'text/plain'
+        return render('/home/robots.mako')
+        
     def history(self):
         c.active_sub = 'History'
         return render('/home/history.mako')

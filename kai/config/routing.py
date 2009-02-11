@@ -35,6 +35,7 @@ def make_map(globs=None):
 
     # Home url's
     map.connect('home', '/', controller='home', action='index')
+    map.connect('/robots.txt', connect='home', action='robots')
     map.connect('features', '/features', controller='home', action='features')
     map.connect('history', '/history', controller='home', action='history')
     map.connect('search', '/search', controller='home', action='search')
