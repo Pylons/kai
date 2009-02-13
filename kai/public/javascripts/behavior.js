@@ -34,11 +34,11 @@ $(document).ready(function() {
         if ($('#layout-toggle').html() == 'Fixed-width') {
             $('#doc4').attr('id', 'doc3');
             $('#layout-toggle').html('Stretch');
-            $.cookie('layout_style', 'Stretch', {path: '/'});
+            $.cookie('layout_style', 'Stretch', {path: '/', domain: '.pylonshq.com'});
         } else {
             $('#doc3').attr('id', 'doc4');
             $('#layout-toggle').html('Fixed-width');
-            $.cookie('layout_style', null, {path: '/'});
+            $.cookie('layout_style', null, {path: '/', domain: '.pylonshq.com'});
         }
         return false;
     });
