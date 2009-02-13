@@ -347,9 +347,20 @@ div.comment:hover div.comment_delete {
     display: block;
 }
 
+div.tablestop {
+    overflow: auto;
+}
+
+div.tablestop table.syntaxtable {
+    padding-bottom: 0;
+}
+
 table.syntaxtable {
     border: none;
+    width: 100%;
+    padding-right: 20px;
 }
+
 table.syntaxtable td {
     border: none;
 }
@@ -363,20 +374,14 @@ table.syntaxtable td.linenos pre {
     border: none;
     background: inherit;
 }
-table.syntaxtable {
-    width: 100%;
-    padding-right: 20px;
-}
 table.syntaxtable td {
     padding-left: 0px;
     padding-right: 0px;
 }
 table.syntaxtable td.code pre {
-    width: 100%;
     min-width: 540px;
     overflow: auto;
 }
-
 /* Traceback */
 
 div.exception {

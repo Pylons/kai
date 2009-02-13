@@ -14,7 +14,7 @@
         <div id="bd">
             <div id="loginbar">
                 <div class="layoutstyle">
-                    Layout: ${h.link_to('Stretch', id_='layout-toggle', url='#')}
+                    Layout: ${h.link_to('Fixed-width', id_='layout-toggle', url='#')}
                 </div>
                 <div class="links">
                 % if session.get('logged_in'):

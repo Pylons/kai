@@ -20,7 +20,9 @@ ${widgets.user_post(h.link_to(c.paste.displayname,
 % endfor
 </span></div>
 
+<div class="tablestop">
 ${h.code_highlight(c.paste) |n}
+</div>
 
 <p class="subtle">${h.link_to('Download', url=url('download_paste', id=c.paste.old_id or c.paste.id))}</p>
 
