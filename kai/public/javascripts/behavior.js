@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    // Swap the layout toggle if they have wide-screen
+    if ($.cookie('layout_style') == 'Stretch') {
+        $('#doc4').attr('id', 'doc3');
+        $('#layout-toggle').html('Fixed-width');
+    };
+    
     $('div.viewtoggle a').click(function() {
         $(this).toggleClass('down');
         $(this).parent().next().slideToggle();
@@ -22,6 +28,18 @@ $(document).ready(function() {
                 });
             }
         });
+        return false;
+    });
+    $('#layout-toggle').click(function() {
+        if ($('#layout-toggle').html() == 'Stretch') {
+            $('#doc4').attr('id', 'doc3');
+            $('#layout-toggle').html('Fixed-width');
+            $.cookie('layout_style', 'Stretch', {path: '/'});
+        } else {
+            $('#doc3').attr('id', 'doc4');
+            $('#layout-toggle').html('Stretch');
+            $.cookie('layout_style', null, {path: '/'});
+        }
         return false;
     });
 });
