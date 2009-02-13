@@ -81,7 +81,6 @@ class DocsController(BaseController):
         if not c.url.startswith(base_path) or not os.path.exists(c.url):
             if version > '0.9.5':
                 redirect_to('cdocs', page='Home')
-            raise 'hi'
             abort(404)
         c.version = version
         return render('/docs/load_content.mako')
