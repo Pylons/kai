@@ -170,6 +170,11 @@ div#loginbar {
     background: transparent url(images/loginbar.jpg) no-repeat 0 0;    
 }
 
+div#loginbar .layoutstyle {
+    float: left;
+    padding: 1px 0 0 4px;
+}
+
 div#loginbar .links {
     margin-right: 15px;
     padding: 1px 0 0 0;
@@ -349,15 +354,26 @@ table.syntaxtable td {
     border: none;
 }
 table.syntaxtable td.linenos {
-	padding-top: 5px;
+    padding: 5px 0 0 0;
+    margin: 0;
     vertical-align: top;
+    text-align: right;
 }
 table.syntaxtable td.linenos pre {
     border: none;
     background: inherit;
 }
+table.syntaxtable {
+    width: 100%;
+    padding-right: 20px;
+}
+table.syntaxtable td {
+    padding-left: 0px;
+    padding-right: 0px;
+}
 table.syntaxtable td.code pre {
-    width: 750px;
+    width: 100%;
+    min-width: 540px;
     overflow: auto;
 }
 
@@ -661,6 +677,12 @@ ul#failure-flash-messages {
     }
 ul#failure-flash-messages li, ul#success-flash-messages li {
     list-style: none;
+}
+
+#doc3 {
+    min-width: 974px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 html {

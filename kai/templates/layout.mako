@@ -13,6 +13,9 @@
         </div>
         <div id="bd">
             <div id="loginbar">
+                <div class="layoutstyle">
+                    Layout: ${h.link_to('Stretch', id_='layout-toggle', url='#')}
+                </div>
                 <div class="links">
                 % if session.get('logged_in'):
                     Logged in as ${session['displayname']}
@@ -57,8 +60,7 @@
 %endif
 </%def>
 <%def name="javascript()">
-<script type="text/javascript" src="/javascripts/jquery-1.3.1.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="/javascripts/jquery.blockUI.js" charset="utf-8"></script>
+<script type="text/javascript" src="/javascripts/jquery_all.js" charset="utf-8"></script>
 <script type="text/javascript" src="/javascripts/behavior.js" charset="utf-8"></script>
 </%def>
 <%def name="nav(tab, sub)">
