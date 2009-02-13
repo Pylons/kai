@@ -37,7 +37,7 @@ $(document).ready(function() {
             $.cookie('layout_style', 'Stretch', {path: '/'});
         } else {
             $('#doc3').attr('id', 'doc4');
-            $('#layout-toggle').html('Stretch');
+            $('#layout-toggle').html('Fixed-width');
             $.cookie('layout_style', null, {path: '/'});
         }
         return false;
