@@ -167,7 +167,7 @@ div#loginbar {
     color: #ddd;
     font-size: 83%;
     height: 20px;
-    background: transparent url(images/loginbar.jpg) no-repeat 0 0;    
+    background: transparent url(images/loginbar.jpg) repeat-x 0 0;    
 }
 
 div#loginbar .layoutstyle {
