@@ -1,5 +1,6 @@
 """Pylons environment configuration"""
 import os
+from datetime import timedelta
 
 from couchdb import Server, Database
 from mako.lookup import TemplateLookup
@@ -29,6 +30,7 @@ def load_environment(global_conf, app_conf):
     config['pylons.app_globals'] = app_globals.Globals()
     config['routes.map'] = make_map(globs=config['pylons.app_globals'])
     config['pylons.h'] = kai.lib.helpers
+    config['beaker.session.cookie_expires'] = timedelta(seconds=604800)
 
     # Create the Mako TemplateLookup, with the default auto-escaping
     config['pylons.app_globals'].mako_lookup = TemplateLookup(
