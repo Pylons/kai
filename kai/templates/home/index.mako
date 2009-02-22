@@ -52,9 +52,10 @@
         <div id="usefull" class="side-section">
           <h3>${_('Useful Resources')}</h3>
           <p>You might be interested to see the production 
-              <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">sites already using Pylons</a>. If you are after specific information not found in the
-               <a href="${url('doc_home')}">documentation</a>, have a look at the <a href="${url('wiki')}">wiki</a>.  The ${h.link_to('wiki', url=url('wiki'))} is a useful
-                resource for Pylons programming. You might also consider adding an article of your own.</p>
+              <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">sites already using Pylons</a>.</p>
+          <div style="text-align: center; margin: 0; padding: 0;">
+              <a href="http://www.amazon.com/gp/product/1590599349?ie=UTF8&tag=groovie-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599349"><img border="0" src="/images/51Wo6168PaL.jpg"></a><img src="http://www.assoc-amazon.com/e/ir?t=groovie-20&l=as2&o=1&a=1590599349" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+              </div>
         </div>
       </div>
     </div>
@@ -123,6 +124,11 @@ $(document).ready(function() {
     });
 });
 </script>
+<script type="text/javascript" src="http://www.assoc-amazon.com/s/link-enhancer?tag=groovie-20&o=1">
+</script>
+<noscript>
+    <img src="http://www.assoc-amazon.com/s/noscript?tag=groovie-20" alt="" />
+</noscript>
 </%def>
 <%def name="title()">${parent.title()} - ${_('Home')}</%def>
 <%def name="yui_class()"> class="home"</%def>
