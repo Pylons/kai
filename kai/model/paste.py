@@ -97,6 +97,12 @@ class Paste(Document):
           }
         }''', include_docs=True)
     
+    by_session_id = View('pastes', '''
+        function (doc) {
+          if (doc.type == 'Paste' && doc.session_id) {
+            emit(doc.session_id, null);
+          }
+        }''', include_docs=True)
     
     by_old_id = View('pastes', '''
         function (doc) {
@@ -115,3 +121,18 @@ class Paste(Document):
             weight = (math.log(tag['count'] or 1) * 4) + 10
             totalcounts.append((tag['name'], tag['count'], weight))
         return sorted(totalcounts, cmp=lambda x,y: cmp(x[0], y[0]))
+
+    @classmethod
+    def associate_pasties(cls, user):
+        db = pylons.c.db
+        pasties = list(cls.by_session_id(db)[pylons.session.id])
+        if pasties:
+            for paste in pasties:
+                try:
+                    paste.session_id = None
+                    paste.human_id = user.id
+                    paste.displayname = user.displayname
+                    paste.email = user.email
+                    paste.store(db)
+                except:
+                    pass

@@ -30,7 +30,7 @@ def setup_app(command, conf, vars):
         Human.by_openid, Human.by_password_token,
         
         Paste.by_author, Paste.by_tag, Paste.all_tags, Paste.by_time,
-        Paste.by_old_id, Paste.by_tag_time,
+        Paste.by_old_id, Paste.by_tag_time, Paste.by_session_id,
         
         Rating.all_raters,
         

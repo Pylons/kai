@@ -9,9 +9,10 @@ from tw.mods.pylonshf import validate
 from kai.lib.base import BaseController, render
 from kai.lib.helpers import failure_flash, success_flash
 from kai.lib.mail import EmailMessage
-from kai.model import Human, Traceback, forms
+from kai.model import Human, Paste, Traceback, forms
 
 log = logging.getLogger(__name__)
+
 
 class AccountsController(BaseController):
     def __before__(self):
@@ -112,7 +113,7 @@ class AccountsController(BaseController):
     @secure.authenticate_form
     def _process_login(self):
         user = self.form_result['user']
-        user.process_login()
+        user.process_login()        
         success_flash('You have logged into PylonsHQ')
         if session.get('redirect'):
             redir_url = session.pop('redirect')
@@ -179,17 +180,8 @@ class AccountsController(BaseController):
         user.email_token_issue = datetime.utcnow()
         user.store(self.db)
         
-        tracebacks = list(Traceback.by_session_id(self.db)[session.id])
-        if tracebacks:
-            for tb in tracebacks:
-                try:
-                    tb.session_id = None
-                    tb.human_id = user.id
-                    tb.displayname = user.displayname
-                    tb.email = user.email
-                    tb.store(self.db)
-                except:
-                    pass
+        Paste.associate_pasties(user)
+        Traceback.associate_tracebacks(user)
         
         # Send out the welcome email with the reg token
         message = EmailMessage(subject="PylonsHQ - Registration Confirmation",

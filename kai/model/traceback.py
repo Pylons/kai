@@ -113,3 +113,18 @@ class Traceback(Document):
             return 0
         else:
             return comments[0]
+    
+    @classmethod
+    def associate_tracebacks(cls, user):
+        db = pylons.c.db
+        tracebacks = list(cls.by_session_id(db)[pylons.session.id])
+        if tracebacks:
+            for tb in tracebacks:
+                try:
+                    tb.session_id = None
+                    tb.human_id = user.id
+                    tb.displayname = user.displayname
+                    tb.email = user.email
+                    tb.store(db)
+                except:
+                    pass

@@ -6,6 +6,9 @@ from datetime import datetime
 import pylons
 from couchdb.schema import DateTimeField, Document, TextField, ListField, View
 
+from kai.model.paste import Paste
+from kai.model.traceback import Traceback
+
 
 class Human(Document):
     """Represents a human user"""
@@ -126,3 +129,5 @@ class Human(Document):
         session.save()
         self.session_id = session.id
         self.store(pylons.c.db)
+        Paste.associate_pasties(self)
+        Traceback.associate_tracebacks(self)
