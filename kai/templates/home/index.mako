@@ -51,11 +51,13 @@
         </div>
         <div id="usefull" class="side-section">
           <h3>${_('Useful Resources')}</h3>
-          <p>You might be interested to see the production 
-              <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">sites already using Pylons</a>.</p>
+          <p>The Pylons book is now available:</p>
           <div style="text-align: center; margin: 0; padding: 0;">
               <a href="http://www.amazon.com/gp/product/1590599349?ie=UTF8&tag=groovie-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599349"><img border="0" src="/images/51Wo6168PaL.jpg"></a><img src="http://www.assoc-amazon.com/e/ir?t=groovie-20&l=as2&o=1&a=1590599349" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-              </div>
+          </div>
+          <p>You might be interested to see the production 
+              <a href="http://wiki.pylonshq.com/display/pylonscommunity/Sites+Using+Pylons">sites already using Pylons</a>.
+          </p>
         </div>
       </div>
     </div>
