@@ -20,7 +20,8 @@ class DownloadController(BaseController):
         files = os.listdir(dldir)
         files.sort()
         filelist = []
-        use_cachefly = version == app_globals.current_version
+        #use_cachefly = version == app_globals.current_version
+        use_cachefly = False
         for f in files:
             if f.startswith('.'):
                 continue
