@@ -70,12 +70,12 @@ class PastiesController(BaseController, CMSObject):
         prevkey = request.GET.get('prevkey')
         kwargs = {}
         if startkey:
-            kwargs = dict(descending=True, startkey=startkey, count=11)
+            kwargs = dict(descending=True, startkey=startkey, limit=11)
         elif prevkey:
-            kwargs = dict(startkey=prevkey, count=11)
+            kwargs = dict(startkey=prevkey, limit=11)
             c.reverse = True
         else:
-            kwargs = dict(descending=True, count=11)
+            kwargs = dict(descending=True, limit=11)
         if tag:
             if startkey:
                 kwargs['startkey'] = [tag, startkey]

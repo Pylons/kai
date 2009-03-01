@@ -52,7 +52,7 @@ class CommentsController(BaseController):
             abort(404)
         elif format in ['atom', 'rss']:
             # Pull comments and grab the docs with them for their info
-            comments = list(Comment.by_anytime(c.db, descending=True, count=20))
+            comments = list(Comment.by_anytime(c.db, descending=True, limit=20))
             commentdata = []
             for comment_doc in comments:
                 comment = {}

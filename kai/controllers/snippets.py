@@ -25,7 +25,7 @@ class SnippetsController(BaseController):
 
     def index(self, format='html'):
         """ Get the snippets by date and by author"""
-        snippets = list(Snippet.by_date(self.db, descending=True, count=100))
+        snippets = list(Snippet.by_date(self.db, descending=True, limit=100))
         c.snippets = snippets[:20]
         if format in ['atom', 'rss']:
             response.content_type = 'application/atom+xml'

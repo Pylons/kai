@@ -23,12 +23,12 @@ class TracebacksController(BaseController, CMSObject):
         startkey = request.GET.get('startkey')
         prevkey = request.GET.get('prevkey')
         if startkey:
-            c.tracebacks = Traceback.by_time(self.db, descending=True, startkey=startkey, count=11)
+            c.tracebacks = Traceback.by_time(self.db, descending=True, startkey=startkey, limit=11)
         elif prevkey:
-            c.tracebacks = Traceback.by_time(self.db, startkey=prevkey, count=11)
+            c.tracebacks = Traceback.by_time(self.db, startkey=prevkey, limit=11)
             c.reverse = True
         else:
-            c.tracebacks = Traceback.by_time(self.db, descending=True, count=11)
+            c.tracebacks = Traceback.by_time(self.db, descending=True, limit=11)
         c.start = start
         return render('/tracebacks/index.mako')
     

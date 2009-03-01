@@ -10,9 +10,9 @@ log = logging.getLogger(__name__)
 
 class HomeController(BaseController):
     def index(self):
-        c.articles = list(Article.by_time(c.db, descending=True, count=5))
-        c.snippets = list(Snippet.by_date(c.db, descending=True, count=7))
-        c.pastes = list(Paste.by_time(c.db, descending=True, count=5))
+        c.articles = list(Article.by_time(c.db, descending=True, limit=5))
+        c.snippets = list(Snippet.by_date(c.db, descending=True, limit=7))
+        c.pastes = list(Paste.by_time(c.db, descending=True, limit=5))
         return render('/home/index.mako')
     
     def robots(self):
@@ -36,11 +36,11 @@ class HomeController(BaseController):
         c.active_sub = True
         
         # Load various latest data
-        c.snippets = list(Snippet.by_date(c.db, descending=True, count=5))
-        c.pastes = list(Paste.by_time(c.db, descending=True, count=10))
+        c.snippets = list(Snippet.by_date(c.db, descending=True, limit=5))
+        c.pastes = list(Paste.by_time(c.db, descending=True, limit=10))
         
         # Pull comments and grab the docs with them for their info
-        comments = list(Comment.by_anytime(c.db, descending=True, count=10))
+        comments = list(Comment.by_anytime(c.db, descending=True, limit=10))
         commentdata = []
         for comment_doc in comments:
             comment = {}
