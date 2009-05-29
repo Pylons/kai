@@ -24,6 +24,10 @@ class SecureToken(forms.HiddenField):
     template = 'kai.templates.widgets.secure'
 
 
+class BotsAreLame(forms.HiddenField):
+    template = 'kai.templates.widgets.notabot'
+
+
 class CommentForm(forms.TableForm):
     class fields(WidgetsList):
         comment = forms.TextArea(
@@ -58,6 +62,9 @@ class PastebinForm(forms.TableForm):
             validator = UnicodeString(not_empty=True))
         tags = AutoComplete(
             validator = UnicodeString(not_empty=False))
+        notabot = BotsAreLame(
+            validator = UnicodeString(not_empty=True),
+            attrs = {'value':'most_likely'})
 pastebin_form = PastebinForm('pastebin_form')
 
 

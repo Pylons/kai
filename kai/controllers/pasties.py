@@ -27,6 +27,7 @@ class PastiesController(BaseController, CMSObject):
     
     @validate(form=forms.pastebin_form, error_handler='new')
     def _process_new(self):
+        self.form_result.pop('notabot')
         paste = Paste(**self.form_result)
         if c.user:
             paste.human_id = c.user.id
