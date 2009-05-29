@@ -1,4 +1,6 @@
-/* @override http://localhost.com:5050/css/tweaks.css */
+/* @override 
+	http://localhost:5050/css/tweaks.css
+*/
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
     color:#00607b;
@@ -205,6 +207,8 @@ form table tr td {vertical-align: top;}
 .fieldhelp {
     color: #888;
     font-size: 0.8em;
+    display: block;
+    padding-top: 4px;
 }
 
 
