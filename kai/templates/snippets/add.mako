@@ -8,6 +8,8 @@ from kai.model.forms import snippet_form
 
 ${snippet_form(action=url('snippets')) | n}
 
+<div style="display: none; border: 2px solid #444; padding: 4px;" id="snippet_preview">&nbsp;</div>
+
 <%def name="title()">${parent.title()} - ${_('Add Snippet')}</%def>
 <%def name="javascript()">
 ${parent.javascript()}
@@ -32,6 +34,19 @@ $(document).ready(function() {
         }
     });
     loader.insert();
+    $('input#snippet_form_preview').click(function() {
+        var content = $('#snippet_form_content')[0].value;
+        var preview_url = '${url('preview_snippet')}';
+        $.ajax({
+            data: {content:content},
+            type: "POST",
+            url: preview_url,
+            success: function(data, textStatus) {
+                $('#snippet_preview').html(data).slideDown();
+            }
+        });
+        return false;
+    });
 })
 </script>
 </%def>

@@ -22,6 +22,10 @@ class SnippetsController(BaseController):
     def __before__(self):
         c.active_tab = 'Tools'
         c.active_sub = 'Snippets'
+    
+    def preview(self):
+        data = request.POST['content']
+        return rst_render(data)
 
     def index(self, format='html'):
         """ Get the snippets by date and by author"""

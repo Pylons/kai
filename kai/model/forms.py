@@ -48,6 +48,9 @@ class SnippetForm(forms.TableForm):
             validator = UnicodeString(not_empty=True))
         tags = AutoComplete(
             validator = UnicodeString())
+        preview = forms.Button(
+            name='Preview',
+            attrs={'value':'Preview'})        
 snippet_form = SnippetForm('snippet_form')
 
 

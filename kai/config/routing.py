@@ -82,6 +82,7 @@ def make_map(globs=None):
     map.connect('openid_create', '/accounts/openid/create', controller='consumer', action='create')
     
     # Snippets
+    map.connect('preview_snippet', '/snippets/preview', controller='snippets', action='preview', conditions=dict(method='POST'))
     map.connect('snippet_author', '/snippets/by_author/{id}', controller='snippets', action='by_author')
     map.connect('snippet_tag', '/snippets/by_tag/{tag}', controller='snippets', action='by_tag')
     map.connect('snippet_tagcloud', '/snippets/tagcloud', controller='snippets', action='tagcloud')
