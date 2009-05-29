@@ -1,4 +1,5 @@
 """Custom validators"""
+import re
 from datetime import datetime
 
 import formencode
@@ -10,6 +11,13 @@ from kai.model import Human, Snippet
 class ExistingSnippetTitle(formencode.FancyValidator):
     def _to_python(self, value, state):
         if Snippet.exists(value):
+            route_data = pylons.request.environ['pylons.routes_dict']
+            slug = value.replace(" ", "_")
+            slug = slug.lower()
+            slug = re.sub('[^A-Za-z0-9_]+', '', slug)
+            
+            if route_data['action'] == 'update' and slug == route_data['id']:
+                return value
             raise formencode.Invalid('Title already exists', value, state)
         return value
 

@@ -1,6 +1,10 @@
 ${widgets.user_post(h.link_to(c.snippet.displayname, url=url('snippet_author', id=c.snippet.displayname)), 
                     c.snippet.email or 'anonymous', c.snippet.created, extra_classes='header')}
-<h1>${c.snippet.title}</h1>
+<h1>${c.snippet.title} \
+% if c.is_owner or (c.user and c.user.in_group('admin')):
+<span class="subtle">(${h.link_to('Edit', url=url('edit_snippet', id=c.id))})</span>
+% endif
+</h1>
 
 <div class="tag">Tags: <Span style="taglist">\
 % for tag in c.snippet.tags:

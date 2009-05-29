@@ -43,14 +43,16 @@ class SnippetForm(forms.TableForm):
         title = forms.TextField(
             validator = ExistingSnippetTitle(not_empty=True))
         description = forms.TextArea(
+            help_text = "ONE paragraphs summarizing the snippet. NO FORMATTING IS APPLIED",
             validator = UnicodeString())
         content = forms.TextArea(
+            help_text = "The full content of the snippet. Restructured Text formatting is used.",
             validator = UnicodeString(not_empty=True))
         tags = AutoComplete(
             validator = UnicodeString())
         preview = forms.Button(
             name='Preview',
-            attrs={'value':'Preview'})        
+            attrs={'value':'Preview'})
 snippet_form = SnippetForm('snippet_form')
 
 
