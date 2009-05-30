@@ -14,6 +14,7 @@ ${snippet_form(action=url('snippets')) | n}
 <%def name="javascript()">
 ${parent.javascript()}
 <script src="http://yui.yahooapis.com/2.6.0/build/yuiloader/yuiloader-min.js" ></script>
+<script src="/javascripts/rst_helpers.js" charset="utf-8"></script>
 <script>
 $(document).ready(function() {
     var loader = new YAHOO.util.YUILoader({
