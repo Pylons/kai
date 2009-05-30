@@ -110,7 +110,7 @@ function keyHandler(e) {
                 var curline = contentbox.value.substring(i+1, caret);
                 var spaces = curline.replace(/^(\s+).*/, '$1');
                 var v = '';
-                if (curline != spaces) {
+                if (spaces.match(/^\s+$/)) {
                     v = '\n' + spaces;
                 } else {
                     v = '\n';
