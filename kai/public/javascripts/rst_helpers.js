@@ -106,12 +106,11 @@ function keyHandler(e) {
             var caret = getCaretPosition(contentbox);
             var val = contentbox.value.substr(0, caret);
             var i = val.lastIndexOf('\n');
-            if (i > 0) {
-                var curline = contentbox.value.substr(i+1, caret);
+            if (i > 0 && i+1 < caret) {
+                var curline = contentbox.value.substring(i+1, caret);
                 var spaces = curline.replace(/^(\s+).*/, '$1');
                 var v = '';
                 if (curline != spaces) {
-                // alert('i: ' + i + ' and val: ' + val + ' and curline: ' + curline + ' and spaces: ' + spaces); 
                     v = '\n' + spaces;
                 } else {
                     v = '\n';
