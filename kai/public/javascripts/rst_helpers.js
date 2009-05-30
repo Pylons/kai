@@ -74,6 +74,7 @@ if(contentbox.addEventListener ) {
 var onchange_timer = null;
 function keyHandler(e) {
     var TABKEY = 9;
+    var ENTER = 13;
     if(e.keyCode == TABKEY) {
         setTimeout(function(){
             var sc = contentbox.scrollTop;
@@ -99,5 +100,31 @@ function keyHandler(e) {
             e.preventDefault();
         }
         return false;
+    } else if (e.keyCode == ENTER) {
+        setTimeout(function(){
+            var sc = contentbox.scrollTop;
+            var caret = getCaretPosition(contentbox);
+            var val = contentbox.value.substr(0, caret);
+            var i = val.lastIndexOf('\n');
+            if (i > 0) {
+                var curline = contentbox.value.substr(i+1, caret);
+                var spaces = curline.replace(/^(\s+).*/, '$1');
+                var v = '';
+                if (curline != spaces) {
+                // alert('i: ' + i + ' and val: ' + val + ' and curline: ' + curline + ' and spaces: ' + spaces); 
+                    v = '\n' + spaces;
+                } else {
+                    v = '\n';
+                }
+                insertAtCaret(contentbox, v);
+                contentbox.scrollTop = sc;
+            } else {
+                insertAtCaret(contentbox, '\n');
+                contentbox.scrollTop = sc;
+            }
+        },0)
+        if(e.preventDefault) {
+            e.preventDefault();
+        }        
     }
 }
