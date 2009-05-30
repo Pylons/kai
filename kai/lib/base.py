@@ -8,6 +8,7 @@ from babel.util import UTC
 from couchdb import Database
 from paste.deploy.converters import asbool
 from pylons.controllers import WSGIController
+from pylons.controllers.util import abort
 from pylons.i18n import add_fallback, get_lang, set_lang
 from pylons.templating import render_mako
 from pytz import timezone

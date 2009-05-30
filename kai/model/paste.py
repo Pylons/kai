@@ -23,6 +23,15 @@ class Paste(Document):
     old_id = TextField()
     old_poster = TextField()
     
+    @classmethod
+    def load(cls, db, id):
+        """Load the obj, fall back to old id if needed"""
+        obj = super(Paste, cls).load(db, id)
+        if not obj:
+            obj = cls.by_old_id(db)[id]
+            if obj:
+                return list(obj)[0]
+        return obj
     
     @property
     def feed_title(self):
