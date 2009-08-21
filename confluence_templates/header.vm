@@ -1,0 +1,226 @@
+#set ($wiki = "http://wiki.pylonshq.com")
+
+#set ($spacekey = "Wiki")
+#set ($spacekey = $sitemeshPage.getProperty("page.spacekey"))
+#if ($spacekey == "pylonsdocs" && $title == "Installing Pylons")
+  #set ($spacekey = "Install")
+#elseif ($spacekey != "pylonscommunity" && $spacekey != "pylonsfaq" && $spacekey != "pylonsdocs")
+  #set ($spacekey = "Wiki")
+#end
+
+#macro (selected $tabkey)
+  #if ($spacekey == $tabkey)
+  class="active"
+  #end
+#end
+
+<!--
+<div id="custom-doc" class="yui-t4">
+  <a name="top"></a>
+
+  <div id="hd">
+    <a href="http://pylonshq.com/"><h1 id="logo" class="replace">PylonsHQ<span>.</span></h1></a>
+    <div id="download">Latest Version: <a href="http://pylonshq.com/install">0.9.5</a></div>
+    <div id="nav-items">
+
+      <div id="nav-bar">
+        <ul id="navlist">
+          <li><a href="http://pylonshq.com/" accesskey="A">Home</a></li>
+          <li #selected("pylonsdocs")><a href="${wiki}/display/pylonsdocs/Home" accesskey="B" #selected("pylonsdocs")>Docs</a></li>
+          <li #selected("Wiki")><a href="${wiki}/dashboard.action" accesskey="C" #selected("Wiki")>Wiki</a></li>
+          <li><a href="http://pylonshq.com/project/" accesskey="C">Trac</a></li>
+          <li #selected("pylonscommunity")><a href="${wiki}/display/pylonscommunity/Home" accesskey="D" #selected("pylonscommunity")>Community</a></li>
+          <li #selected("pylonsfaq")><a href="${wiki}/display/pylonsfaq/Home" accesskey="E" #selected("pylonsfaq")>FAQ</a></li>
+          <li #selected("Install")><a href="http://pylonshq.com/install" accesskey="F" #selected("Install")>Install</a></li>
+          <li><a href="http://pylonshq.com/pasties" accesskey="G">Pastebin</a></li>
+          <li><a href="http://pylonshq.com/search_docs.html" accesskey="H">Search Docs</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+#set ($home = "http://pylonshq.com")
+#set ($trac = "http://pylonshq.com/project/pylonshq")
+#set ($css = "${home}/css")
+#set ($js = "${home}/javascripts")
+
+<!-- ${home} ${css} -->
+
+<style type="text/css">
+/** Select portions of custom.css **/
+
+body { background:#0f0f0f url(${css}/images/body-bg.jpg) repeat-x 0 0; margin:0; padding:0;}
+#doc4 { position:relative; }
+
+#hd { height:185px; position:relative;}
+.home #bd { background:#fff url(${css}/images/content-bg.jpg) repeat-x 0 100%;padding:20px;}
+
+/* LOGO */
+\#logo {position: absolute; top: 60px; left: 0;}
+\#logo, \#logo span {height:68px; width:315px; color: #000; background: transparent url(${css}/images/pylons-logo.gif) no-repeat 0 0;}
+h1\#logo {color: #000;font-size:0; cursor: pointer;}
+\#logo span {background-color: transparent;}
+
+/* nav */
+#nav { color:#ffd630; position:absolute; top:25px; right:0;}
+#nav * { margin:0; padding:0;}
+#nav ul { margin-left:0!important; width:549px;}
+#nav ul li{ list-style:none; float:left; width:100px; display:inline; position:relative; }
+#nav ul a{ color:#ffd630; height:43px; line-height:37px; display:block; text-align:center;}
+#nav ul li a { font-size:123.1%; font-weight:700;}
+#nav ul li.selected a { color:#000;}
+#nav ul li a:hover { text-decoration:underline;}
+
+#nav ul ul { position:absolute; top:45px; left:0; width:auto;}
+#nav ul ul li { display:block; position:relative; width:auto; float:none; margin-bottom:4px; *margin-bottom:3px;}
+#nav ul ul li a{ text-decoration:none; font-weight:300; font-size:84.65%; padding:0 0 0 20px; color:#ffd630!important; background:none!important; text-align:left; height:auto; *height:1%;line-height:1.2;}
+#nav ul ul li.selected a { background: transparent url(${css}/images/nav-sub-select.gif) no-repeat 5px 50%!important; text-decoration:underline;}
+
+#nav ul li#nav-1 { width:88px;}
+#nav ul li#nav-1.selected a {background: transparent url(${css}/images/nav-main-selected.gif) no-repeat 10px 0;}
+#nav ul li#nav-2 { width:155px;}
+#nav ul li#nav-2.selected a {background: transparent url(${css}/images/nav-main-selected.gif) no-repeat 10px -53px;}
+#nav ul li#nav-3 { width:130px;}
+#nav ul li#nav-3.selected a {background: transparent url(${css}/images/nav-main-selected.gif) no-repeat 10px -106px;}
+#nav ul li#nav-4 { width:88px;}
+#nav ul li#nav-4.selected a {background: transparent url(${css}/images/nav-main-selected.gif) no-repeat 10px 0;}
+#nav ul li#nav-5 { width:88px;}
+#nav ul li#nav-5.selected a {background: transparent url(${css}/images/nav-main-selected.gif) no-repeat 10px 0;}
+
+/*
+#bd { color:#2b2b2b; line-height:1.5;}
+#bd a { color:#6f4706; text-decoration: none;}
+*/
+.home #bd a:hover { text-decoration:underline; color:#f60}
+.home #bd h3, .home #bd h4 { color:#6f4706; font-size:184.6%;font-family:Georgia, "Times New Roman", Times, serif; font-weight:300; margin-bottom:10px;}
+#sidebar .home #bd ul, #sidebar .home #bd ol { margin-left:20px; padding-left:0;}
+home #bd ul,.home #bd ol { margin-left:0px; padding-left:0;}
+
+.home #bd ul li { font-size:84.65%; margin-bottom:10px; margin-left:0px;}
+.home #bd ul li a{ font-size:118.25%;}
+.home #bd ol li { list-style:none; background: transparent url(${css}/images/tickmark.gif) no-repeat 0 3px; margin-bottom:10px; padding-left:25px; margin-left:20px;}
+
+/* Global clear float fix */
+.clearfix:after {    content: ".";     display: block;     height: 0;     clear: both;     visibility: hidden;}
+
+/* Global IR code IR (Image Replacement )*/
+.replace{      position:relative;      margin:0; padding:0;      /* \*/      overflow: hidden;      /* */}
+.replace span{      display:block !important;      position:absolute !important;      top:0;      left:0;      z-index:1;}
+*>html .clearfix {height: auto;}
+
+/* Hides from IE-mac \*/
+* html #container, * html .clearfix {height: 1%;} 
+/* End hide from IE5/mac */
+
+
+/** Select portion of fonts.css **/
+body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+table {font-size:inherit;font:100%;}
+
+
+/** Disable Confluence's border bottom for our logo **/
+h1 {
+    border-bottom: transparent;
+}
+
+.home #bd, #bd {
+    position: relative;
+    padding-top: 33px;
+    margin-top: -20px;
+}
+
+div#loginbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+    margin: 0;
+    text-align: right;
+    width: 100%;
+    color: #ddd;
+    font-size: 83%;
+    height: 20px;
+    background: transparent url(${css}/images/loginbar.jpg) repeat-x 0 0;    
+}
+
+div#loginbar .layoutstyle {
+    float: left;
+    padding: 1px 0 0 4px;
+}
+
+div#loginbar .links {
+    margin-right: 15px;
+    padding: 1px 0 0 0;
+}
+div#loginbar a {
+    color: #ffd630;
+    text-decoration: none;
+    padding: 0 4px 0 4px;
+}
+
+div#loginbar a:hover {
+    text-decoration: underline;
+    color: #ffd630;
+}
+</style>
+
+<script type="text/javascript" src="${js}/jquery_all.js" charset="utf-8"></script>
+<script type="text/javascript">
+#include("/pylonshq/behavior.js")
+</script>
+<link href="${css}/grids.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+<div id="doc4" class="home">
+  <div id="hd">
+    <a href="${home}/"><h1 id="logo" class="replace">PylonsHQ<span>.</span></h1></a>
+    <div id="nav">  <ul class="clearfix">
+        <li id="nav-1"><a href="${home}/">Home</a>
+          <ul>
+            <li><a href="${home}/">Overview</a></li>
+            <li><a href="${home}/features">Features</a></li>
+            <li><a href="${home}/history">History</a></li>
+            <li><a href="${home}/search">Search</a></li>
+          </ul>
+        </li>
+        <li id="nav-2"><a href="${home}/docs/en/0.9.7/">Documentation</a>
+          <ul>
+            <li><a href="${home}/docs/en/0.9.7/">Reference</a></li>
+            <li><a href="${home}/docs/en/0.9.7/modules/">Modules</a></li>
+            <li><a href="${home}/docs/en/0.9.7/glossary/">Glossary</a></li>
+            <li><a href="${home}/docs/en/0.9.7/index/">Index</a></li>
+          </ul>
+        </li>
+        <li id="nav-3" class="selected"><a href="${home}/community">Community</a>
+          <ul>
+            <li><a href="${home}/articles">Blog</a></li>
+            <li class="selected"><a href="/">Wiki</a></li>
+          </ul>
+        </li>
+        <li id="nav-4"><a href="${home}/pasties">Tools</a>
+          <ul>
+            <li><a href="${home}/pasties">Pastebin</a></li>
+            <li><a href="${home}/tracebacks">Tracebacks</a></li>
+            <li><a href="${home}/snippets">Snippets</a></li>
+          </ul>
+        </li>
+        <li id="nav-5"><a href="#">Code</a>
+          <ul>
+            <li><a href="#">Contributing</a></li>
+            <li><a href="${trac}/roadmap/">Milestones</a></li>
+            <li><a href="${trac}/report">View Tickets</a></li>
+            <li><a href="${trac}/browser/">Source</a></li>
+            <li><a href="${home}/buildbot/index">Buildbots</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+<!--</div> doc4-->
+<div id="bd">
+  <div id="loginbar">
+    <div class="layoutstyle">
+      Layout: <a href="#" id="layout-toggle">Fixed-width</a>
+    </div>
+  </div>
