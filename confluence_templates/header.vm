@@ -94,13 +94,12 @@ h1\#logo {color: #000;font-size:0; cursor: pointer;}
 #bd a { color:#6f4706; text-decoration: none;}
 */
 .home #bd a:hover { text-decoration:underline; color:#f60}
-.home #bd h3, .home #bd h4 { color:#6f4706; font-size:184.6%;font-family:Georgia, "Times New Roman", Times, serif; font-weight:300; margin-bottom:10px;}
 #sidebar .home #bd ul, #sidebar .home #bd ol { margin-left:20px; padding-left:0;}
-home #bd ul,.home #bd ol { margin-left:0px; padding-left:0;}
 
-.home #bd ul li { font-size:84.65%; margin-bottom:10px; margin-left:0px;}
-.home #bd ul li a{ font-size:118.25%;}
-.home #bd ol li { list-style:none; background: transparent url(${css}/images/tickmark.gif) no-repeat 0 3px; margin-bottom:10px; padding-left:25px; margin-left:20px;}
+/* Fix for pygments only when rendered via rEST. The pygments-macro-plugin
+   already does this. */
+td.linenos{ margin: 0; line-height: 1.3em; font-size: 0.95em; }
+
 
 /* Global clear float fix */
 .clearfix:after {    content: ".";     display: block;     height: 0;     clear: both;     visibility: hidden;}
@@ -166,9 +165,7 @@ div#loginbar a:hover {
 </style>
 
 <script type="text/javascript" src="${js}/jquery_all.js" charset="utf-8"></script>
-<script type="text/javascript">
-#include("/pylonshq/behavior.js")
-</script>
+#includeJavascript("/pylonshq/behavior.js")
 <link href="${css}/grids.css" media="screen" rel="stylesheet" type="text/css" />
 
 
