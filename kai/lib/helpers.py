@@ -39,6 +39,7 @@ def rst_render(content):
         'file_insertion_enabled': 0,
         'raw_enabled': 0,
         'input_encoding': 'unicode',
+        'halt_level': 7,
     }
     return publish_parts(content, writer_name='html',
                          settings_overrides=defaults)['html_body']
