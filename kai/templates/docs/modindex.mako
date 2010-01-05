@@ -12,7 +12,7 @@
     % endfor
     
     <table width="100%" class="indextable" cellspacing="0" cellpadding="2">
-    % for modname, collapse, cgroup, indent, fname, synops, pform, dep in c.doc['modindexentries']:
+    % for modname, collapse, cgroup, indent, fname, synops, pform, dep, oth in c.doc['modindexentries']:
     % if not modname:
         <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
         <tr class="cap"><td></td><td><a name="cap-${fname}"><strong>${fname}</strong></a></td><td></td></tr>
