@@ -15,6 +15,7 @@ setup(
         "Pylons>=0.9.7", "CouchDB>=0.4", "python-openid>=2.2.1",
         "pytz>=2008i", "Babel>=0.9.4", "tw.forms==0.9.3", "docutils>=0.5",
         "PyXML>=0.8.4", "cssutils>=0.9.6a0", "Pygments>=1.0",
+        "Beaker>=1.5.1",
     ],
     setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
