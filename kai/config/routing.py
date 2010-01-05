@@ -32,7 +32,10 @@ def make_map(globs=None):
     # likely stay at the top, ensuring it can always be resolved
     map.connect('/error/{action}', controller='error')
     map.connect('/error/{action}/{id}', controller='error')
-
+    
+    # Toppcloud sync
+    map.connect('/sync_app', controller='home', action='sync')
+    
     # Home url's
     map.connect('home', '/', controller='home', action='index')
     map.connect('/robots.txt', controller='home', action='robots')

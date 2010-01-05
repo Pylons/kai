@@ -5,10 +5,16 @@ from pylons.controllers.util import abort, redirect_to
 
 from kai.lib.base import BaseController, render
 from kai.model import Article, Comment, Snippet, Paste
+from kai.websetup import sync_db
 
 log = logging.getLogger(__name__)
 
 class HomeController(BaseController):
+    def sync(self):
+        if not request.environ['toppcloud.internal']:
+            abort(404)
+        sync_db(c.db)
+
     def index(self):
         c.articles = list(Article.by_time(c.db, descending=True, limit=5))
         c.snippets = list(Snippet.by_date(c.db, descending=True, limit=7))

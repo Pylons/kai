@@ -10,11 +10,7 @@ from kai.model.generics import all_doc_tags
 
 log = logging.getLogger(__name__)
 
-def setup_app(command, conf, vars):
-    """Place any commands to setup kai here"""
-    load_environment(conf.global_conf, conf.local_conf)
-    server = pylons.config['kai.server']
-    db = pylons.config['kai.db']
+def sync_db(db):
     ViewDefinition.sync_many(db, [
         all_doc_tags,
         
@@ -40,3 +36,10 @@ def setup_app(command, conf, vars):
         
         Traceback.by_uuid, Traceback.by_time, Traceback.by_session_id,
     ])
+
+def setup_app(command, conf, vars):
+    """Place any commands to setup kai here"""
+    load_environment(conf.global_conf, conf.local_conf)
+    server = pylons.config['kai.server']
+    db = pylons.config['kai.db']
+    sync_db(db)
