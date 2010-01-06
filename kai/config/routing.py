@@ -65,6 +65,9 @@ def make_map(globs=None):
     map.connect('wiki', 'http://wiki.pylonshq.com/', _static=True)
     map.connect('download', '/download/{version}', controller='download',
                 action='index', version=globs.doc_version)
+    map.connect('download', '/download/{version}/*file', controller='download',
+                action='index', version=globs.doc_version)
+
     map.connect('/download', controller='download', action='index', version=globs.versions[-1])
     map.connect('/download/', controller='download', action='index', version=globs.versions[-1])
     map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
