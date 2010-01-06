@@ -91,6 +91,7 @@ class DocsController(BaseController):
         if request.environ['HTTP_AUTHKEY'] != dockey:
             abort(401)
         doc = request.body
+        
         version = request.GET.get('version')
         project = request.GET.get('project')
         name = request.GET.get('name')
@@ -110,7 +111,8 @@ class DocsController(BaseController):
             abort(500)
         ensure_dir(fdir)
         try:
-            open(os.path.join(fdir, name), 'w').write(doc)
+            with open(os.path.join(fdir, name), 'w') as w:
+                w.write(doc)
         except:
             abort(500)
         else:
