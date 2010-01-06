@@ -136,7 +136,7 @@
 ##        <li${active_sub.get('Aggregator', '') | n}><a href="#">Aggregator</a></li>
       </ul>
     </li>
-    <li id="nav-4"${active_tab.get('Tools', '') | n}><a href="#">Tools</a>
+    <li id="nav-4"${active_tab.get('Tools', '') | n}><a href="${url('pasties')}">Tools</a>
       <ul>
         <li${active_sub.get('Pastebin', '') | n}>${h.link_to('Pastebin', url=url('pasties'))}</li>
         <li${active_sub.get('Tracebacks', '') | n}>${h.link_to('Tracebacks', url=url('tracebacks'))}</li>
@@ -150,7 +150,7 @@
         <li${active_sub.get('View Tickets', '') | n}>${h.link_to('View Tickets', url=url('trac_link', url='report'))}</li>
         <li${active_sub.get('Source', '') | n}>${h.link_to('Source', url=url('trac_link', url='browser'))}</li>
 ##        <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
-        <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=url('buildbot', action='index'))}</li>
+##        <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=url('buildbot', action='index'))}</li>
       </ul>
     </li>
   </ul>
