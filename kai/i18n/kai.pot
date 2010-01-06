@@ -1,14 +1,14 @@
 # Translations template for kai.
-# Copyright (C) 2008 ORGANIZATION
+# Copyright (C) 2010 ORGANIZATION
 # This file is distributed under the same license as the kai project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: kai 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2008-12-14 16:08-0800\n"
+"POT-Creation-Date: 2010-01-05 09:39-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.4\n"
+
+#: kai/templates/search.mako:147 kai/templates/home/index.mako:39
+msgid "Search"
+msgstr ""
+
+#: kai/templates/widgets.mako:32
+msgid "login"
+msgstr ""
 
 #: kai/templates/accounts/associate.mako:5
 msgid "OpenID Association"
@@ -126,9 +134,78 @@ msgstr ""
 msgid "Recent Blog Postings"
 msgstr ""
 
-#: kai/templates/articles/index.mako:19
+#: kai/templates/articles/index.mako:27
 #, python-format
 msgid "Posted by %(author)s on %(date)s"
+msgstr ""
+
+#: kai/templates/articles/index.mako:34 kai/templates/articles/show.mako:8
+msgid "Blog"
+msgstr ""
+
+#: kai/templates/articles/new.mako:6
+msgid "Add new blog posting"
+msgstr ""
+
+#: kai/templates/buildbot/details.mako:4 kai/templates/buildbot/details.mako:45
+msgid "Close Window"
+msgstr ""
+
+#: kai/templates/buildbot/details.mako:6
+msgid "Build Steps"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:2 kai/templates/buildbot/index.mako:94
+msgid "Buildbot Status"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:3
+msgid ""
+"Pylons source code is <strong>automatically built and tested</strong> via\n"
+"        <a href=\"http://buildbot.net/trac\">Buildbot</a> to ensure "
+"consistent\n"
+"        release quality and track bugs that may occur during development "
+"(also\n"
+"        known as <strong><a "
+"href=\"http://en.wikipedia.org/wiki/Continuous_Integration\">\n"
+"            Continuous integration</a></strong>). The\n"
+"        latest builds are posted here automatically as they're\n"
+"        completed. For those tracking the latest development tip, this can "
+"serve\n"
+"        as a useful reference when decided whether to update."
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:12
+msgid ""
+"In <a href=\"http://www.selenic.com/mercurial/\">Mercurial</a>, the revision\n"
+"        control system (RCS) used by Pylons, the latest revision is called "
+"the\n"
+"        tip."
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:16
+#, python-format
+msgid "Latest Release  (%s)"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:18
+msgid "Older release builds"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:25
+msgid "Development Tip"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:27
+msgid "Older tip builds"
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:34
+msgid "Loading..."
+msgstr ""
+
+#: kai/templates/buildbot/index.mako:42
+msgid "Build Name"
 msgstr ""
 
 #: kai/templates/email/lost_password.mako:1
@@ -170,5 +247,135 @@ msgstr ""
 msgid ""
 "If you're unable to click on the link, copy and paste the entire url\n"
 "into the address window of your web browser."
+msgstr ""
+
+#: kai/templates/home/community.mako:60
+msgid "Community"
+msgstr ""
+
+#: kai/templates/home/features.mako:106
+msgid "Features"
+msgstr ""
+
+#: kai/templates/home/index.mako:3
+msgid ""
+"Pylons is a lightweight web framework <br />\n"
+"        emphasizing flexibility and rapid development."
+msgstr ""
+
+#: kai/templates/home/index.mako:5
+msgid "Download Latest"
+msgstr ""
+
+#: kai/templates/home/index.mako:5
+#, python-format
+msgid "Version: %s"
+msgstr ""
+
+#: kai/templates/home/index.mako:11
+msgid "Why use Pylons?"
+msgstr ""
+
+#: kai/templates/home/index.mako:20
+msgid "Plays Well With Others"
+msgstr ""
+
+#: kai/templates/home/index.mako:43
+msgid "Latest News"
+msgstr ""
+
+#: kai/templates/home/index.mako:53
+msgid "Useful Resources"
+msgstr ""
+
+#: kai/templates/home/index.mako:70
+msgid "Recent Snippets"
+msgstr ""
+
+#: kai/templates/home/index.mako:79
+msgid "Recent Pastes"
+msgstr ""
+
+#: kai/templates/home/index.mako:99
+msgid "Join the discussion"
+msgstr ""
+
+#: kai/templates/home/index.mako:111
+msgid "Join Mailing List"
+msgstr ""
+
+#: kai/templates/home/index.mako:135
+msgid "Home"
+msgstr ""
+
+#: kai/templates/pasties/create.mako:4 kai/templates/pasties/create.mako:8
+msgid "Create Paste"
+msgstr ""
+
+#: kai/templates/pasties/index.mako:51
+msgid "Pastebin"
+msgstr ""
+
+#: kai/templates/pasties/layout.mako:3
+msgid "Pastebin Home"
+msgstr ""
+
+#: kai/templates/pasties/layout.mako:4
+msgid "New Paste"
+msgstr ""
+
+#: kai/templates/pasties/layout.mako:5 kai/templates/snippets/layout.mako:8
+msgid "View By Tag"
+msgstr ""
+
+#: kai/templates/pasties/show.mako:31
+#, python-format
+msgid "View Paste: %s"
+msgstr ""
+
+#: kai/templates/pasties/tagcloud.mako:1 kai/templates/pasties/tagcloud.mako:8
+#: kai/templates/snippets/tagcloud.mako:1 kai/templates/snippets/tagcloud.mako:8
+msgid "All Tags"
+msgstr ""
+
+#: kai/templates/snippets/add.mako:4 kai/templates/snippets/add.mako:13
+#: kai/templates/snippets/layout.mako:5
+msgid "Add Snippet"
+msgstr ""
+
+#: kai/templates/snippets/add.mako:5
+msgid ""
+"Pylons snippet repository is a place to share their code snippets with the "
+"community.\n"
+"    Please only share fully functioning and tested snippets and include "
+"instructions so\n"
+"    that novice and experienced Pylons users can benefit."
+msgstr ""
+
+#: kai/templates/snippets/bytag.mako:1 kai/templates/snippets/bytag.mako:7
+#, python-format
+msgid "Snippets for tag: %s"
+msgstr ""
+
+#: kai/templates/snippets/edit.mako:4 kai/templates/snippets/edit.mako:12
+msgid "Edit Snippet"
+msgstr ""
+
+#: kai/templates/snippets/index.mako:18 kai/templates/snippets/layout.mako:3
+msgid "Snippet Home"
+msgstr ""
+
+#: kai/templates/snippets/layout.mako:7
+msgid "View By Author"
+msgstr ""
+
+#: kai/templates/snippets/view.mako:21
+#, python-format
+msgid "View Snippet: %s"
+msgstr ""
+
+#: kai/templates/tracebacks/show.mako:65
+#, python-format
+msgid "Traceback %s"
 msgstr ""
 
