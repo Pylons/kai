@@ -66,6 +66,9 @@ class DocsController(BaseController):
         if url == 'objects.inv':
             response.content_type = 'text/plain'
             return c.doc['content']
+        
+        if url == 'search':
+            redirect_to('search')
         return render('/docs/view.mako')
     
     def _view_old(self, version, url):
