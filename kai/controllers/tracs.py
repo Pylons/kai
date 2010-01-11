@@ -1,6 +1,6 @@
 import logging
 
-from pylons import response, config, tmpl_context as c
+from pylons import request, response, config, tmpl_context as c
 from pylons.controllers.util import abort
 
 # Monkey patch the lazywriter, since mercurial needs that on the stdout

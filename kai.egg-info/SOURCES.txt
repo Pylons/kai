@@ -1,19 +1,16 @@
 MANIFEST.in
 README
-README.txt
 setup.cfg
 setup.py
 kai/__init__.py
 kai/websetup.py
 kai.egg-info/PKG-INFO
 kai.egg-info/SOURCES.txt
-kai.egg-info/SOURCES.txt.orig
 kai.egg-info/dependency_links.txt
 kai.egg-info/entry_points.txt
 kai.egg-info/not-zip-safe
 kai.egg-info/paster_plugins.txt
 kai.egg-info/requires.txt
-kai.egg-info/requires.txt.orig
 kai.egg-info/top_level.txt
 kai/config/__init__.py
 kai/config/deployment.ini_tmpl
@@ -54,12 +51,9 @@ kai/model/paste.py
 kai/model/snippet.py
 kai/model/traceback.py
 kai/model/validators.py
-kai/public/.DS_Store
-kai/public/css/.DS_Store
 kai/public/css/CSSLIST
 kai/public/css/base.css
 kai/public/css/custom.css
-kai/public/css/custom.css.orig
 kai/public/css/fonts.css
 kai/public/css/grids.css
 kai/public/css/phq-01232009.1-min.css
@@ -67,6 +61,7 @@ kai/public/css/phq-01232009.2-min.css
 kai/public/css/phq-02132009.1-min.css
 kai/public/css/phq-02132009.2-min.css
 kai/public/css/phq-02132009.3-min.css
+kai/public/css/phq-05292009.1-min.css
 kai/public/css/phq-12152008.1-min.css
 kai/public/css/phq-12152008.2-min.css
 kai/public/css/phq-12162008.1-min.css
@@ -87,7 +82,6 @@ kai/public/css/reset-fonts-grids.css
 kai/public/css/reset.css
 kai/public/css/sphinx.css
 kai/public/css/tweaks.css
-kai/public/css/tweaks.css.orig
 kai/public/css/images/arrow-down.gif
 kai/public/css/images/arrow-down.png
 kai/public/css/images/arrow-right.gif
@@ -112,10 +106,7 @@ kai/public/css/images/sidebar-h3.gif
 kai/public/css/images/star-matrix.gif
 kai/public/css/images/success.gif
 kai/public/css/images/tickmark.gif
-kai/public/images/.DS_Store
-kai/public/images/51Wo6168PaL._SL160_.jpg
 kai/public/images/51Wo6168PaL.jpg
-kai/public/images/icons/.DS_Store
 kai/public/images/icons/RSS_16.png
 kai/public/images/icons/RSS_32.png
 kai/public/images/icons/dialog-error.png
@@ -130,6 +121,7 @@ kai/public/javascripts/jquery-1.2.6.min.js
 kai/public/javascripts/jquery-1.3.1.min.js
 kai/public/javascripts/jquery.blockUI.js
 kai/public/javascripts/jquery_all.js
+kai/public/javascripts/rst_helpers.js
 kai/templates/error.mako
 kai/templates/layout.mako
 kai/templates/search.mako
@@ -164,6 +156,7 @@ kai/templates/pasties/tagcloud.mako
 kai/templates/snippets/add.mako
 kai/templates/snippets/byauthor.mako
 kai/templates/snippets/bytag.mako
+kai/templates/snippets/edit.mako
 kai/templates/snippets/index.mako
 kai/templates/snippets/layout.mako
 kai/templates/snippets/tagcloud.mako

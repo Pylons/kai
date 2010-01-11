@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /pythonpaste/browser
+Disallow: /pythonpaste/timeline
+Disallow: /pythonpaste/report
+Disallow: /pythonpaste/search
+Disallow: /trac/routes/browser
+Disallow: /trac/routes/timeline
+Disallow: /trac/routes/report
+Disallow: /trac/routes/search
+Disallow: /beaker/browser
+Disallow: /beaker/timeline
+Disallow: /beaker/report
+Disallow: /beaker/search
+Disallow: /project/pylonshq/browser
+Disallow: /project/pylonshq/timeline
+Disallow: /project/pylonshq/report
+Disallow: /project/pylonshq/search
+
