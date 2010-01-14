@@ -1,7 +1,7 @@
 from datetime import datetime
 import logging
 
-from pylons import request, response, session, tmpl_context as c
+from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect_to
 from pylons.decorators import rest, secure, jsonify
 from tw.mods.pylonshf import validate
@@ -98,13 +98,17 @@ class AccountsController(BaseController):
         session.clear()
         session.expire()
         session.save()
+        redir = request.GET.get('redir')
         success_flash('You have logged out of your session')
-        redirect_to('home')
+        if redir:
+            redirect_to(str(redir))
+        else:
+            redirect_to('home')
     
     @rest.dispatch_on(POST='_process_login')
     def login(self):
         redir = request.GET.get('redir')
-        if redir and redir.startswith('/'):
+        if redir and redir.startswith('/') and redir != url('account_login'):
             session['redirect'] = str(redir)
             session.save()
         return render('/accounts/login.mako')

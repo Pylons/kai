@@ -19,10 +19,10 @@
                 <div class="links">
                 % if session.get('logged_in'):
                     Logged in as ${session['displayname']}
-                    ${h.link_to('Logout', url=url('account_logout'))}
+                    ${h.link_to('Logout', url=url('account_logout', redir=request.path_qs))}
                 % else:
-                ${h.link_to('Login', url=url('account_login'))} or 
-                ${h.link_to('Register', url=url('account_register'))}
+                ${h.link_to('Login', url=url('account_login', redir=request.path_qs))} or 
+                ${h.link_to('Register', url=url('account_register', redir=request.path_qs))}
                 % endif
                 </div>
             </div>
