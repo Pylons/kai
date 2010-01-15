@@ -38,7 +38,7 @@ class ArticlesController(BaseController):
         elif format in ['atom', 'rss']:
             response.content_type = 'application/atom+xml'
             return render_feed(
-                title="PylonsHQ Article Feed", link=url(qualified=True), 
+                title="PylonsHQ Article Feed", link=url.current(qualified=True), 
                 description="Recent PylonsHQ articles", objects=c.articles,
                 pub_date='published')
     
