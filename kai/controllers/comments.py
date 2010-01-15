@@ -74,7 +74,7 @@ class CommentsController(BaseController):
                 commentdata.append(comment)
             response.content_type = 'application/atom+xml'
             return render_feed(
-                title="PylonsHQ Comment Feed", link=url(qualified=True), 
+                title="PylonsHQ Comment Feed", link=url.current(qualified=True), 
                 description="Recent PylonsHQ comments", objects=commentdata,
                 pub_date='created')
             
