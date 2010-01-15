@@ -34,7 +34,7 @@ class SnippetsController(BaseController, CMSObject):
         if format in ['atom', 'rss']:
             response.content_type = 'application/atom+xml'
             return render_feed(
-                title="PylonsHQ Snippet Feed", link=url(qualified=True), 
+                title="PylonsHQ Snippet Feed", link=url.current(qualified=True), 
                 description="Recent PylonsHQ snippets", objects=c.snippets,
                 pub_date='created')
 
