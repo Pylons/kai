@@ -125,7 +125,7 @@ def make_map(globs=None):
     map.connect('jinja2', 'http://jinja.pocoo.org/', _static=True)
     map.connect('pylons_book', 'http://pylonsbook.com/', _static=True)
 
-    # map.connect('/{controller}/{action}')
-    # map.connect('/{controller}/{action}/{id}')
+    map.connect('/{controller}/{action}')
+    map.connect('/{controller}/{action}/{id}')
 
     return map
