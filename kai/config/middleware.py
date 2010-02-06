@@ -1,4 +1,7 @@
 """Pylons middleware initialization"""
+import time
+import _strptime
+
 from beaker.middleware import CacheMiddleware, SessionMiddleware
 from paste.cascade import Cascade
 from paste.registry import RegistryManager

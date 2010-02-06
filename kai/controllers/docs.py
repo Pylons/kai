@@ -28,6 +28,10 @@ class DocsController(BaseController):
         # Change the url back to a string (just in case)
         url = str(url)
         
+        if 'doc_version' not in session or version != session['doc_version']:
+            session['doc_version'] = version
+            session.save()
+        
         # Check for serving images
         if url.startswith('_images/'):
             img_srv = StaticURLParser(config['image_dir'])

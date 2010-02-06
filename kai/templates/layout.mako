@@ -118,13 +118,13 @@
 ##        <li${active_sub.get('The Team', '') | n}><a href="#">The Team</a></li>
       </ul>
     </li>
-    <li id="nav-2"${active_tab.get('Documentation', '') | n}>${h.link_to('Documentation', url=url('doc_home'))}
+    <li id="nav-2"${active_tab.get('Documentation', '') | n}>${h.link_to('Documentation', url=url('doc_home', version=session.get('doc_version', app_globals.doc_version)))}
       <ul>
-        <li${active_sub.get('Reference', '') | n}>${h.link_to('Reference', url=url('doc_home'))}</li>
+        <li${active_sub.get('Reference', '') | n}>${h.link_to('Reference', url=url('doc_home', version=session.get('doc_version', app_globals.doc_version)))}</li>
 ##        <li${active_sub.get('FAQ', '') | n}><a href="#">FAQ</a></li>
-        <li${active_sub.get('Modules', '') | n}>${h.link_to('Modules', url=url('doc_view', url='modules/'))}</li>
-        <li${active_sub.get('Glossary', '') | n}>${h.link_to('Glossary', url=url('doc_view', url='glossary/'))}</li>
-        <li${active_sub.get('Index', '') | n}><a href="#">${h.link_to('Index', url=url('doc_view', url='index/'))}</a></li>
+        <li${active_sub.get('Modules', '') | n}>${h.link_to('Modules', url=url('doc_view', url='modules/', version=session.get('doc_version', app_globals.doc_version)))}</li>
+        <li${active_sub.get('Glossary', '') | n}>${h.link_to('Glossary', url=url('doc_view', url='glossary/', version=session.get('doc_version', app_globals.doc_version)))}</li>
+        <li${active_sub.get('Index', '') | n}><a href="#">${h.link_to('Index', url=url('doc_view', url='index/', version=session.get('doc_version', app_globals.doc_version)))}</a></li>
       </ul>
     </li>
     <li id="nav-3"${active_tab.get('Community', '') | n}>${h.link_to('Community', url=url('community'))}
