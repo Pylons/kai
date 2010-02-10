@@ -24,6 +24,8 @@ class ExistingSnippetTitle(formencode.FancyValidator):
 
 class ExistingEmail(formencode.FancyValidator):
     def _to_python(self, value, state):
+        if not isinstance(value, basestring):
+            raise formencode.Invalid('Invalid e-mail address type')
         users = list(Human.by_email(pylons.tmpl_context.db)[value])
         if not users:
             raise formencode.Invalid('No such e-mail address was found',
@@ -85,7 +87,11 @@ class ValidLogin(formencode.FancyValidator):
         email = field_dict[self.email]
         password = field_dict[self.password]
         
-        users = list(Human.by_email(pylons.tmpl_context.db)[email])
+        if isinstance(email, basestring):
+            users = list(Human.by_email(pylons.tmpl_context.db)[email])
+        else:
+            users = None
+        
         if users:
             user = users[0]
         else:

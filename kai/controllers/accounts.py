@@ -65,6 +65,7 @@ class AccountsController(BaseController):
     
     @rest.dispatch_on(POST='_change_password')
     def change_password(self, token):
+        c.token = token
         users = list(Human.by_password_token(self.db)[token])
         if not users:
             failure_flash('That password token is no longer valid.')

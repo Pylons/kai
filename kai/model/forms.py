@@ -1,8 +1,6 @@
 from formencode import All, Schema
 from formencode.validators import FieldsMatch, UnicodeString, OneOf, Email
 from tw2 import forms
-from tw2.core import EmailValidator
-from tw2.forms.calendars import DateTimeConverter
 import pytz
 
 from kai.lib.highlight import langdict
@@ -114,7 +112,7 @@ forgot_password_form = ForgotPasswordForm()
 
 class LoginForm(forms.TableForm):
     email_address = forms.TextField(
-        validator = EmailValidator(not_empty=True))
+        validator = Email(not_empty=True))
     password = forms.PasswordField(
         validator = UnicodeString(not_empty=True))
     authentication_token = SecureToken()
@@ -140,7 +138,7 @@ class OpenIDRegistrationForm(forms.TableForm):
         help_text = "Name that will appear when posting/commenting",
         validator = All(UnicodeString(not_empty=True), UniqueDisplayname()))
     email_address = forms.TextField(
-        validator = All(EmailValidator(not_empty=True), UniqueEmail()))
+        validator = All(Email(not_empty=True), UniqueEmail()))
     timezone = forms.SingleSelectField(
         options = pytz.common_timezones,
         validator = OneOf(pytz.common_timezones, not_empty=True))
