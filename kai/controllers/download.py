@@ -3,7 +3,7 @@ import os
 
 from paste.urlparser import StaticURLParser
 from pylons import app_globals, config, request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 
 from kai.lib.base import BaseController, render
 

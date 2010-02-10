@@ -5,7 +5,7 @@ import os
 from couchdb import ResourceConflict
 from paste.urlparser import StaticURLParser
 from pylons import config, request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, json, render
@@ -72,12 +72,12 @@ class DocsController(BaseController):
             return c.doc['content']
         
         if url == 'search':
-            redirect_to('search')
+            redirect(url('search'))
         return render('/docs/view.mako')
     
     def _view_old(self, version, url):
         if request.path_info.endswith('docs') or request.path_info.endswith('docs/'):
-            redirect_to('/docs/%s/' % str(version))
+            redirect(url('/docs/%s/' % str(version)))
 
         base_path = os.path.normpath(config.get('doc_dir'))
         if url == 'index':
@@ -87,7 +87,7 @@ class DocsController(BaseController):
         # Prevent circumvention of the base docs path and bad paths
         if not c.url.startswith(base_path) or not os.path.exists(c.url):
             if version > '0.9.5':
-                redirect_to('cdocs', page='Home')
+                redirect(url('cdocs', page='Home'))
             abort(404)
         c.version = version
         return render('/docs/load_content.mako')

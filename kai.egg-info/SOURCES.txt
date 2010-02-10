@@ -20,7 +20,7 @@ kai/config/routing.py
 kai/controllers/__init__.py
 kai/controllers/accounts.py
 kai/controllers/articles.py
-kai/controllers/buildbot.py
+kai/controllers/buildbot2.py
 kai/controllers/comments.py
 kai/controllers/consumer.py
 kai/controllers/docs.py
@@ -51,6 +51,7 @@ kai/model/paste.py
 kai/model/snippet.py
 kai/model/traceback.py
 kai/model/validators.py
+kai/public/robots.txt
 kai/public/css/CSSLIST
 kai/public/css/base.css
 kai/public/css/custom.css

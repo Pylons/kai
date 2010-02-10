@@ -2,11 +2,11 @@ from datetime import datetime
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import rest, secure, jsonify
-from tw.mods.pylonshf import validate
 
 from kai.lib.base import BaseController, render
+from kai.lib.decorators import validate
 from kai.lib.helpers import failure_flash, success_flash
 from kai.lib.mail import EmailMessage
 from kai.model import Human, Paste, Traceback, forms
@@ -34,18 +34,18 @@ class AccountsController(BaseController):
                 diff = datetime.utcnow() - user.email_token_issue
                 if diff.days > 1 or diff.seconds > 3600:
                     failure_flash('This e-mail verification token has expired.')
-                    redirect_to('home')
+                    redirect(url('home'))
             
             # Valid e-mail token, remove it and log the user in
             user.email_token = user.email_token_issue = None
             user.process_login()
             success_flash('Your email has been verified, and you have been'
                           ' logged into PylonsHQ')
-            redirect_to('home')
+            redirect(url('home'))
         else:
             # No valid e-mail token
             failure_flash('Invalid e-mail token')
-            redirect_to('home')
+            redirect(url('home'))
     
     @validate(form=forms.forgot_password_form, error_handler='forgot_password')
     @secure.authenticate_form
@@ -61,20 +61,20 @@ class AccountsController(BaseController):
                                to=[self.form_result['email_address']])
         message.send(fail_silently=True)
         success_flash('An e-mail has been sent to your account to verify the password reset request.')
-        redirect_to('account_login')
+        redirect(url('account_login'))
     
     @rest.dispatch_on(POST='_change_password')
     def change_password(self, token):
         users = list(Human.by_password_token(self.db)[token])
         if not users:
             failure_flash('That password token is no longer valid.')
-            redirect_to('account_login')
+            redirect(url('account_login'))
         
         user = users[0]
         diff = datetime.utcnow() - user.password_token_issue
         if diff.days > 1 or diff.seconds > 3600:
             failure_flash('Password token is no longer valid, please make a new password reset request.')
-            redirect_to('forgot_password')
+            redirect(url('forgot_password'))
         return render('/accounts/change_password.mako')
     
     @validate(form=forms.change_password_form, error_handler='change_password')
@@ -85,12 +85,12 @@ class AccountsController(BaseController):
         diff = datetime.utcnow() - user.password_token_issue
         if diff.days > 1 or diff.seconds > 3600:
             failure_flash('Password token is no longer valid, please make a new password reset request.')
-            redirect_to('forgot_password')
+            redirect(url('forgot_password'))
         user.password_token = user.password_token_issue = None
         user.password = user.hash_password(self.form_result['password'])
         user.store(self.db)
         success_flash('Your password has been reset successfully')
-        redirect_to('account_login')
+        redirect(url('account_login'))
 
     def logout(self):
         c.user.session_id = None
@@ -101,9 +101,9 @@ class AccountsController(BaseController):
         redir = request.GET.get('redir')
         success_flash('You have logged out of your session')
         if redir:
-            redirect_to(str(redir))
+            redirect(url(str(redir)))
         else:
-            redirect_to('home')
+            redirect(url('home'))
     
     @rest.dispatch_on(POST='_process_login')
     def login(self):
@@ -122,14 +122,14 @@ class AccountsController(BaseController):
         if session.get('redirect'):
             redir_url = session.pop('redirect')
             session.save()
-            redirect_to(redir_url)
-        redirect_to('home')
+            redirect(url(redir_url))
+        redirect(url('home'))
     
     @rest.dispatch_on(POST='_process_openid_associate')
     def openid_associate(self):
         openid_url = session.get('openid_identity')
         if not openid_url:
-            redirect_to('account_register')
+            redirect(url('account_register'))
         c.openid = openid_url
         return render('/accounts/associate.mako')
     
@@ -146,14 +146,14 @@ class AccountsController(BaseController):
         if session.get('redirect'):
             redir_url = session.pop('redirect')
             session.save()
-            redirect_to(redir_url)
-        redirect_to('home')
+            redirect(url(redir_url))
+        redirect(url('home'))
     
     @rest.dispatch_on(POST='_process_openid_registration')
     def openid_register(self):
         openid_url = session.get('openid_identity')
         if not openid_url:
-            redirect_to('account_register')
+            redirect(url('account_register'))
         c.openid = session.get('openid_identity')
         c.defaults = {}
         return render('/accounts/register.mako')
@@ -196,4 +196,4 @@ class AccountsController(BaseController):
         
         success_flash("User account '%s' created successfully. An e-mail has"
                       " been sent to activate your account." % user.displayname)
-        redirect_to('home')
+        redirect(url('home'))

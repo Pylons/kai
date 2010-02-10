@@ -10,9 +10,9 @@ from docutils.core import publish_parts
 from webhelpers.date import distance_of_time_in_words
 from webhelpers.html.converters import textilize
 from webhelpers.html.tags import auto_discovery_link, link_to, select, stylesheet_link
-from webhelpers.html.secure_form import auth_token_hidden_field
 from webhelpers.text import truncate
 from webhelpers.pylonslib import Flash as _Flash
+from webhelpers.pylonslib.secure_form import auth_token_hidden_field
 from webob.exc import strip_tags
 
 from kai.lib.highlight import code_highlight, langdict

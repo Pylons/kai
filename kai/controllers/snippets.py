@@ -4,13 +4,12 @@ import re
 from couchdb import ResourceConflict
 from formencode import htmlfill
 from pylons import cache, request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import rest
-from tw.mods.pylonshf import validate
 
 import kai.lib.pygmentsupport
 from kai.lib.base import BaseController, CMSObject, render
-from kai.lib.decorators import logged_in
+from kai.lib.decorators import logged_in, validate
 from kai.lib.helpers import success_flash, failure_flash, rst_render
 from kai.lib.serialization import render_feed
 from kai.model import Human, Snippet, forms
@@ -72,7 +71,7 @@ class SnippetsController(BaseController, CMSObject):
         
         snippet.store(self.db)
         success_flash('Snippet has been added')
-        redirect_to('snippets')
+        redirect(url('snippets'))
 
     @logged_in
     def edit(self, id):
@@ -114,7 +113,7 @@ class SnippetsController(BaseController, CMSObject):
             snippet.tags = self.form_result['tags'].replace(',', ' ').strip().split(' ')
         snippet.store(self.db)
         success_flash('Snippet has been updated')
-        redirect_to('snippet', id=slug)
+        redirect(url('snippet', id=slug))
     
     @logged_in
     def preview(self):

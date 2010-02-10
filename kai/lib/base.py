@@ -21,7 +21,7 @@ from kai.model import Human, Comment
 def render(template_name, **kwargs):
     """Render override that add's babel objects"""
     extra_vars = kwargs.pop('extra_vars', {})
-    c = pylons.c._current_obj()
+    c = pylons.tmpl_context._current_obj()
     extra_vars['format'] = c._format
     extra_vars['locale'] = c._locale
     extra_vars['timezone'] = c._tzinfo
@@ -48,17 +48,17 @@ class BaseController(WSGIController):
             tzinfo = timezone(tzinfo)
         langs = pylons.request.accept_language.best_matches() or ['en']
         locale = Locale.negotiate(langs, ['en', 'uk', 'ja'], sep='-') or Locale('en')
-        pylons.c._format = Format(locale, tzinfo=tzinfo)
-        pylons.c._locale = locale
-        pylons.c._tzinfo = tzinfo
-        pylons.c.user = user
+        pylons.tmpl_context._format = Format(locale, tzinfo=tzinfo)
+        pylons.tmpl_context._locale = locale
+        pylons.tmpl_context._tzinfo = tzinfo
+        pylons.tmpl_context.user = user
     
     def __call__(self, environ, start_response):
         """Invoke the Controller"""
-        pylons.c.db = self.db = Database(pylons.config['couchdb_uri'])
+        pylons.tmpl_context.db = self.db = Database(pylons.config['couchdb_uri'])
         self._setup()
         
-        pylons.c.use_minified_assets = asbool(
+        pylons.tmpl_context.use_minified_assets = asbool(
             pylons.config.get('use_minified_assets', 'false'))
         return WSGIController.__call__(self, environ, start_response)
 

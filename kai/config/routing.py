@@ -4,7 +4,6 @@ The more specific and detailed routes should be defined first so they
 may take precedent over the more generic routes. For more information
 refer to the routes manual at http://routes.groovie.org/docs/
 """
-from pylons import config
 from routes import Mapper
 
 wiki = 'http://wiki.pylonshq.com'
@@ -19,9 +18,10 @@ def article_expand(kwargs):
     return kwargs
 
 
-def make_map(globs=None):
+def make_map(config):
     """Create, configure and return the routes Mapper"""
     version = config['pylons.app_globals'].current_version
+    globs = config['pylons.app_globals']
     static_host = config['cdn.uri']
 
     map = Mapper(directory=config['pylons.paths']['controllers'],
@@ -73,6 +73,7 @@ def make_map(globs=None):
     map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
     
     # Accounts
+    map.connect('account_login', '/accounts/login', controller='accounts', action='login')
     map.connect('account_login', '/accounts/login', controller='accounts', action='login')
     map.connect('account_register', '/accounts/register', controller='accounts', action='register')
     map.connect('account_logout', '/accounts/logout', controller='accounts', action='logout')

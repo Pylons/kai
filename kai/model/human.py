@@ -128,6 +128,6 @@ class Human(Document):
         session['user_id'] = self.id
         session.save()
         self.session_id = session.id
-        self.store(pylons.c.db)
+        self.store(pylons.tmpl_context.db)
         Paste.associate_pasties(self)
         Traceback.associate_tracebacks(self)

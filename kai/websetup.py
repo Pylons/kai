@@ -3,6 +3,7 @@ import logging
 
 from couchdb.design import ViewDefinition
 import pylons
+import pylons.test
 
 from kai.config.environment import load_environment
 from kai.model import Article, Comment, Documentation, Human, Paste, Rating, Snippet, Traceback
@@ -39,7 +40,10 @@ def sync_db(db):
 
 def setup_app(command, conf, vars):
     """Place any commands to setup kai here"""
-    load_environment(conf.global_conf, conf.local_conf)
+    # Don't reload the app if it was loaded under the testing environment
+    if not pylons.test.pylonsapp:
+        load_environment(conf.global_conf, conf.local_conf)
+    
     server = pylons.config['kai.server']
     db = pylons.config['kai.db']
     sync_db(db)

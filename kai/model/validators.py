@@ -24,7 +24,7 @@ class ExistingSnippetTitle(formencode.FancyValidator):
 
 class ExistingEmail(formencode.FancyValidator):
     def _to_python(self, value, state):
-        users = list(Human.by_email(pylons.c.db)[value])
+        users = list(Human.by_email(pylons.tmpl_context.db)[value])
         if not users:
             raise formencode.Invalid('No such e-mail address was found',
                                      value, state)
@@ -42,7 +42,7 @@ class ExistingEmail(formencode.FancyValidator):
 
 class UniqueDisplayname(formencode.FancyValidator):
     def _to_python(self, value, state):
-        if list(Human.by_displayname(pylons.c.db)[value]):
+        if list(Human.by_displayname(pylons.tmpl_context.db)[value]):
             raise formencode.Invalid('Display name already exists',
                                      value, state)
         else:
@@ -51,7 +51,7 @@ class UniqueDisplayname(formencode.FancyValidator):
 
 class UniqueEmail(formencode.FancyValidator):
     def _to_python(self, value, state):
-        if list(Human.by_email(pylons.c.db)[value]):
+        if list(Human.by_email(pylons.tmpl_context.db)[value]):
             raise formencode.Invalid('Email address already exists', value,
                                      state)
         else:
@@ -77,12 +77,15 @@ class ValidLogin(formencode.FancyValidator):
         'badlogin': "Invalid email and/or password",
     }
     
+    def is_empty(self, value):
+        return False
+    
     def validate_python(self, field_dict, state):
         errors = {}
         email = field_dict[self.email]
         password = field_dict[self.password]
         
-        users = list(Human.by_email(pylons.c.db)[email])
+        users = list(Human.by_email(pylons.tmpl_context.db)[email])
         if users:
             user = users[0]
         else:

@@ -124,7 +124,7 @@ class Paste(Document):
     def tag_sizes(cls):
         """This method returns all the tags and their relative size for
         a tagcloud"""
-        tags = list(cls.all_tags(pylons.c.db))
+        tags = list(cls.all_tags(pylons.tmpl_context.db))
         totalcounts = []
         for tag in tags:
             weight = (math.log(tag['count'] or 1) * 4) + 10
@@ -133,7 +133,7 @@ class Paste(Document):
 
     @classmethod
     def associate_pasties(cls, user):
-        db = pylons.c.db
+        db = pylons.tmpl_context.db
         pasties = list(cls.by_session_id(db)[pylons.session.id])
         if pasties:
             for paste in pasties:

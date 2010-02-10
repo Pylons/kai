@@ -3,11 +3,11 @@ import logging
 from openid import sreg
 from openid.consumer import consumer
 from pylons import app_globals, cache, request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import rest, secure, jsonify
-from tw.mods.pylonshf import validate
 
 from kai.lib.base import BaseController, render
+from kai.lib.decorators import validate
 from kai.lib.helpers import failure_flash, success_flash
 from kai.model import Human, forms
 
@@ -15,9 +15,9 @@ log = logging.getLogger(__name__)
 
 def proper_abort(end_action):
     if end_action == 'login':
-        redirect_to('account_login')
+        redirect(url('account_login'))
     else:
-        redirect_to('account_register')
+        redirect(url('account_register'))
 
 
 class ConsumerController(BaseController):
@@ -48,7 +48,7 @@ class ConsumerController(BaseController):
     def _openid_login(self, end_action='login'):
         openid_url = self.form_result['openid_identifier']
         if not openid_url:
-            redirect_to('account_login')
+            redirect(url('account_login'))
 
         oidconsumer = consumer.Consumer(self.openid_session, app_globals.openid_store)
         try:
@@ -85,7 +85,7 @@ class ConsumerController(BaseController):
                                                    return_to=return_to, 
                                                    immediate=False)
             self.my_cache.set_value(key=session.id, value=self.openid_session, expiretime=300)
-            redirect_to(redirect_url)
+            redirect(url(redirect_url))
         else:
             form_html = authrequest.formMarkup(
                 realm=trust_root, return_to=return_to, immediate=False,
@@ -127,15 +127,15 @@ class ConsumerController(BaseController):
                 user = users[0]
                 if user.email_token:
                     failure_flash('You must verify your email before signing in.')
-                    redirect_to('account_login')
+                    redirect(url('account_login'))
                 else:
                     user.process_login()
                     success_flash('You have logged into PylonsHQ')
                     if session.get('redirect'):
                         redir_url = session.pop('redirect')
                         session.save()
-                        redirect_to(redir_url)
-                    redirect_to('home')
+                        redirect(url(redir_url))
+                    redirect(url('home'))
             
             # Second, if this is a registration request, present the rest of
             # registration process

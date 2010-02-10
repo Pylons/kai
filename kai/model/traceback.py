@@ -108,7 +108,7 @@ class Traceback(Document):
             return False
     
     def comment_count(self):
-        comments = Comment.comment_count(pylons.c.db)[self.id]
+        comments = Comment.comment_count(pylons.tmpl_context.db)[self.id]
         if not comments:
             return 0
         else:
@@ -116,7 +116,7 @@ class Traceback(Document):
     
     @classmethod
     def associate_tracebacks(cls, user):
-        db = pylons.c.db
+        db = pylons.tmpl_context.db
         tracebacks = list(cls.by_session_id(db)[pylons.session.id])
         if tracebacks:
             for tb in tracebacks:

@@ -3,7 +3,7 @@ from kai.model.forms import pastebin_form
 %>
 <h1>${_('Create Paste')}</h1>
 
-${pastebin_form() | n}
+${pastebin_form().display() | n}
 
 <%def name="title()">${parent.title()} - ${_('Create Paste')}</%def>
 <%def name="javascript()">
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 return true;
             };
             var tags = [${','.join(["\"%s\"" % tag for tag in c.tags]) | n}];
-            make_tagger('pastebin_form_tags', 'pastebin_form_tags_autocomplete', tags);
+            make_tagger('tags', 'tags_autocomplete', tags);
         }
     });
     loader.insert();

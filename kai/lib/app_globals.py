@@ -3,6 +3,8 @@ from datetime import datetime
 import md5
 import os
 
+from beaker.cache import CacheManager
+from beaker.util import parse_cache_config_options
 from openid.server import server
 from openid.store import filestore
 from pylons import config
@@ -12,12 +14,14 @@ class Globals(object):
     life of the application
 
     """
-    def __init__(self):
+    def __init__(self, config):
         """One instance of Globals is created during application
         initialization and is available during requests via the
         'app_globals' variable
 
         """
+        self.cache = CacheManager(**parse_cache_config_options(config))
+        
         oid_store = os.path.sep.join([config['pylons.cache_dir'], 'openid'])
         self.openid_store = filestore.FileOpenIDStore(oid_store)
         self.openid_server = server.Server(self.openid_store, config['openid.base_url'])

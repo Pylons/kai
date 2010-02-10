@@ -2,12 +2,11 @@ import logging
 import re
 
 from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import rest
-from tw.mods.pylonshf import validate
 
 from kai.lib.base import BaseController, render
-from kai.lib.decorators import in_group
+from kai.lib.decorators import in_group, validate
 from kai.lib.helpers import failure_flash, success_flash
 from kai.lib.serialization import render_feed
 from kai.model.forms import new_article_form
@@ -66,4 +65,4 @@ class ArticlesController(BaseController):
         article.slug = slug
         article.store(self.db)
         success_flash('Article saved and published')
-        redirect_to('articles')
+        redirect(url('articles'))

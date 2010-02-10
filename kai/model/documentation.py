@@ -32,7 +32,7 @@ class Documentation(object):
     
     @classmethod
     def fetch_doc(cls, project, version, language, path, **options):
-        rows = cls.by_path(pylons.c.db, **options)[[project, version, language, path]]
+        rows = cls.by_path(pylons.tmpl_context.db, **options)[[project, version, language, path]]
         if len(rows) > 0:
             return list(rows)[0].doc
         else:
@@ -40,12 +40,12 @@ class Documentation(object):
     
     @classmethod
     def delete_revision(cls, project, rev, **options):
-        rows = cls.ids_for_version(pylons.c.db, **options)[[project, rev]]
+        rows = cls.ids_for_version(pylons.tmpl_context.db, **options)[[project, rev]]
         for row in rows:
-            del pylons.c.db[row.id]
+            del pylons.tmpl_context.db[row.id]
     
     @classmethod
     def exists(cls, doc, **options):
         key = [doc['filename'], doc['version'], doc['project']]
-        rows = cls.doc_key(pylons.c.db, **options)[key]
+        rows = cls.doc_key(pylons.tmpl_context.db, **options)[key]
         return len(rows) > 0

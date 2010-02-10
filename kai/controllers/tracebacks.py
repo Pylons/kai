@@ -2,7 +2,7 @@ import logging
 
 from paste.script.util.uuid import uuid4
 from pylons import request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import jsonify
 
 from kai.lib.base import BaseController, CMSObject, render

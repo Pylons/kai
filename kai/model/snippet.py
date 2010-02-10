@@ -117,14 +117,14 @@ class Snippet(Document):
     
     @classmethod
     def exists(cls, title):
-        rows = pylons.c.db.view('snippets/by_title')[title]
+        rows = pylons.tmpl_context.db.view('snippets/by_title')[title]
         return len(rows) > 0
     
     @classmethod
     def tag_sizes(cls):
         """This method returns all the tags and their relative size for
         a tagcloud"""
-        tags = list(cls.all_tags(pylons.c.db))
+        tags = list(cls.all_tags(pylons.tmpl_context.db))
         totalcounts = []
         for tag in tags:
             weight = (math.log(tag['count'] or 1) * 4) + 10

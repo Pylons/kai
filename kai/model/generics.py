@@ -64,7 +64,7 @@ class Comment(Document):
     
     @classmethod
     def total_comments(cls, doc_id):
-        comments = list(Comment.comment_count(pylons.c.db)[doc_id])
+        comments = list(Comment.comment_count(pylons.tmpl_context.db)[doc_id])
         if not comments:
             return 0
         else:
@@ -95,7 +95,7 @@ class Rating(Document):
     def has_rated(cls, doc_id, displayname, **options):
         """Checks the document to see if the displayname has already rated
         the document, if so, returns the id of the rating doc"""
-        docs = list(cls.all_raters(pylons.c.db)[doc_id])
+        docs = list(cls.all_raters(pylons.tmpl_context.db)[doc_id])
         if docs:
             for rating in docs[0]:
                 if displayname == rating['displayname']:
@@ -105,7 +105,7 @@ class Rating(Document):
     @classmethod
     def by_id(cls, doc_id, **options):
         """Retrieves the overall rating for a document"""
-        rows = pylons.c.db.view('rating/by_id', **options)[doc_id]
+        rows = pylons.tmpl_context.db.view('rating/by_id', **options)[doc_id]
         if len(rows) > 0:
             return list(rows)[0].value
         else:
@@ -124,9 +124,9 @@ class Rating(Document):
         """
         prior_rating = cls.has_rated(doc_id, user.displayname)
         if prior_rating:
-            rating_doc = Rating.load(pylons.c.db, prior_rating)
+            rating_doc = Rating.load(pylons.tmpl_context.db, prior_rating)
         else:
             rating_doc = cls(human_id=user.id, doc_id=doc_id,
                          username=user.displayname)
         rating_doc.rating = rating
-        rating_doc.store(pylons.c.db)
+        rating_doc.store(pylons.tmpl_context.db)

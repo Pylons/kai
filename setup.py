@@ -13,7 +13,7 @@ setup(
     author_email='ben@groovie.org',
     install_requires=[
         "Pylons>=0.9.7", "CouchDB>=0.4", "python-openid>=2.2.1",
-        "pytz>=2008i", "Babel>=0.9.4", "tw.forms==0.9.3", "docutils>=0.5",
+        "pytz>=2008i", "Babel>=0.9.4", "tw2.forms>=2.0a2", "docutils>=0.5",
         "PyXML>=0.8.4", "cssutils>=0.9.6a0", "Pygments>=1.0",
         "Beaker>=1.5.1",
     ],

@@ -1,11 +1,11 @@
 import logging
 
 from pylons import cache, request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect_to
+from pylons.controllers.util import abort, redirect
 from pylons.decorators import rest
-from tw.mods.pylonshf import validate
 
 from kai.lib.base import BaseController, CMSObject, render
+from kai.lib.decorators import validate
 from kai.lib.helpers import success_flash
 from kai.lib.serialization import render_feed
 from kai.model import Paste, forms
@@ -39,7 +39,7 @@ class PastiesController(BaseController, CMSObject):
             paste.tags = self.form_result['tags'].replace(',', ' ').strip().split(' ')
 
         paste.store(self.db)
-        redirect_to('paste', id=paste.id)
+        redirect(url('paste', id=paste.id))
     
     def show(self, id):
         doc = Paste.load(self.db, id)
