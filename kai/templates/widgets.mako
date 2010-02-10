@@ -27,7 +27,7 @@ else:
     % if c.user:
         <div style="display: none;" id="comment_preview">&nbsp;</div>
         <div class="comment_format">${h.link_to('Formatting Quick Reference', url="http://hobix.com/textile/quick.html")}</div>
-        ${forms.comment_form(action='#') | n}
+        ${forms.comment_form.display(action='#') | n}
     % else:
         <p>You must ${h.link_to(_('login'), url=url('account_login', redir=url.current()))} before you can comment.</p>
     % endif
@@ -73,7 +73,7 @@ ${format.datetime(date)}
 </%def>
 ##
 <%def name="comment_js(doc_id)">
-$('input#comment_form_preview').click(function() {
+$('input#preview').click(function() {
     var content = $('#comment_form_comment')[0].value;
     var preview_url = '${url('preview_comment')}';
     $.ajax({
@@ -86,7 +86,7 @@ $('input#comment_form_preview').click(function() {
     });
     return false;
 });
-$('input#comment_form_submit').click(function() {
+$('input#submit').click(function() {
     var content = $('#comment_form_comment')[0].value;
     var submit_url = '${url('post_comment', doc_id=doc_id)}';
     $.ajax({

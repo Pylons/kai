@@ -3,7 +3,7 @@ from kai.model.forms import snippet_form
 %>
 <h1>${_('Edit Snippet')}</h1>
 
-${snippet_form(dict(title=c.snippet.title, description=c.snippet.description,
+${snippet_form.display(dict(title=c.snippet.title, description=c.snippet.description,
                     content=c.snippet.content, tags=', '.join(c.snippet.tags or [])
                ), action=url('snippet', id=c.id, _method='PUT')) | n}
 

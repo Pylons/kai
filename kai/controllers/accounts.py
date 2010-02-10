@@ -32,7 +32,7 @@ class AccountsController(BaseController):
             # its still valid
             if user.email_token_issue:
                 diff = datetime.utcnow() - user.email_token_issue
-                if diff.days > 1 or diff.seconds > 3600:
+                if diff.days > 1:
                     failure_flash('This e-mail verification token has expired.')
                     redirect(url('home'))
             

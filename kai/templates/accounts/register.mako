@@ -7,7 +7,7 @@
     
     <p>${_('Using OpenID: %s' % c.openid)}</p>
     
-    ${openid_registration_form(c.defaults, action=url('openid_register')) | n}
+    ${openid_registration_form.display(c.defaults, action=url('openid_register')) | n}
     
     % else:
     <h1>${_('Register for an Account')}</h1>
@@ -25,14 +25,14 @@
     <p>${_("""<b>Note: </b>A valid e-mail address is required to activate your
         account.""") |n}</p>
     
-    ${registration_form(action=url('account_register')) | n}
+    ${registration_form.display(action=url('account_register')) | n}
     
     <div id="openid_reg">
         <h3>${_('Register with OpenID')}</h3>
         <p>${_("""To speed up registration, using OpenID will automatically fill-in details
             that from the OpenID provider.""")}</p>
         
-        ${openid_login_form(action=url('openid_create')) | n}
+        ${openid_login_form.display(action=url('openid_create')) | n}
     </div>
     % endif
 </div>

@@ -1,7 +1,8 @@
 from formencode import All, Schema
-from formencode.validators import FieldsMatch, UnicodeString, OneOf
+from formencode.validators import FieldsMatch, UnicodeString, OneOf, Email
 from tw2 import forms
-from tw2.core import DateTimeValidator, EmailValidator
+from tw2.core import EmailValidator
+from tw2.forms.calendars import DateTimeConverter
 import pytz
 
 from kai.lib.highlight import langdict
@@ -28,9 +29,12 @@ class BotsAreLame(forms.HiddenField):
 
 class CommentForm(forms.TableForm):
     comment = forms.TextArea(
+        id = 'comment_form_comment',
+        label='Comment',
         validator = UnicodeString(not_empty=True))
     preview = forms.Button(
-        name='Preview',
+        id='preview',
+        label='',
         value='Preview')
 comment_form = CommentForm()
 
@@ -39,15 +43,17 @@ class SnippetForm(forms.TableForm):
     title = forms.TextField(
         validator = ExistingSnippetTitle(not_empty=True))
     description = forms.TextArea(
-        help_text = "ONE paragraphs summarizing the snippet. NO FORMATTING IS APPLIED",
+        help_text = "ONE paragraph summarizing the snippet. NO FORMATTING IS APPLIED",
         validator = UnicodeString())
     content = forms.TextArea(
+        id = 'snippet_form_content',
         help_text = "The full content of the snippet. Restructured Text formatting is used.",
         validator = UnicodeString(not_empty=True))
     tags = AutoComplete(
         validator = UnicodeString())
     preview = forms.Button(
-        name='Preview',
+        id='preview',
+        label='',
         value='Preview')
 snippet_form = SnippetForm()
 
@@ -69,18 +75,18 @@ pastebin_form = PastebinForm()
 
 
 class NewArticleForm(forms.TableForm):
+    css_class = 'new_article'
     title = forms.TextField(
+        css_class = 'textfield',
         validator = UnicodeString(not_empty=True))
     summary = forms.TextField(
+        css_class = 'textfield',
         validator = UnicodeString())
     body = forms.TextArea(
         rows = 15,
         validator = UnicodeString(not_empty=True))
-    publish_date = forms.CalendarDateTimePicker(
-        validator = DateTimeValidator())
-    preview = forms.Button(
-        name='Preview',
-        value='Preview')
+    publish_date = forms.CalendarDateTimePicker()
+    preview = forms.Button(id='Preview', label='', value='Preview')
 new_article_form = NewArticleForm()
 
 
@@ -91,8 +97,10 @@ class ChangePasswordForm(forms.TableForm):
         validator = ValidPassword(not_empty=True))
     authentication_token = SecureToken()
     
-    validator = FilteringSchema(
-        chained_validators=[FieldsMatch('password', 'confirm_password')])
+    class child(forms.TableLayout):    
+        validator = FilteringSchema(
+            chained_validators=[FieldsMatch('password', 'confirm_password')],
+            msgs=dict(childerror=''))
 change_password_form = ChangePasswordForm()
 
 
@@ -110,8 +118,11 @@ class LoginForm(forms.TableForm):
     password = forms.PasswordField(
         validator = UnicodeString(not_empty=True))
     authentication_token = SecureToken()
-    validator = FilteringSchema(
-        chained_validators=[ValidLogin(email='email_address', password='password')])
+    class child(forms.TableLayout):
+        validator = FilteringSchema(
+            chained_validators=[ValidLogin(email='email_address', password='password')],
+            msgs=dict(childerror=''))
+    submit = forms.SubmitButton(css_class='submit', value='Login')
 login_form = LoginForm()
 
 class OpenIDLogin(forms.TableForm):
@@ -119,6 +130,7 @@ class OpenIDLogin(forms.TableForm):
         label_text="OpenID Identifier",
         validator = UnicodeString(not_empty=True))
     authentication_token = SecureToken()
+    submit = forms.SubmitButton(css_class='submit', value='Login')
 openid_login_form = OpenIDLogin()
 
 
@@ -141,7 +153,7 @@ class RegistrationForm(forms.TableForm):
         help_text = "Name that will appear when posting/commenting",
         validator = All(UnicodeString(not_empty=True), UniqueDisplayname()))
     email_address = forms.TextField(
-        validator = All(EmailValidator(not_empty=True), UniqueEmail()))
+        validator = All(Email(not_empty=True), UniqueEmail()))
     timezone = forms.SingleSelectField(
         options = pytz.common_timezones,
         validator = OneOf(pytz.common_timezones, not_empty=True))
@@ -150,8 +162,10 @@ class RegistrationForm(forms.TableForm):
     confirm_password = forms.PasswordField(
         validator = ValidPassword(not_empty=True))
     authentication_token = SecureToken()
-    validator = FilteringSchema(
-        chained_validators=[FieldsMatch('password', 'confirm_password')])
+    
+    class child(forms.TableLayout):
+        validator = FilteringSchema(
+            chained_validators=[FieldsMatch('password', 'confirm_password')],
+            msgs=dict(childerror=''))
 registration_form = RegistrationForm()
-
 

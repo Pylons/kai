@@ -1,5 +1,6 @@
 /* @override 
 	http://localhost:5050/css/tweaks.css
+	http://127.0.0.1:5050/css/tweaks.css
 */
 
 .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
@@ -283,17 +284,17 @@ div#paging div.showing {
 }
 
 /* Blog Entry */
-form#new_article_form textarea {
+form.new_article textarea {
     width: 650px;
     height: 300px;
 }
 
-form#new_article_form input.textfield {
+form.new_article input.textfield {
     width: 350px;
 }
 
 /* Comments */
-form#comment_form textarea {
+textarea#comment_form_comment {
     width: 600px;
     height: 150px;
 }
@@ -620,16 +621,34 @@ div.atomentry div.articlecontent pre {
 
 /* Form errors */
 
-span.error-message {
+tr.error.even td span, tr.error.odd td span {
 	padding: 2px 0 0 25px;
 	color: red;
 	height: 24px;
 	display: block;
-	margin: 8px 0 -14px 2px;
+	margin: 8px 0 5px 0px;
     background: url(/images/icons/dialog-error22.png) no-repeat left top;
 }
 
-.error {
+form > span.error {
+    display: none;
+}
+
+form input.submit {
+    margin-left: 120px;
+    margin-bottom: 20px;
+}
+
+tr.error td  {
+    background: none;
+}
+
+table th {
+    border: none;
+    vertical-align: top;
+}
+
+tr.error td input, tr.error td select, tr.error td textarea {
 	border: 1px solid red;
 }
 

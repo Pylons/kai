@@ -6,7 +6,7 @@
     
     <p>${_("Enter a new password, to reset your login password.")}</p>
     
-    ${change_password_form(action=url('reset_password', token=c.token)) | n}
+    ${change_password_form.display(action=url('reset_password', token=c.token)) | n}
 </div>
 <%def name="title()">${parent.title()} - ${_('Reset Password')}</%def>
 <%inherit file="../layout.mako" />

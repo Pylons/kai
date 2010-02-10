@@ -6,7 +6,7 @@ from kai.model.forms import snippet_form
     Please only share fully functioning and tested snippets and include instructions so
     that novice and experienced Pylons users can benefit.""")}</p>
 
-${snippet_form(action=url('snippets')) | n}
+${snippet_form.display(action=url('snippets')) | n}
 
 <div style="display: none; border: 2px solid #444; padding: 4px;" id="snippet_preview">&nbsp;</div>
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
         }
     });
     loader.insert();
-    $('input#snippet_form_preview').click(function() {
+    $('#preview').click(function() {
         var content = $('#snippet_form_content')[0].value;
         var preview_url = '${url('preview_snippet')}';
         $.ajax({

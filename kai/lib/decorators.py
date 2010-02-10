@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 def in_group(group):
     """Requires a user to be logged in, and the group specified"""
     def wrapper(func, *args, **kwargs):
-        user = pylons.c.user
+        user = pylons.tmpl_context.user
         if not user:
             log.debug("No user logged in for permission restricted function")
             abort(401, "Not Authorized")
@@ -25,7 +25,7 @@ def in_group(group):
 
 @decorator
 def logged_in(func, *args, **kwargs):
-    if not pylons.c.user:
+    if not pylons.tmpl_context.user:
         abort(401, "Not Authorized")
     else:
         return func(*args, **kwargs)
@@ -38,7 +38,6 @@ def validate(form, error_handler):
             self.form_result=form.validate(pylons.request.params.mixed())
         except ValidationError, e:
             #Don't bother saving the widget, it's saved by tw2 on the request object anyway
-            pylons.tmpl_context
             pylons.request.method = 'GET'
             return getattr(self, error_handler)(*args, **kwargs)
         return func(self, *args, **kwargs)

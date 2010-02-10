@@ -3,7 +3,7 @@ from kai.model.forms import pastebin_form
 %>
 <h1>${_('Create Paste')}</h1>
 
-${pastebin_form().display() | n}
+${pastebin_form.display() | n}
 
 <%def name="title()">${parent.title()} - ${_('Create Paste')}</%def>
 <%def name="javascript()">
