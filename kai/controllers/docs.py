@@ -2,6 +2,7 @@ import mimetypes
 import logging
 import os
 
+import pylons
 from couchdb import ResourceConflict
 from paste.urlparser import StaticURLParser
 from pylons import config, request, response, session, tmpl_context as c
@@ -72,12 +73,12 @@ class DocsController(BaseController):
             return c.doc['content']
         
         if url == 'search':
-            redirect(url('search'))
+            redirect(pylons.url('search'))
         return render('/docs/view.mako')
     
     def _view_old(self, version, url):
         if request.path_info.endswith('docs') or request.path_info.endswith('docs/'):
-            redirect(url('/docs/%s/' % str(version)))
+            redirect(pylons.url('/docs/%s/' % str(version)))
 
         base_path = os.path.normpath(config.get('doc_dir'))
         if url == 'index':
@@ -87,7 +88,7 @@ class DocsController(BaseController):
         # Prevent circumvention of the base docs path and bad paths
         if not c.url.startswith(base_path) or not os.path.exists(c.url):
             if version > '0.9.5':
-                redirect(url('cdocs', page='Home'))
+                redirect(pylons.url('cdocs', page='Home'))
             abort(404)
         c.version = version
         return render('/docs/load_content.mako')
