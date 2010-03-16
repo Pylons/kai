@@ -12,7 +12,7 @@
     <p>${_('If you would like to register with PylonsHQ instead,')}
         ${h.link_to(_('continue on to the registration page'), url=url('openid_register'))}.
     
-    ${login_form(action=url('openid_associate')) | n}
+    ${login_form.display(action=url('openid_associate')) | n}
 </div>
 <%def name="title()">${parent.title()} - ${_('Associate OpenID Account')}</%def>
 <%inherit file="../layout.mako" />

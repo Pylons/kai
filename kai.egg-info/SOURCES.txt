@@ -51,6 +51,7 @@ kai/model/paste.py
 kai/model/snippet.py
 kai/model/traceback.py
 kai/model/validators.py
+kai/model/widgets/__init__.py
 kai/public/robots.txt
 kai/public/css/CSSLIST
 kai/public/css/base.css
@@ -59,6 +60,7 @@ kai/public/css/fonts.css
 kai/public/css/grids.css
 kai/public/css/phq-01232009.1-min.css
 kai/public/css/phq-01232009.2-min.css
+kai/public/css/phq-02102010.1-min.css
 kai/public/css/phq-02132009.1-min.css
 kai/public/css/phq-02132009.2-min.css
 kai/public/css/phq-02132009.3-min.css
@@ -83,6 +85,7 @@ kai/public/css/reset-fonts-grids.css
 kai/public/css/reset.css
 kai/public/css/sphinx.css
 kai/public/css/tweaks.css
+kai/public/css/tweaks.css.orig
 kai/public/css/images/arrow-down.gif
 kai/public/css/images/arrow-down.png
 kai/public/css/images/arrow-right.gif
@@ -164,9 +167,6 @@ kai/templates/snippets/tagcloud.mako
 kai/templates/snippets/view.mako
 kai/templates/tracebacks/index.mako
 kai/templates/tracebacks/show.mako
-kai/templates/widgets/autocomplete.mak
-kai/templates/widgets/notabot.mak
-kai/templates/widgets/secure.mak
 kai/tests/__init__.py
 kai/tests/test_models.py
 kai/tests/functional/__init__.py

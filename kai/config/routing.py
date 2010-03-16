@@ -68,8 +68,8 @@ def make_map(config):
     map.connect('download', '/download/{version}/*file', controller='download',
                 action='index', version=globs.doc_version)
 
-    map.connect('/download', controller='download', action='index', version=globs.versions[-1])
-    map.connect('/download/', controller='download', action='index', version=globs.versions[-1])
+    map.connect('/download', controller='download', action='index', version=globs.current_version)
+    map.connect('/download/', controller='download', action='index', version=globs.current_version)
     map.connect('cdocs', '%s/display/pylonsdocs/{page}' % wiki, _static=True)
     
     # Accounts
