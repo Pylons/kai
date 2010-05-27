@@ -716,3 +716,35 @@ ul#failure-flash-messages li, ul#success-flash-messages li {
 html {
     background-color: #0f0f0f;
 }
+
+.scrollable {
+    border: 1px solid rgb(204, 204, 204);
+    border-left: none;
+    border-right: none;
+    overflow: hidden;
+    width: 620px;
+    position: relative;
+    height: 120px;
+}
+.scrollable img {
+    padding-right: 55px;
+    float: left;
+}
+
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+	clear:both;
+}
+
+/*
+	a single item. must be floated in horizontal scrolling.
+	typically, this element is the one that *you* will style
+	the most.
+*/
+.items div {
+	float:left;
+	width: 620px;
+	padding-left: 20px;
+}

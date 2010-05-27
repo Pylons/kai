@@ -29,7 +29,7 @@ class SnippetsController(BaseController, CMSObject):
     def index(self, format='html'):
         """ Get the snippets by date and by author"""
         snippets = list(Snippet.by_date(self.db, descending=True, limit=100))
-        c.snippets = snippets[:20]
+        c.snippets = [x for x in snippets[:20] if x.content]
         if format in ['atom', 'rss']:
             response.content_type = 'application/atom+xml'
             return render_feed(
@@ -55,6 +55,7 @@ class SnippetsController(BaseController, CMSObject):
     def create(self):
         if not c.user:
             abort(401)
+        self.form_result['content'] = self.form_result.pop('snippet_form_content')
         snippet = Snippet(**self.form_result)
         snippet.human_id = c.user.id
         snippet.email = c.user.email

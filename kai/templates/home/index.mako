@@ -16,7 +16,44 @@
             ${h.link_to('Find out more', url=url('doc_home'))}, 
             ${h.link_to('install the latest version', url=url('doc_view', url='gettingstarted/', anchor='installing'))}, 
             or <b>${h.link_to('read the new Pylons book', url=url('pylons_book'))}</b>. </p>
-
+        
+        <h3>${_('Who uses Pylons?')}</h3>
+        <p>A few of the many companies and websites that use Pylons:</p>
+        
+        <div class="scrollable" id="company_scroller">
+            <div class="items">
+                <div>
+                    <img src="/images/logos/adroll.jpg" />
+                    <img src="/images/logos/bittorrent.jpg" />
+                    <img src="/images/logos/digg.jpg" />
+                </div>
+                <div>
+                    <img src="/images/logos/dropbox.jpg" />
+                    <img src="/images/logos/freshbooks.jpg" />
+                    <img src="/images/logos/imagemoversdigital.jpg" />
+                </div>
+                <div>
+                    <img src="/images/logos/lolapps.jpg" />
+                    <img src="/images/logos/mochimedia.jpg" />
+                    <img src="/images/logos/opera.jpg" />
+                </div>
+                <div>
+                    <img src="/images/logos/oreilly.jpg" />
+                    <img src="/images/logos/saucelabs.jpg" />
+                    <img src="/images/logos/reddit.jpg" />
+                </div>
+                <div>
+                    <img src="/images/logos/sourceforge.jpg" />
+                    <img src="/images/logos/tineye.jpg" />
+                    <img src="/images/logos/wetadigital.jpg" />
+                </div>
+            </div>
+        </div>
+        
+        <p style="font-size: 0.8em"><strong>Disclaimer:</strong> These companies do not necessarily run their
+            public websites with Pylons, nor officially endorse Pylons. All logos Trademark
+            of the respective company.</p>
+        
         <h3>${_('Plays Well With Others')}</h3>
         <p>Pylons is built on <a href="#">Paste</a> and allows and encourages use of your favorite Python components and libraries: </p>
         <ol>
@@ -124,6 +161,7 @@ $(document).ready(function() {
         document.location = '/search#' + escape(search);
         return false;
     });
+    $('#company_scroller').scrollable({circular: true}).autoscroll({interval: 5000});
 });
 </script>
 <script type="text/javascript" src="http://www.assoc-amazon.com/s/link-enhancer?tag=groovie-20&o=1">

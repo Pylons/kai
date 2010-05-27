@@ -97,6 +97,7 @@
 %endif
 </%def>
 <%def name="javascript()">
+<script src="http://cdn.jquerytools.org/1.2.2/full/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/javascripts/jquery_all.js" charset="utf-8"></script>
 <script type="text/javascript" src="/javascripts/behavior.js" charset="utf-8"></script>
 </%def>

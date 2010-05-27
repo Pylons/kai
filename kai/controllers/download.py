@@ -36,7 +36,7 @@ class DownloadController(BaseController):
             if f.startswith('.'):
                 continue
             if use_cachefly:
-                filelist.append('<li><a href="http://pylons.cachefly.net/download/%s/%s">'
+                filelist.append('<li><a href="http://cdn.pylonshq.com/download/%s/%s">'
                                 '%s</a></li>\n' % (version, f, f))
             else:
                 filelist.append('<li><a href="/download/%s/%s">%s</a></li>\n' 

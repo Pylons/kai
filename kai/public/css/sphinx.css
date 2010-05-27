@@ -214,13 +214,13 @@ div.warning p.admonition-title {
   font-weight: bold ;
   font-family: sans-serif }
 
-div.note { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-information.png) .8em .8em no-repeat;}
+div.note { padding-left:55px; background:url(http://cdn.pylonshq.com/img/icons/dialog-information.png) .8em .8em no-repeat;}
 
-div.warning { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-warning.png) .8em .8em no-repeat;}
+div.warning { padding-left:55px; background:url(http://cdn.pylonshq.com/img/icons/dialog-warning.png) .8em .8em no-repeat;}
 
-div.admonition-tip { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/preferences-system.png) .8em .8em no-repeat;}
+div.admonition-tip { padding-left:55px; background:url(http://cdn.pylonshq.com/img/icons/preferences-system.png) .8em .8em no-repeat;}
 
-div.danger { padding-left:55px; background:url(http://pylons.cachefly.net/img/icons/dialog-error.png) .8em .8em no-repeat;}
+div.danger { padding-left:55px; background:url(http://cdn.pylonshq.com/img/icons/dialog-error.png) .8em .8em no-repeat;}
 
 div.admonition {
     background-color: #f5f5f5;

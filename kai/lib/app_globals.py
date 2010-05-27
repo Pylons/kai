@@ -31,5 +31,5 @@ class Globals(object):
                          '0.9.3', '0.9.4', '0.9.4.1', '0.9.5', '0.9.6', '0.9.6.1',
                          '0.9.6.2', '0.9.7rc4', '0.9.7rc5', '0.9.7rc6', '0.9.7',
                          '0.10b1', '1.0b1', '0.10rc1', '1.0rc1', '1.0']
-        self.current_version = '0.9.7'
-        self.doc_version = '0.9.7'
+        self.current_version = '1.0'
+        self.doc_version = '1.0'

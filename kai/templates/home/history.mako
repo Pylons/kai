@@ -18,7 +18,7 @@
         the default templating language, and the request/response objects were all handled by Myghty,
         while Paste was used to load and run the application.</p>
     
-    <h2>Pylons 0.9 - 0.9.7 (2006 - 2008)</h2>
+    <h2>Pylons 0.9 - 0.9.7 (2006 - 2009)</h2>
     <p>Pylons 0.9 was released during <a href="http://conferences.oreillynet.com/os2006/">O'Reilly's 2006 OSCON</a>
         and brought some major changes to the internal architecture.</p>
     <p>Running as a Myghty page handler customization became a less than optimal design
@@ -33,11 +33,11 @@
         by switching from using Paste to the new packages which provide more functionality with
         little to no backwards incompatibility issues.</p>
     
-    <h2>Pylons 1.0 and beyond (2009-)</h2>
+    <h2>Pylons 1.0 and beyond (2010-)</h2>
     <p>Pylons 1.0 aims to be a finished and polished web application framework utilizing the
         newly extracted, and mature Python packages developed in the past few years symbiotically
         with Pylons.</p>
-    <p>Current projections are for a Pylons 1.0 release in early 2009.</p>
+    <p>Current projections are for a Pylons 1.0 release in early 2010.</p>
 </div>
 <%def name="title()">${parent.title()} - History</%def>
 <%inherit file="../layout.mako" />

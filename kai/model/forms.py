@@ -45,6 +45,7 @@ class SnippetForm(forms.TableForm):
         validator = UnicodeString())
     content = forms.TextArea(
         id = 'snippet_form_content',
+        name = 'content',
         help_text = "The full content of the snippet. Restructured Text formatting is used.",
         validator = UnicodeString(not_empty=True))
     tags = AutoComplete(
