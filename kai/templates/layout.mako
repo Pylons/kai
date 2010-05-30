@@ -8,7 +8,7 @@
 <body>
     <div id="doc4"${self.yui_class()}>
         <div id="hd">
-            <a href="${url('home')}"><h1 id="logo" class="replace">PylonsHQ<span>.</span></h1></a>
+            <h1 id="logo" class="replace"><a href="${url('home')}">PylonsHQ<span>.</span></a></h1>
             ${nav(getattr(c, 'active_tab', None), getattr(c, 'active_sub', None))}
         </div>
         <div id="bd">
