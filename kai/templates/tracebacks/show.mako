@@ -32,7 +32,7 @@
             % for frame in frames:
             <li><h4>
                 <cite>${frame['module']}</cite> : <em>${frame['line']}</em>, in <code>${frame['function']}</code></h4>
-                ${highlight(frame['operation'], py_lexer, html_formatter) | n}\
+                ${highlight(frame['operation'], py_lexer, html_formatter) if frame['operation'] else '' | n}\
             </li>
             % endfor
             </ul>

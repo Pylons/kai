@@ -9,8 +9,11 @@ body { background:#0f0f0f url(images/body-bg.jpg) repeat-x 0 0; margin:0; paddin
 .home #bd { background:#fff url(images/content-bg.jpg) repeat-x 0 100%;padding:20px;}
 
 /* LOGO */
-#logo {position:absolute;top:43px;left:0;overflow:hidden;}
-#logo a {text-indent:-9999px;height:68px;width:315px;background:transparent url(images/pylons-logo.gif) no-repeat 0 0;display:block;
+#logo {position: absolute; top: 60px; left: 0;overflow:hidden;}
+#logo, #logo span {height:68px; width:315px; color: #000; background: transparent url(images/pylons-logo.gif) no-repeat 0 0;}
+h1#logo {color: #000;font-size:0; cursor: pointer;}
+#logo span {background-color: transparent;}
+#logo a {text-decoration: none;}
 
 /* nav */
 #nav { color:#ffd630; position:absolute; top:25px; right:0;}

@@ -43,7 +43,7 @@
             ${self.more_body()}
         </div>
         <div id="ft">
-            <p>Powered by Pylons - <a href="#">Contact Administrators</a></p>
+            <p>Powered by Pylons - <a href="mailto:ben@groovie.org">Contact Administrators</a></p>
         </div>
     </div>
     ${self.javascript()}
