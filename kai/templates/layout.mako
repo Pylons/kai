@@ -146,10 +146,9 @@
     </li>
     <li id="nav-5"${active_tab.get('Code', '') | n}>${h.link_to('Code', url=url('trac_link', url='roadmap'))}
       <ul>
-        <li${active_sub.get('Contributing', '') | n}>${h.link_to('Contributing')}</li>
-        <li${active_sub.get('Milestones', '') | n}>${h.link_to('Milestones', url=url('trac_link', url='roadmap'))}</li>
-        <li${active_sub.get('View Tickets', '') | n}>${h.link_to('View Tickets', url=url('trac_link', url='report'))}</li>
-        <li${active_sub.get('Source', '') | n}>${h.link_to('Source', url=url('trac_link', url='browser'))}</li>
+        <li${active_sub.get('Contributing', '') | n}>${h.link_to('Contributing', url='http://docs.pylonsproject.org/#contributing')}</li>
+        <li${active_sub.get('View Tickets', '') | n}>${h.link_to('View Tickets', url='https://github.com/Pylons/pylons/issues')}</li>
+        <li${active_sub.get('Source', '') | n}>${h.link_to('Source', url='https://github.com/Pylons/pylons')}</li>
 ##        <li${active_sub.get('Releases', '') | n}><a href="#">Releases</a></li>
 ##        <li${active_sub.get('Buildbots', '') | n}>${h.link_to('Buildbots', url=url('buildbot', action='index'))}</li>
       </ul>
