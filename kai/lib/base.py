@@ -84,7 +84,7 @@ class CMSObject(object):
         
     def delete(self, id):
         cms_object = self._cms_object.load(self.db, id) or abort(404)
-        if self._check_owner(cms_object, pylons.c.user, check_session=True):
+        if self._check_owner(cms_object, pylons.tmpl_context.user, check_session=True):
             comments = list(Comment.by_time(self.db, startkey=[cms_object.id], endkey=[cms_object.id, {}]))
             update_seq = []
             for comment in comments:
