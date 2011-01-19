@@ -112,10 +112,6 @@ def make_map(config):
     map.connect('delete_comment', '/comment/{id}', controller='comments', action='delete', conditions=dict(method='DELETE'))
     map.resource('comment', 'comments')
     
-    # Trac
-    map.connect('/project/*path_info', controller='tracs', action='run_app')
-    map.connect('trac_link', '/project/pylonshq/*url')
-    
     # External Links
     map.connect('sqlalchemy', 'http://sqlalchemy.org/', _static=True)
     map.connect('sqlobject', 'http://www.sqlobject.org/', _static=True)
