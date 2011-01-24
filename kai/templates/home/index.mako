@@ -8,6 +8,9 @@
   <div class="yui-b">
     <div class="yui-gc">
       <div class="yui-u first">
+        <h3>Pylons merges with repoze.bfg</h3>
+        <p>The Pylons framework developers have merged efforts with the <a href="http://bfg.repoze.org/">repoze.bfg</a> framework under the <a href="https://github.com/Pylons">Pylons Project</a> banner. <a href="http://docs.pylonsproject.org/">Read about the Pylons Project</a> and the joint effort, the <a href="http://docs.pylonsproject.org/projects/pyramid/dev/">Pyramid web framework</a>, and <a href="http://be.groovie.org/post/1558848023/notes-on-the-pylons-repoze-bfg-merger">notes on the merger</a>. This site will continue to serve the Pylons framework community, and provide documentation and upgrade path information for the existing Pylons framework users.
+        </p>
         <h3>${_('Why use Pylons?')}</h3>
         <p>Pylons combines the very best ideas from the worlds of Ruby, Python and Perl, providing a structured but
             extremely flexible Python web framework. It's also one of the first projects to leverage the emerging
