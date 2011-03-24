@@ -144,7 +144,7 @@
         <li${active_sub.get('Snippets', '') | n}><a href="#">${h.link_to('Snippets', url=url('snippets'))}</a></li>
       </ul>
     </li>
-    <li id="nav-5"${active_tab.get('Code', '') | n}>${h.link_to('Code', url=url('trac_link', url='roadmap'))}
+    <li id="nav-5"${active_tab.get('Code', '') | n}>${h.link_to('Code', url='https://github.com/Pylons/pylons')}
       <ul>
         <li${active_sub.get('Contributing', '') | n}>${h.link_to('Contributing', url='http://docs.pylonsproject.org/#contributing')}</li>
         <li${active_sub.get('View Tickets', '') | n}>${h.link_to('View Tickets', url='https://github.com/Pylons/pylons/issues')}</li>
